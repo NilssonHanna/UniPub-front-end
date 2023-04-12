@@ -21,6 +21,16 @@ export default function StartButtons ({text,onPress}){
       </TouchableOpacity>
     );
   }
+
+  export function BlueButtons ({text,onPress}){
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={[styles.buttonContainer, styles.blueButton]}>
+          <Text style={styles.bluebuttonText}> {text} </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
   
 
 const styles=StyleSheet.create({
@@ -46,11 +56,29 @@ const styles=StyleSheet.create({
       paddingVertical: 10,
       backgroundColor:'white',
   
-
   },
-    buttonText:{
 
-        color: 'black',
+  blueButton:{
+
+    paddingVertical: 20,
+    backgroundColor:'#1070B6',
+    
+
+},
+
+buttonText:{
+
+  color: 'black',
+  textTransform:'uppercase',
+  fontSize:15,
+  fontWeight:'bold',
+  fontFamily: 'Times New Roman',
+  textAlign:'center',
+
+},
+    bluebuttonText:{
+
+        color: 'white',
         textTransform:'uppercase',
         fontSize:15,
         fontWeight:'bold',
