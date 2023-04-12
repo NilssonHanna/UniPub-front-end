@@ -90,7 +90,7 @@ export default function OverViewScreen({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: theme.backgroundColor}}>
       <ScrollView>
-        <View style={styles.buttonContainer}>
+        <View>
           {nations.map((nation, index) => (
             <View style={styles.nationContainer} key={index}>
               <Image source={{uri: nation.imageUri}} style={styles.image} />

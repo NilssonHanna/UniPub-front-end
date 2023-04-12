@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
 
 
+
 export default function StartButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
@@ -11,6 +12,17 @@ export default function StartButtons ({text,onPress}){
       </TouchableOpacity>
     );
   }
+  export function LoginButtons ({text,onPress}){
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={[styles.loginButtonContainer]}>
+          <Text style={styles.buttonText}> {text} </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  
 
   export function WhiteButtons ({text,onPress}){
     return (
@@ -21,6 +33,8 @@ export default function StartButtons ({text,onPress}){
       </TouchableOpacity>
     );
   }
+
+
   
 
 const styles=StyleSheet.create({
@@ -39,6 +53,28 @@ const styles=StyleSheet.create({
         paddingVertical:30,
         backgroundColor:'#ea580c',
   
+    },
+    loginButtonContainer:{
+        
+        height:55,
+        alignItems:'center',
+        justifyContent: 'space-around',
+        borderRadius:35,
+        marginHorizontal:20,
+        marginVertical:10,
+        borderWidth:1,
+        borderColor:"black",
+        backgroundColor:'#ea580c',
+        shadowColor:'#000',
+        shadowOffset:{
+            width:0,
+            height:4
+        },
+        shadowOpacity:0.25,
+        shadowRadius:3.84,
+        elevation:5
+
+         
     },
 
     whiteButton:{
