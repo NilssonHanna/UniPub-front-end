@@ -98,6 +98,7 @@ const styles=StyleSheet.create({
 
     paddingVertical: 20,
     backgroundColor:'#1070B6',
+    paddingHorizontal: 20,
     
 
 },
