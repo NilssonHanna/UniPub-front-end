@@ -8,7 +8,8 @@ import OverViewScreen from '../screens/OverViewScreen';
 import NationSettingScreen from '../screens/NationSettingScreen';
 import NationManagingScreen from '../screens/NationManagingScreen';
 import NationViewScreen from '../screens/NationViewScreen';
-import SecondMapScreen from '../screens/MapScreen';
+import MenuScreen from '../screens/MenuScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,9 @@ const MyStack = () => {
          <Stack.Screen 
         name="NationView" 
         component={NationViewScreen} />
+        <Stack.Screen 
+        name="Menu" 
+        component={MenuScreen} />
         
 
 
