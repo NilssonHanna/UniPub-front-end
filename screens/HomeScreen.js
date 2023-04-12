@@ -20,7 +20,7 @@ export default function HomeScreen({ navigation }) {
       />
      </View>
 
-      <View style={styles.buttonContainer}>
+      <View >
         <StartButtons text="Continue as guest" onPress={() => pressHandler('Map')} />
         <StartButtons text="Login as a nation" onPress={() => pressHandler('Login')} />
       </View>
