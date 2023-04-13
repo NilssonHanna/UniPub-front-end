@@ -3,10 +3,21 @@ import { StyleSheet, View, Image } from 'react-native';
 import StartButtons from '../shared/Buttons';
 
 export default function HomeScreen({ navigation }) {
-  const pressHandler = (screenName) => {
+
+  const pressHandlerMap=() =>{
+
+    navigation.navigate('Map')
+    
+    }
+    const pressHandlerLogin=() =>{
+
+      navigation.navigate('Login')
+      
+      }
+ /*  const pressHandler = (screenName) => {
     navigation.navigate(screenName);
   };
-
+ */
   const imageUrl = "https://drive.google.com/uc?id=1Zc0Z4GenUwxw-OIgpplyL-gdIbxnK51Z";
 
 
@@ -21,8 +32,8 @@ export default function HomeScreen({ navigation }) {
      </View>
 
       <View >
-        <StartButtons text="Continue as guest" onPress={() => pressHandler('Map')} />
-        <StartButtons text="Login as a nation" onPress={() => pressHandler('Login')} />
+        <StartButtons text="Continue as guest" onPress={pressHandlerMap} />
+        <StartButtons text="Login as a nation" onPress={pressHandlerLogin} />
       </View>
     </View>
   );

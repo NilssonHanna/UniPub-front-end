@@ -1,6 +1,7 @@
 import React from 'react';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import {Button, StyleSheet, Text, View } from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 export default function MapScreen({navigation}) {
   const markers = [
@@ -104,16 +105,19 @@ export default function MapScreen({navigation}) {
     },
   ];
 
+  const Tab= createBottomTabNavigator();
+
   const pressHandler = () =>{
-
     navigation.navigate('NationView')
-    
-    }
+     }
 
-    const navigateToScreen = () => {
-        navigation.navigate('OverView');
-      };
+  const navigateToScreen = () => {
+    navigation.navigate('OverView');
+     }
+
   return (
+    
+  
     <View style={styles.container}>
       <MapView
         style={styles.map}

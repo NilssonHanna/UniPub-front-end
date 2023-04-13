@@ -53,11 +53,12 @@ const styles = StyleSheet.create({
   textInput:{
     height:50,
     borderWidth:1,
-    borderColor:'rgba(0,0,0,0,2)',
+    borderColor:'green',
     marginHorizontal:20,
     marginVertical:10,
     borderRadius:25,
     paddingLeft:10
+   
 
 
 },
