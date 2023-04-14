@@ -10,7 +10,6 @@ export default function NationViewScreen({navigation}) {
     navigation.navigate('Menu')
     
     }
-
   
   return ( 
   
@@ -84,6 +83,4 @@ adress: {
   paddingTop: 10,
   fontStyle: 'italic',
 },
-
-
 })
