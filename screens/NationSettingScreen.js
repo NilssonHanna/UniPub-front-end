@@ -16,7 +16,10 @@ export default function NationViewScreen({navigation}) {
     <View style={styles.container}>
 
     <Text style={styles.title}>Stockholms nation</Text>
+    
+    <View style={styles.imageContainer}>
         <Image style={styles.image} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}} />
+        </View>
         <Text style={styles.maximumSeats}>Set amount of maximum seats:</Text>
         <BlueButtons text="Start calculating amount of seats" onPress={pressHandler} />
        </View>
@@ -48,9 +51,10 @@ imageContainer: {
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
+  marginTop: -60
 },
 image: {
-  width: '100%',
+  width: '80%',
   height: undefined,
   aspectRatio: 1,
   resizeMode: 'contain',
