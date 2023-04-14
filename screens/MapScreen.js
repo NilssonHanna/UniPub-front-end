@@ -125,17 +125,17 @@ export default function MapScreen({navigation}) {
         }}
       >
         {markers.map((marker, index) => (
-          <Marker key={index} coordinate={marker.coordinate}>
+          <Marker key={index} coordinate={marker.coordinate} >
             <Callout>
-              <Text>{marker.title}</Text>
-              <Button title='go' onPress={pressHandler}/>
+              <Text style= {styles.nation}> {marker.title}</Text>
+              <Button title='Info' onPress={pressHandler}/>
             </Callout>
           </Marker>
         ))}
       </MapView>
 
       <View>
-      <Button title='gå till Overview' onPress={navigateToScreen}/>
+      <Button title='Gå till Overview' onPress={navigateToScreen}/>
       </View>
       
     </View>
@@ -152,46 +152,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '90%',
   },
+  nation: {
+    color: 'black',
+    textTransform:'uppercase',
+    fontSize:14,
+    fontFamily: 'Times New Roman',
+    fontWeight:'bold',
+    letterSpacing:0.5
+
+  },
+
 });
-
-
-/* import React from 'react';
-import MapView, { Callout, Marker } from 'react-native-maps';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function SecondMapScreen() {
-  return (
-    <View style={styles.container}>
-      <MapView style={styles.map} 
-      initialRegion={{
-
-        latitude:59.859555,
-        longitude:17.632734,
-        longitudeDelta:0.01,
-        latitudeDelta:0.01
-        }}>
-      <Marker
-      coordinate={{
-      latitude:59.85670217211145, 
-      longitude:17.634162409009416
-    }}> 
-    <Callout>
-<Text> Stockholms nation</Text>
-        </Callout>
-       </Marker>
-
-       
-      </MapView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-}); */
