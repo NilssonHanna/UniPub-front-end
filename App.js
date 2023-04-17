@@ -2,9 +2,11 @@ import React from 'react';
 import MainStack from './Routes/Stacks';
 
 
+
 const App = ()=>{
   return (
-     <MainStack/>
-  );}
+    <MainStack />
+  );
+};
 
 export default App;
