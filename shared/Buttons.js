@@ -15,7 +15,7 @@ export default function StartButtons ({text,onPress}){
   export function LoginButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={[styles.loginButtonContainer]}>
+        <View style={styles.loginButtonContainer}>
           <Text style={styles.buttonText}> {text} </Text>
         </View>
       </TouchableOpacity>
@@ -64,9 +64,11 @@ const styles=StyleSheet.create({
         backgroundColor:'#ea580c',
   
     },
+
     loginButtonContainer:{
         
-        height:55,
+        height:60,
+        bottom: -150,
         alignItems:'center',
         justifyContent: 'space-around',
         borderRadius:35,
@@ -107,10 +109,11 @@ buttonText:{
 
   color: 'black',
   textTransform:'uppercase',
-  fontSize:15,
+  fontSize:18,
   fontWeight:'bold',
   fontFamily: 'Times New Roman',
   textAlign:'center',
+  letterSpacing:0.5
 
 },
     bluebuttonText:{
@@ -121,6 +124,7 @@ buttonText:{
         fontWeight:'bold',
         fontFamily: 'Times New Roman',
         textAlign:'center',
+        letterSpacing:0.5
     
     }
 })

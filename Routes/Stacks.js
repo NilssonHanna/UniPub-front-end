@@ -1,36 +1,32 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
-import MapScreen from '../screens/MapScreen';
-import OverViewScreen from '../screens/OverViewScreen';
+
 import NationSettingScreen from '../screens/NationSettingScreen';
 import NationManagingScreen from '../screens/NationManagingScreen';
 import NationViewScreen from '../screens/NationViewScreen';
 import MenuScreen from '../screens/MenuScreen';
+import StudentTabs from './Tabs';
 
 
 const Stack = createNativeStackNavigator();
 
-const MyStack = () => {
+const MainStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{title: 'Welcome'}}
+          name="StudentTabs"
+          component={StudentTabs}
+         
+
         />
+   
         <Stack.Screen 
         name="Login" 
         component={LoginScreen} />
-         <Stack.Screen 
-        name="Map" 
-        component={MapScreen} />
-         <Stack.Screen 
-        name="OverView" 
-        component={OverViewScreen} />
+         
          <Stack.Screen 
         name="NationSetting" 
         component={NationSettingScreen} />
@@ -44,11 +40,9 @@ const MyStack = () => {
         name="Menu" 
         component={MenuScreen} />
         
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-export default MyStack;
+export default MainStack;
