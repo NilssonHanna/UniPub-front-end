@@ -8,11 +8,11 @@ import {LoginButtons} from '../shared/Buttons';
 
 export default function LoginScreen({navigation}) {
 
-    const pressHandler = () =>{
+     const pressHandler = () =>{
 
         navigation.navigate('NationSetting')
         
-        }
+        } 
     
   return ( 
   
@@ -34,7 +34,7 @@ export default function LoginScreen({navigation}) {
   
 </View>
     <View>
-        <LoginButtons text="Login" onPress={() => pressHandler('NationSetting')} />
+        <LoginButtons text="Login" onPress={pressHandler} />
         
       </View>
   </View>

@@ -19,6 +19,7 @@ const MainStack = () => {
           component={Tabs}
           options={{ headerShown: false}}
         />
+   
         <Stack.Screen 
           name="Login" 
           component={LoginScreen} 
