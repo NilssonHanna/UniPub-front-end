@@ -137,8 +137,6 @@ export default function MapScreen({navigation}) {
           </Marker>
         ))}
       </MapView>
-
-     
       
     </View>
     

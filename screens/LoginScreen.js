@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     top: 100,
     backgroundColor: 'white',
     fontFamily: 'Times New Roman'
-  },
-  
+},
+
 title: {
   color: 'black',
   textTransform:'uppercase',

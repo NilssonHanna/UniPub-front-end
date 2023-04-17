@@ -2,11 +2,7 @@
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
-import LoginScreen from '../screens/LoginScreen';
 import MapScreen from '../screens/MapScreen';
-import NationManagingScreen from '../screens/NationManagingScreen';
-import NationSettingScreen from '../screens/NationSettingScreen';
-import NationViewScreen from '../screens/NationViewScreen';
 import OverViewScreen from '../screens/OverViewScreen';
 
 

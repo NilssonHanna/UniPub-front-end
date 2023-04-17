@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet,View,Text, Image} from 'react-native';
 import theme from '../Styles/GlobalStyles';
 import { BlueButtons } from '../shared/Buttons';
+import NumberPicker from '../shared/NumberPicker';
 
 export default function NationViewScreen({navigation}) {
 
@@ -16,6 +17,8 @@ export default function NationViewScreen({navigation}) {
     <View style={styles.container}>
 
     <Text style={styles.title}>Stockholms nation</Text>
+
+    <NumberPicker />
     
     {/* <View style={styles.imageContainer}>
         <Image style={styles.image} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}} />
@@ -45,6 +48,12 @@ title: {
     fontWeight:'bold',
     fontFamily: 'Times New Roman',
     textAlign:'center',
+    marginBottom:25
+},
+
+numberpicker:{
+  
+
 },
 
 imageContainer: {
@@ -65,7 +74,7 @@ maximumSeats: {
   fontSize: 18,
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
-  marginTop: -30,
+  marginTop: 10,
   textAlign: 'center',
   marginBottom: 80,
 },
