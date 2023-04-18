@@ -98,10 +98,9 @@ const styles=StyleSheet.create({
 
   blueButton:{
 
-    paddingVertical: 20,
-    backgroundColor:'#1070B6',
-    paddingHorizontal: 20,
-    
+    borderRadius:50,
+    paddingVertical:30,
+    backgroundColor:'#ea580c',
 
 },
 
@@ -118,7 +117,7 @@ buttonText:{
 },
     bluebuttonText:{
 
-        color: 'white',
+        color: 'black',
         textTransform:'uppercase',
         fontSize:15,
         fontWeight:'bold',
