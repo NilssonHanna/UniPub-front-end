@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {StyleSheet,View,Text, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
+import Bar from '../shared/ProgressBar';
 import theme from '../Styles/GlobalStyles';
 
 // Define the PauseEntryButton component outside of NationViewScreen
@@ -32,6 +33,9 @@ export default function NationViewScreen({navigation}) {
     setIndex(index + 1);
   };
 
+  const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
+  
+
 
   const pressHandler = () => {
     navigation.navigate('NationManaging');
@@ -39,52 +43,57 @@ export default function NationViewScreen({navigation}) {
 
   return ( 
     <View style={styles.container}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Text style={styles.title}>Stockholms nation</Text>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}} />
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.iconButtonMinus} onPress={decrementIndex}>
-            <Text style={styles.iconButtonText}>-</Text>
-          </TouchableOpacity>
-          <Text style={styles.index}>{index}</Text>
-          <TouchableOpacity style={styles.iconButtonPlus} onPress={incrementIndex}>
-            <Text style={styles.iconButtonText}>+</Text>
-          </TouchableOpacity>
-        </View>
       
+      </ImageBackground>
+   
+    <View style ={styles.bar}>
+      <Bar/>
       </View>
-      <PauseEntryButton />
+
+        <TouchableOpacity style={styles.iconButtonMinus} onPress={decrementIndex}>
+        
+          <Text style={styles.iconButtonText}>-</Text>
+        
+        </TouchableOpacity>
+
+          <Text style={styles.index}>{index}</Text>
+          
+        <TouchableOpacity style={styles.iconButtonPlus} onPress={incrementIndex}>
+            
+            <Text style={styles.iconButtonText}>+</Text>
+        
+        </TouchableOpacity>
+     
+        <PauseEntryButton />
+  
     </View>
   );
 }
 
 const styles=StyleSheet.create({
   container:{
-    padding:24,
     flex: 1,
     backgroundColor: theme.backgroundColor,
-    paddingTop: 50, // add padding to position title at the top
-    paddingHorizontal: 24, // 
+
   },
   title: {
-    color: 'black',
     textTransform:'uppercase',
     fontSize:25,
-    fontWeight:'bold',
     fontFamily: 'Times New Roman',
-    textAlign:'center',
+    color: 'white',
+    lineHeight: 50,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#00000070',
+    marginTop: 120,
   },
-  imageContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -60
-  },
+
   image: {
-    width: '80%',
-    height: undefined,
-    aspectRatio: 1,
-    resizeMode: 'contain',
+    flex: 1,
+    justifyContent: 'center',
+    height: '75%'
   },
 
   button: {
@@ -92,10 +101,18 @@ const styles=StyleSheet.create({
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 50,
+    marginVertical: 80,
     justifyContent: 'space-around',
     alignSelf: 'center',
-    top: 50
+    top: 50,
+    shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 4,
+  },
+  shadowOpacity: 5,
+  shadowRadius: 5,
+  elevation: 10,
     
   },
   buttonText: {
@@ -112,29 +129,47 @@ const styles=StyleSheet.create({
   },
 
   iconButtonMinus: {
+    justifyContent: 'space-around',
+    alignSelf: 'center',
     width: 100,
     height: 100,
-    backgroundColor: '#1070B6',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: -105,
+    backgroundColor: 'black',
     flexDirection: 'row',
+    left: '20%',
     position: 'absolute',
-    marginTop: 20,
-    marginBottom: 30,
+    marginTop: 420,
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+  },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
   },
 
   iconButtonPlus: {
+    justifyContent: 'space-around',
     width: 100,
     height: 100,
-    backgroundColor: '#1070B6',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'black',
     marginLeft: 30,
     flexDirection: 'row',
+    left: '45%',
     position: 'absolute',
-    marginTop: 20,
-    marginBottom: 30,
+    marginTop: 420,
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+  },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
   },
   iconButtonText: {
     fontSize: 80,
@@ -147,7 +182,13 @@ const styles=StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     fontFamily: 'Times New Roman',
-    marginVertical: -20,
+    left: '48%',
+    bottom: 30,
+  },
+
+  bar: {
+    left: '22%',
+    bottom: 65,
   },
 
 

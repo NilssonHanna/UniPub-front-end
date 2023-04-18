@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet,View,Text, Image} from 'react-native';
+import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
+import Bar from '../shared/ProgressBar';
 
 export default function NationViewScreen({navigation}) {
 
@@ -10,17 +11,25 @@ export default function NationViewScreen({navigation}) {
     navigation.navigate('Menu')
     
     }
+
+    const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
   
   return ( 
   
     <View style={styles.container}>
 
-    <Text style={styles.title}>Stockholms nation</Text>
-
-    <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}} />
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <Text style={styles.title}>Stockholms nation</Text>
+      
+      </ImageBackground>
         <Text style={styles.availableSeats}>Available Seats:</Text>
-       </View>
+
+        <View style ={styles.bar}>
+      <Bar/>
+      </View>
+
+        
+       
 
        <StartButtons text="Menu" onPress={pressHandler} />
 
@@ -33,11 +42,8 @@ export default function NationViewScreen({navigation}) {
 
 const styles=StyleSheet.create({
   container:{
-    padding:24,
     flex: 1,
     backgroundColor: theme.backgroundColor,
-    paddingTop: 50, // add padding to position title at the top
-    paddingHorizontal: 24, // 
   }
 ,
 title: {
@@ -66,7 +72,9 @@ availableSeats: {
   fontSize: 25,
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
-  marginTop: -30
+  alignItems: 'center',
+  bottom: 10,
+  left: 100,
 },
 
 openingTimes: {
@@ -74,13 +82,39 @@ openingTimes: {
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
   fontStyle: 'italic',
+  bottom: 10,
+  left: 20,
 },
 
 adress: {
   fontSize: 20,
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
-  paddingTop: 10,
   fontStyle: 'italic',
+  bottom: 10,
+  left: 20,
+},
+
+bar: {
+  left: '22%',
+  bottom: 100,
+},
+
+title: {
+  textTransform:'uppercase',
+  fontSize:25,
+  fontFamily: 'Times New Roman',
+  color: 'white',
+  lineHeight: 50,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  backgroundColor: '#00000070',
+  marginTop: 120,
+},
+
+image: {
+  flex: 1,
+  justifyContent: 'center',
+  height: '75%'
 },
 })
