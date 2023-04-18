@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import ScrollPicker from 'react-native-wheel-scrollview-picker';
@@ -11,33 +5,38 @@ import ScrollPicker from 'react-native-wheel-scrollview-picker';
 export default class NumberPicker extends Component {
   render() {
     const numberRange = Array.from({ length: 201 }, (_, i) => i); // create an array with numbers from 0 to 100
-
+    
     return (
       <ScrollPicker
         dataSource={numberRange}
-        selectedIndex={0}
-        renderItem={(data, index) => {
+        selectedIndex={this.props.selectedValue}
+        renderItem={(data, index, isSelected) => {
           return (
             <Text
               key={index}
               style={{
                 textAlign: 'center',
                 fontSize: 20,
+                color: isSelected ? 'black' : 'grey',
+                
                  }}
             >
               {data}
             </Text>
           );
         }}
-        onValueChange={(data, selectedIndex) => {
-          //
+        onValueChange={(data) => {
+            this.props.onValueChange(data);
         }}
-        wrapperHeight={400}
+        wrapperHeight={180}
         wrapperWidth={1}
-        wrapperColor='#FFFFFF'
+        wrapperColor='#'
         itemHeight={40}
-        highlightColor='#d8d8d8'
-        highlightBorderWidth={2}
+        highlightColor='black'
+        highlightBorderWidth={1}
+       
+       
+        
       />
     );
   }
