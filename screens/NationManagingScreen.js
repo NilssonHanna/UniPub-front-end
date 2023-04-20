@@ -3,7 +3,6 @@ import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 're
 import Bar from '../shared/ProgressBar';
 import theme from '../Styles/GlobalStyles';
 
-// Define the PauseEntryButton component outside of NationViewScreen
 const PauseEntryButton = () => {
   const [isPaused, setIsPaused] = useState(false);
 
@@ -21,21 +20,25 @@ const PauseEntryButton = () => {
   );
 };
 
-export default function NationViewScreen({navigation}) {
+export default function NationManagingScreen({navigation, route}) {
+
 
   const [index, setIndex] = useState(0);
+  const maxSeats = route.params?.maxSeats || 0;
 
   const decrementIndex = () => {
     setIndex(Math.max(index - 1, 0));
   };
 
   const incrementIndex = () => {
+    if (index < maxSeats) {
     setIndex(index + 1);
+  }
   };
 
   const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
   
-
+  const progress = index / maxSeats;
 
   const pressHandler = () => {
     navigation.navigate('NationManaging');
@@ -49,7 +52,7 @@ export default function NationViewScreen({navigation}) {
       </ImageBackground>
    
     <View style ={styles.bar}>
-      <Bar/>
+      <Bar index={progress}/>
       </View>
 
         <TouchableOpacity style={styles.iconButtonMinus} onPress={decrementIndex}>
@@ -63,8 +66,11 @@ export default function NationViewScreen({navigation}) {
         <TouchableOpacity style={styles.iconButtonPlus} onPress={incrementIndex}>
             
             <Text style={styles.iconButtonText}>+</Text>
+
         
         </TouchableOpacity>
+
+        <Text style = {styles.index}>{route.params.selectedValue}</Text>
      
         <PauseEntryButton />
   
@@ -187,8 +193,8 @@ const styles=StyleSheet.create({
   },
 
   bar: {
-    left: '22%',
     bottom: 65,
+    marginHorizontal: 20,
   },
 
 
