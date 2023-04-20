@@ -8,11 +8,16 @@ export default function NationSettingScreen({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(0);
 
   const pressHandler = () => {
-    navigation.navigate('NationManaging');
+    navigation.navigate('NationManaging', {
+      selectedValue,
+      maxSeats: selectedValue
+    });
+
   };
 
   const onValueChange = (value) => {
     setSelectedValue(value);
+    
   };
 
   return (
