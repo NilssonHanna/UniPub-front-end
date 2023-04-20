@@ -7,32 +7,48 @@ import NationManagingScreen from '../screens/NationManagingScreen';
 import NationViewScreen from '../screens/NationViewScreen';
 import MenuScreen from '../screens/MenuScreen';
 import Tabs from './Tabs';
+import TabsNations from './TabsNations';
+
 
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false}}>
-        <Stack.Screen
+      <Stack.Navigator screenOptions={{ headerShown: false, /* gestureEnabled: false */}}>
+
+      
+      <Stack.Screen
           name="Tabs"
           component={Tabs}
           options={{ headerShown: false}}
         />
-   
+
+       
+
         <Stack.Screen 
           name="Login" 
           component={LoginScreen} 
+
+          
+                  />
+
+    <Stack.Screen 
+          name="TabsNations" 
+          component={TabsNations} 
         />
 
+      {/*   <Stack.Screen 
+          name="NationManaging" 
+          component={NationManagingScreen} 
+        />
+       */}
+         
         <Stack.Screen 
           name="NationSetting" 
           component={NationSettingScreen}
         />
-        <Stack.Screen 
-          name="NationManaging" 
-          component={NationManagingScreen} 
-        />
+        
         <Stack.Screen 
           name="NationView" 
           component={NationViewScreen} 
@@ -41,6 +57,8 @@ const MainStack = () => {
           name="Menu" 
           component={MenuScreen} 
                   />
+           
+
       </Stack.Navigator>
     </NavigationContainer>
   );

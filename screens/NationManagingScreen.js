@@ -72,7 +72,7 @@ export default function NationManagingScreen({navigation, route}) {
 
         <Text style = {styles.index}>{route.params.selectedValue}</Text>
      
-        <PauseEntryButton />
+       {/*  <PauseEntryButton /> */}
   
     </View>
   );
@@ -93,13 +93,13 @@ const styles=StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#00000070',
-    marginTop: 120,
+    marginTop: 10,
   },
 
   image: {
     flex: 1,
     justifyContent: 'center',
-    height: '75%'
+    height: '45%'
   },
 
   button: {
@@ -143,7 +143,7 @@ const styles=StyleSheet.create({
     flexDirection: 'row',
     left: '20%',
     position: 'absolute',
-    marginTop: 420,
+    marginTop: 350,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -165,7 +165,7 @@ const styles=StyleSheet.create({
     flexDirection: 'row',
     left: '45%',
     position: 'absolute',
-    marginTop: 420,
+    marginTop: 350,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -189,7 +189,7 @@ const styles=StyleSheet.create({
     color: 'black',
     fontFamily: 'Times New Roman',
     left: '48%',
-    bottom: 30,
+    bottom: 200,
   },
 
   bar: {
