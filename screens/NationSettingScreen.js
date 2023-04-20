@@ -4,7 +4,7 @@ import theme from '../Styles/GlobalStyles';
 import { BlueButtons } from '../shared/Buttons';
 import NumberPicker from '../shared/NumberPicker';
 
-export default function NationViewScreen({ navigation }) {
+export default function NationSettingScreen({ navigation }) {
   const [selectedValue, setSelectedValue] = useState(0);
 
   const pressHandler = () => {

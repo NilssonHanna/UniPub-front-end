@@ -6,11 +6,12 @@ import {LoginButtons} from '../shared/Buttons';
 
 
 
+
 export default function LoginScreen({navigation}) {
 
      const pressHandler = () =>{
 
-        navigation.navigate('NationSetting')
+        navigation.navigate('TabsNations')
         
         } 
     
