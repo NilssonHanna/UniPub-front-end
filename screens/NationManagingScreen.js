@@ -61,7 +61,7 @@ export default function NationManagingScreen({navigation, route}) {
         
         </TouchableOpacity>
 
-          <Text style={styles.index}>{index}</Text>
+          <Text style={styles.index}>{maxSeats-index}</Text>
           
         <TouchableOpacity style={styles.iconButtonPlus} onPress={incrementIndex}>
             
