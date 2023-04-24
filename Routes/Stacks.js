@@ -8,6 +8,8 @@ import NationViewScreen from '../screens/NationViewScreen';
 import MenuScreen from '../screens/MenuScreen';
 import Tabs from './Tabs';
 import TabsNations from './TabsNations';
+import ProfileScreen from '../screens/ProfileScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,21 +35,25 @@ const MainStack = () => {
           
                   />
 
-    <Stack.Screen 
+<Stack.Screen 
           name="TabsNations" 
           component={TabsNations} 
         />
 
-      {/*   <Stack.Screen 
-          name="NationManaging" 
-          component={NationManagingScreen} 
-        />
-       */}
-         
-        <Stack.Screen 
+<Stack.Screen 
           name="NationSetting" 
           component={NationSettingScreen}
         />
+
+   
+
+        <Stack.Screen 
+          name="NationManaging" 
+          component={NationManagingScreen} 
+        /> 
+       
+         
+       
         
         <Stack.Screen 
           name="NationView" 
@@ -57,6 +63,16 @@ const MainStack = () => {
           name="Menu" 
           component={MenuScreen} 
                   />
+
+<Stack.Screen 
+          name="Profile" 
+          component={ProfileScreen} 
+                  />
+           
+           {/* <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+                  /> */}
            
 
       </Stack.Navigator>
