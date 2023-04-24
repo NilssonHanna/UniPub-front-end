@@ -1,3 +1,4 @@
+import { Center, Row } from 'native-base';
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
 
@@ -38,6 +39,17 @@ export default function StartButtons ({text,onPress}){
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.ButtonContainer, styles.orangeButton]}>
           <Text style={styles.orangeButtonText}> {text} </Text>
+
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  export function ExitButton ({text,onPress}){
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.exitButton}>
+          <Text style={styles.exitButtonText}> {text} </Text>
         </View>
       </TouchableOpacity>
     );
@@ -77,7 +89,10 @@ const styles=StyleSheet.create({
         elevation:5
     },
 
+  
+
     button:{
+
 
         borderRadius:50,
         paddingVertical:30,
@@ -100,6 +115,34 @@ const styles=StyleSheet.create({
       backgroundColor:'white',
   
   },
+
+
+  exitButton:{
+    width: 30,
+    height: 30,
+    borderRadius: 25,
+    backgroundColor: '#ea580c',
+    justifyContent: 'center', 
+    alignItems: 'center',  
+    left:300,
+    bottom:70,
+    
+
+  },
+
+  exitButtonText:{
+    color: 'white',
+    textTransform:'uppercase',
+    fontSize:15,
+    fontWeight:'bold',
+    fontFamily: 'Times New Roman',
+    /* textAlign:'center', */
+    alignSelf:'center',
+    letterSpacing:0.5,
+    
+
+  },
+
 
   orangeButton:{
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import {StyleSheet,View,Text,Button,TextInput} from 'react-native';
 import theme from '../Styles/GlobalStyles';
-import {LoginButtons} from '../shared/Buttons';
+
+import {ExitButton, LoginButtons} from '../shared/Buttons';
+
 import { Chewy_400Regular } from '@expo-google-fonts/chewy';
 
 
@@ -10,16 +12,25 @@ import { Chewy_400Regular } from '@expo-google-fonts/chewy';
 
 export default function LoginScreen({navigation}) {
 
-     const pressHandler = () =>{
+     const pressHandlerNationSetting = () =>{
 
         navigation.navigate('TabsNations')
         
         } 
+
+        const pressHandlerHome=() =>{
+
+          navigation.navigate('Home')
+          
+          }
     
   return ( 
   
   <View style={styles.container}>
 
+<View>
+        <ExitButton text="x" onPress={pressHandlerHome} />
+      </View>
   <Text style={styles.title}>Welcome</Text>
     
 <View>
@@ -36,7 +47,9 @@ export default function LoginScreen({navigation}) {
   
 </View>
     <View>
-        <LoginButtons text="Login" onPress={pressHandler} />
+
+        <LoginButtons text="Login" onPress={pressHandlerNationSetting} />
+
       </View>
   </View>
  
