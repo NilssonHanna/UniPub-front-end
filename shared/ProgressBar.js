@@ -6,7 +6,7 @@ const Bar = ({ index, maxSeats }) => {
   let color = '#00FF00';
   if (index >= 1) {
     color = '#FF0000';
-  } else if (index >= 0.7) {
+  } else if (index >= 0.5) {
     color = '#FFA500';
   }
 

@@ -31,14 +31,15 @@ export default function NationManagingScreen({navigation, route}) {
   };
 
   const incrementIndex = () => {
-    if (index < maxSeats) {
+   // if (index < maxSeats) {
     setIndex(index + 1);
-  }
+ // }
   };
 
   const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
   
-  const progress = index / maxSeats;
+  //const progress = index / maxSeats;
+  const progress = maxSeats === 0 ? 0 : index / maxSeats;
 
   const pressHandler = () => {
     navigation.navigate('NationManaging');
