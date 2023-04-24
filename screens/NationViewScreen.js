@@ -59,6 +59,7 @@ imageContainer: {
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
+  
 },
 image: {
   width: '100%',
@@ -66,6 +67,7 @@ image: {
   aspectRatio: 1,
   resizeMode: 'contain',
   marginTop: -50,
+  
 },
 
 availableSeats: {
