@@ -1,54 +1,46 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
-import theme from '../Styles/GlobalStyles';
-import { OrangeButtons } from '../shared/Buttons';
-import NumberPicker from '../shared/NumberPicker';
 
+import React, { useState } from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
+import theme from "../Styles/GlobalStyles";
+import { BlueButtons } from "../shared/Buttons";
+import NumberPicker from "../shared/NumberPicker";
+import NationDetails from "../src/components/NationDetails";
 
-
-export default function NationSettingScreen({ navigation }) {
-
-  const [fontsLoaded] = useFonts({
-    Montserrat: Montserrat_400Regular,
-  });
-
+export default function NationSettingScreen({ navigation, route }) {
+  const { id } = route.params;
   const [selectedValue, setSelectedValue] = useState(0);
-  
-  
-  const [showTip, setShowTip] = useState(false);
+  const fieldsToDisplay = ["name", "description", "guestCount"];
 
   const pressHandler = () => {
- 
-    navigation.navigate('NationManaging', {
+    navigation.navigate("NationManaging", {
+
       selectedValue,
-      maxSeats: selectedValue
+      maxSeats: selectedValue,
     });
   };
 
   /* const onValueChange = (value) => {
-    setSelectedValue(value);
-    
-  }; */
+    setSelectedValue(value)  }; */
 
-  const onValueChange = (value) => {
-    setSelectedValue(value);
   };
 
-  if (!fontsLoaded) {
+ /* if (!fontsLoaded) {
     return null;
-  }
+  }*/
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Stockholms nation</Text>
+      <NationDetails id={id} fields={fieldsToDisplay} />
 
       <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
       <View style={styles.numberpicker}>
-      <NumberPicker onValueChange={onValueChange} />
+        <NumberPicker onValueChange={onValueChange} />
       </View>
-      <Text style={styles.selectedValue}>Selected seats available: {selectedValue}</Text>
+      <Text style={styles.selectedValue}>
+        Selected seats available: {selectedValue}
+      </Text>
+
 
     <View style = {styles.submit}>
       <OrangeButtons text="Submit seats" onPress={pressHandler} />
@@ -83,13 +75,15 @@ const styles = StyleSheet.create({
 
   selectedValue: {
     fontSize: 20,
+
     fontFamily: 'Montserrat', 
     letterSpacing: 1,
     textAlign: 'center',
     top: 200,
     color: '#ea580c',
+
   },
-  
+
   maximumSeats: {
     fontSize: 20,
     fontFamily: 'Montserrat', 
@@ -106,7 +100,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignSelf: 'center',
     width: '70%',
-    
-   
   },
 });
