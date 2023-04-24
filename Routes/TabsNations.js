@@ -4,6 +4,7 @@ import NationManagingScreen from '../screens/NationManagingScreen';
 import NationSettingScreen from '../screens/NationSettingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -73,6 +74,7 @@ const TabsNations=() => {
                     ),
                   }}
             />
+
         
         </Tab.Navigator>
     );

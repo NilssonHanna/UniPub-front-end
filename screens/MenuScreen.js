@@ -13,7 +13,8 @@ export default function MenuScreen(navigation) {
   
   <View style={styles.container}>
 
-<Text style={styles.title}>Menu</Text>
+      <Text style={styles.title}>Menu</Text>
+  
   </View>
  
    )
@@ -21,17 +22,17 @@ export default function MenuScreen(navigation) {
 
 const styles=StyleSheet.create({
   container:{
-    padding:24,
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
 
   title: {
-    color: 'black',
+    color: '#ea580c',
     textTransform:'uppercase',
     fontSize:25,
     fontWeight:'bold',
     fontFamily: 'Times New Roman',
     textAlign:'center',
+    top: 50,
 },
 })
