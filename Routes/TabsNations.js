@@ -39,6 +39,7 @@ const TabsNations=() => {
                 component={NationSettingScreen} 
                 options={{
                     tabBarLabel: 'SETTINGS',
+                    tabBarStyle: { display: 'none'},
                     tabBarIcon: ({ color, size }) => (
                       <MaterialCommunityIcons name="counter" color={'black'} size={30} />
                     ),
