@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
-import Bar from '../shared/ProgressBar';
 
-export default function NationViewScreen({navigation}) {
+export default function NationViewScreen({navigation, route}) {
+  const maxSeats = route.params?.maxSeats; 
 
   const pressHandler = () =>{
 
@@ -22,15 +22,9 @@ export default function NationViewScreen({navigation}) {
       <Text style={styles.title}>Stockholms nation</Text>
       
       </ImageBackground>
-        <Text style={styles.availableSeats}>Available Seats:</Text>
-
-        <View style ={styles.bar}>
-      <Bar/>
-      </View>
-
+      
+        <Text style={styles.availableSeats}>Available Seats: {maxSeats}</Text>
         
-       
-
        <StartButtons text="Menu" onPress={pressHandler} />
 
        <Text style={styles.openingTimes}>Opening times:</Text>
@@ -44,16 +38,19 @@ const styles=StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor: theme.backgroundColor,
-  }
-,
-title: {
-    color: 'black',
+  },
+
+  title: {
     textTransform:'uppercase',
     fontSize:25,
-    fontWeight:'bold',
     fontFamily: 'Times New Roman',
-    textAlign:'center',
-},
+    color: 'white',
+    lineHeight: 40,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#00000070',
+    marginTop: -120,
+  },
 
 imageContainer: {
   flex: 1,
@@ -71,12 +68,13 @@ image: {
 },
 
 availableSeats: {
-  fontSize: 25,
+  fontSize: 22,
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
-  alignItems: 'center',
-  bottom: 10,
-  left: 100,
+  textAlign:'center',
+  bottom: 60,
+  textTransform: 'uppercase',
+  color: '#ea580c',
 },
 
 openingTimes: {
@@ -84,6 +82,7 @@ openingTimes: {
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
   fontStyle: 'italic',
+  color: '#ea580c',
   bottom: 10,
   left: 20,
 },
@@ -93,13 +92,14 @@ adress: {
   fontFamily: 'Times New Roman',
   fontWeight: 'bold',
   fontStyle: 'italic',
+  color: '#ea580c',
   bottom: 10,
   left: 20,
 },
 
 bar: {
-  left: '22%',
   bottom: 100,
+  marginHorizontal: 20,
 },
 
 title: {

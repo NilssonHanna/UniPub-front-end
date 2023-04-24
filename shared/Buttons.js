@@ -22,24 +22,22 @@ export default function StartButtons ({text,onPress}){
     );
   }
 
-  
-
   export function WhiteButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.whiteButton]}>
-          <Text style={styles.buttonText}> {text} </Text>
+          <Text style={styles.whiteButtonText}> {text} </Text>
         </View>
       </TouchableOpacity>
     );
   }
 
 
-  export function BlueButtons ({text,onPress}){
+  export function OrangeButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={[styles.buttonContainer, styles.blueButton]}>
-          <Text style={styles.bluebuttonText}> {text} </Text>
+        <View style={[styles.ButtonContainer, styles.orangeButton]}>
+          <Text style={styles.orangeButtonText}> {text} </Text>
         </View>
       </TouchableOpacity>
     );
@@ -55,23 +53,6 @@ const styles=StyleSheet.create({
         alignSelf: 'center',
         width: '70%',
         marginBottom: 40,
-    },
-
-    button:{
-
-        borderRadius:50,
-        paddingVertical:30,
-        backgroundColor:'#ea580c',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-      },
-        shadowOpacity: 2,
-        shadowRadius: 10,
-    
-        elevation: 5,
-  
     },
 
     loginButtonContainer:{
@@ -94,8 +75,23 @@ const styles=StyleSheet.create({
         shadowOpacity:0.25,
         shadowRadius:3.84,
         elevation:5
+    },
 
-         
+    button:{
+
+        borderRadius:50,
+        paddingVertical:30,
+        backgroundColor:'#ea580c',
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+        shadowOpacity: 2,
+        shadowRadius: 10,
+    
+        elevation: 5,
+  
     },
 
     whiteButton:{
@@ -105,17 +101,26 @@ const styles=StyleSheet.create({
   
   },
 
-  blueButton:{
+  orangeButton:{
 
     borderRadius:50,
-    paddingVertical:30,
+    paddingVertical:25,
     backgroundColor:'#ea580c',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+  },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
 
 },
 
 buttonText:{
 
-  color: 'black',
+  color: 'white',
   textTransform:'uppercase',
   fontSize:18,
   fontWeight:'bold',
@@ -124,15 +129,27 @@ buttonText:{
   letterSpacing:0.5
 
 },
-    bluebuttonText:{
+    orangeButtonText:{
 
-        color: 'black',
+        color: 'white',
         textTransform:'uppercase',
-        fontSize:15,
+        fontSize:20,
         fontWeight:'bold',
         fontFamily: 'Times New Roman',
         textAlign:'center',
         letterSpacing:0.5
     
-    }
+    },
+
+    whiteButtonText:{
+
+      color: '#ea580c',
+      textTransform:'uppercase',
+      fontSize:18,
+      fontWeight:'bold',
+      fontFamily: 'Times New Roman',
+      textAlign:'center',
+      letterSpacing:0.5
+    
+    },
 })

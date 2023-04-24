@@ -23,7 +23,7 @@ const styles=StyleSheet.create({
   },
 
   title: {
-    color: 'black',
+    color: '#ea580c',
     textTransform:'uppercase',
     fontSize:25,
     fontWeight:'bold',

@@ -60,8 +60,6 @@ export default function NationManagingScreen({navigation, route}) {
           <Text style={styles.iconButtonText}>-</Text>
         
         </TouchableOpacity>
-
-          <Text style={styles.index}>{maxSeats-index}</Text>
           
         <TouchableOpacity style={styles.iconButtonPlus} onPress={incrementIndex}>
             
@@ -70,7 +68,7 @@ export default function NationManagingScreen({navigation, route}) {
         
         </TouchableOpacity>
 
-        <Text style = {styles.index}>{route.params.selectedValue}</Text>
+        <Text style = {styles.index}>{index}/{route.params.selectedValue} students have entered</Text>
      
        {/*  <PauseEntryButton /> */}
   
@@ -93,7 +91,7 @@ const styles=StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#00000070',
-    marginTop: 10,
+    marginTop: -120,
   },
 
   image: {
@@ -139,11 +137,11 @@ const styles=StyleSheet.create({
     alignSelf: 'center',
     width: 100,
     height: 100,
-    backgroundColor: 'black',
+    backgroundColor: '#ea580c',
     flexDirection: 'row',
     left: '20%',
     position: 'absolute',
-    marginTop: 350,
+    marginTop: 480,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -160,12 +158,12 @@ const styles=StyleSheet.create({
     justifyContent: 'space-around',
     width: 100,
     height: 100,
-    backgroundColor: 'black',
+    backgroundColor: '#ea580c',
     marginLeft: 30,
     flexDirection: 'row',
     left: '45%',
     position: 'absolute',
-    marginTop: 350,
+    marginTop: 480,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -184,16 +182,17 @@ const styles=StyleSheet.create({
   },
 
   index: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#ea580c',
     fontFamily: 'Times New Roman',
-    left: '48%',
-    bottom: 200,
+    textAlign: 'center',
+    bottom: 240,
+    textTransform: 'uppercase'
   },
 
   bar: {
-    bottom: 65,
+    bottom: 250,
     marginHorizontal: 20,
   },
 

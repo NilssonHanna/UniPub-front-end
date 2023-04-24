@@ -16,8 +16,10 @@ export default class NumberPicker extends Component {
               key={index}
               style={{
                 textAlign: 'center',
-                fontSize: 20,
-                color: isSelected ? 'black' : 'grey',
+                fontSize: 25,
+                color: isSelected ? 'white' : 'black',
+                fontWeight:'bold',
+                fontFamily: 'Times New Roman',
                 
                  }}
             >
