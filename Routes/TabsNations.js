@@ -17,7 +17,7 @@ const TabsNations=() => {
                 tabBarStyle: { position: 'absolute'},
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'black',
-                tabBarActiveBackgroundColor: 'gray',
+                tabBarActiveBackgroundColor: 'black',
                 tabBarInactiveBackgroundColor: 'white',
           }}
             >
@@ -41,9 +41,17 @@ const TabsNations=() => {
                 options={{
                     tabBarLabel: 'SETTINGS',
                     tabBarStyle: { display: 'none'},
-                    tabBarIcon: ({ color, size }) => (
-                      <MaterialCommunityIcons name="counter" color={'black'} size={30} />
+                    tabBarIcon: ({ color, size, focused }) => (
+                      <MaterialCommunityIcons 
+                      name="counter" 
+                      color={focused ? 'white' : 'black'}  
+                      size={30} />
                     ),
+                    tabBarLabelStyle: {
+                      fontFamily: 'Times New Roman',
+                      fontSize: 13,
+                      letterSpacing: 2,
+                    },
                     
                   }}
                
@@ -55,23 +63,37 @@ const TabsNations=() => {
                 options={{ 
                 
                     tabBarLabel: 'MANAGE',
-                    tabBarIcon: ({ color, size }) => (
-                      <MaterialCommunityIcons name="plus-minus-box" color={'black'} size={30} />
+                    tabBarIcon: ({ color, size, focused }) => (
+                      <MaterialCommunityIcons 
+                      name="plus-minus-box" 
+                      color={focused ? 'white' : 'black'}  
+                      size={30} />
                     ),  
+                    tabBarLabelStyle: {
+                      fontFamily: 'Times New Roman',
+                      fontSize: 13,
+                      letterSpacing: 2,
+                    },
                 }}
                     
                 />
-
-            
             
             <Tab.Screen 
                 name="Profile" 
                 component={ProfileScreen}
                 options={{
-                    tabBarLabel: 'Profile',
-                    tabBarIcon: ({ color, size }) => (
-                      <MaterialCommunityIcons name="account" color={'black'} size={30} />
+                    tabBarLabel: 'PROFILE',
+                    tabBarIcon: ({ color, size, focused }) => (
+                      <MaterialCommunityIcons 
+                      name="account" 
+                      color={focused ? 'white' : 'black'}   
+                      size={30} />
                     ),
+                    tabBarLabelStyle: {
+                      fontFamily: 'Times New Roman',
+                      fontSize: 13,
+                      letterSpacing: 2,
+                    },
                   }}
             />
 
