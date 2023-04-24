@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleSheet,View,Text,Button,TextInput} from 'react-native';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
-import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 
 
 export default function LoginScreen({navigation}) {
 
   const [fontsLoaded] = useFonts({
-    Chewy_400Regular,
+    Montserrat: Montserrat_400Regular,
   });
 
      const pressHandlerNationSetting = () =>{
@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     top: 100,
     backgroundColor: 'white',
-    fontFamily: 'Chewy_400Regular', 
+    fontFamily: 'Montserrat',
     fontSize: 20,
-    letterSpacing: 2,
+    letterSpacing: 1,
   },
 
 title: {
@@ -87,8 +87,8 @@ title: {
   textTransform:'uppercase',
   fontSize:40,
   fontWeight:'bold',
-  fontFamily: 'Chewy_400Regular',
-  letterSpacing: 5,
+  fontFamily: 'Montserrat',
+  letterSpacing: 1,
   textAlign:'center',
 },
 

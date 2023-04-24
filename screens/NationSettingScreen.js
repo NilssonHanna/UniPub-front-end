@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import { OrangeButtons } from '../shared/Buttons';
 import NumberPicker from '../shared/NumberPicker';
@@ -10,7 +10,7 @@ import NumberPicker from '../shared/NumberPicker';
 export default function NationSettingScreen({ navigation }) {
 
   const [fontsLoaded] = useFonts({
-    Chewy_400Regular,
+    Montserrat: Montserrat_400Regular,
   });
 
   const [selectedValue, setSelectedValue] = useState(0);
@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 25,
     fontWeight: 'bold',
-    fontFamily: 'Chewy_400Regular', 
+    fontFamily: 'Montserrat', 
     textAlign: 'center',
     top: 60,
-    letterSpacing: 2,
+    letterSpacing: 1,
   },
   numberpicker:{
     height: '30%', // for example
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
   selectedValue: {
     fontSize: 20,
-    fontFamily: 'Chewy_400Regular', 
+    fontFamily: 'Montserrat', 
     letterSpacing: 1,
     textAlign: 'center',
     top: 200,
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
   
   maximumSeats: {
     fontSize: 20,
-    fontFamily: 'Chewy_400Regular', 
-    letterSpacing: 2,
+    fontFamily: 'Montserrat', 
+    letterSpacing: 1,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#ea580c',

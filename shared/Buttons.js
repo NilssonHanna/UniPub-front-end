@@ -1,14 +1,14 @@
 import { Center, Row } from 'native-base';
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
-import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 
 
 
 export default function StartButtons ({text,onPress}){
 
   const [fontsLoaded] = useFonts({
-    Chewy_400Regular,
+    Montserrat: Montserrat_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -26,7 +26,7 @@ export default function StartButtons ({text,onPress}){
   export function LoginButtons ({text,onPress}){
 
     const [fontsLoaded] = useFonts({
-      Chewy_400Regular,
+      Montserrat: Montserrat_400Regular,
     });
   
     if (!fontsLoaded) {
@@ -45,7 +45,7 @@ export default function StartButtons ({text,onPress}){
   export function WhiteButtons ({text,onPress}){
 
     const [fontsLoaded] = useFonts({
-      Chewy_400Regular,
+      Montserrat: Montserrat_400Regular,
     });
   
     if (!fontsLoaded) {
@@ -163,7 +163,7 @@ const styles=StyleSheet.create({
     textTransform:'uppercase',
     fontSize:15,
     fontWeight:'bold',
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Montserrat',
     /* textAlign:'center', */
     alignSelf:'center',
     letterSpacing:0.5,
@@ -195,9 +195,9 @@ buttonText:{
   textTransform:'uppercase',
   fontSize:20,
   fontWeight:'bold',
-  fontFamily: 'Chewy_400Regular',
+  fontFamily: 'Montserrat',
   textAlign:'center',
-  letterSpacing: 4,
+  letterSpacing: 1,
 
 },
     orangeButtonText:{
@@ -206,9 +206,9 @@ buttonText:{
         textTransform:'uppercase',
         fontSize:20,
         fontWeight:'bold',
-        fontFamily: 'Chewy_400Regular', 
+        fontFamily: 'Montserrat', 
         textAlign:'center',
-        letterSpacing: 4,
+        letterSpacing: 1,
     
     },
 
@@ -218,9 +218,9 @@ buttonText:{
       textTransform:'uppercase',
       fontSize:20,
       fontWeight:'bold',
-      fontFamily: 'Chewy_400Regular', 
+      fontFamily: 'Montserrat', 
       textAlign:'center',
-      letterSpacing: 4,
+      letterSpacing: 1,
     
     },
 })

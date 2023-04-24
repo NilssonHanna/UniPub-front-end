@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
-import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
 
 export default function NationViewScreen({navigation, route}) {
 
   const [fontsLoaded] = useFonts({
-    Chewy_400Regular,
+    Montserrat: Montserrat_400Regular,
   });
 
   const maxSeats = route.params?.maxSeats; 
@@ -67,8 +67,8 @@ image: {
 
 availableSeats: {
   fontSize: 22,
-  fontFamily: 'Chewy_400Regular',
-  letterSpacing: 2, 
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
   fontWeight: 'bold',
   textAlign:'center',
   bottom: 60,
@@ -78,8 +78,8 @@ availableSeats: {
 
 openingTimes: {
   fontSize: 20,
-  fontFamily: 'Chewy_400Regular',
-  letterSpacing: 2, 
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: '#ea580c',
@@ -89,8 +89,8 @@ openingTimes: {
 
 adress: {
   fontSize: 20,
-  fontFamily: 'Chewy_400Regular',
-  letterSpacing: 2, 
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: '#ea580c',
@@ -106,8 +106,8 @@ bar: {
 title: {
   textTransform:'uppercase',
   fontSize:25,
-  fontFamily: 'Chewy_400Regular',
-  letterSpacing: 5, 
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
   color: 'white',
   lineHeight: 50,
   fontWeight: 'bold',
