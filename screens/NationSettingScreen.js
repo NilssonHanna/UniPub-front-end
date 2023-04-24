@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
+import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
 import theme from '../Styles/GlobalStyles';
 import { OrangeButtons } from '../shared/Buttons';
 import NumberPicker from '../shared/NumberPicker';
-import { Tip } from 'react-native-tip';
 
 
 
 export default function NationSettingScreen({ navigation }) {
+
+  const [fontsLoaded] = useFonts({
+    Chewy_400Regular,
+  });
+
   const [selectedValue, setSelectedValue] = useState(0);
   
   
@@ -29,6 +34,10 @@ export default function NationSettingScreen({ navigation }) {
   const onValueChange = (value) => {
     setSelectedValue(value);
   };
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
 
   return (
@@ -60,9 +69,10 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 25,
     fontWeight: 'bold',
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular', 
     textAlign: 'center',
     top: 60,
+    letterSpacing: 2,
   },
   numberpicker:{
     height: '30%', // for example
@@ -73,7 +83,8 @@ const styles = StyleSheet.create({
 
   selectedValue: {
     fontSize: 20,
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular', 
+    letterSpacing: 1,
     textAlign: 'center',
     top: 200,
     color: '#ea580c',
@@ -81,7 +92,8 @@ const styles = StyleSheet.create({
   
   maximumSeats: {
     fontSize: 20,
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular', 
+    letterSpacing: 2,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#ea580c',

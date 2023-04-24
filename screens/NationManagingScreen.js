@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
+import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
 import Bar from '../shared/ProgressBar';
 import theme from '../Styles/GlobalStyles';
 
@@ -22,6 +23,9 @@ const PauseEntryButton = () => {
 
 export default function NationManagingScreen({navigation, route}) {
 
+  const [fontsLoaded] = useFonts({
+    Chewy_400Regular,
+  });
 
   const [index, setIndex] = useState(0);
   const maxSeats = route.params?.maxSeats || 0;
@@ -44,6 +48,10 @@ export default function NationManagingScreen({navigation, route}) {
   const pressHandler = () => {
     navigation.navigate('NationManaging');
   };
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return ( 
     <View style={styles.container}>
@@ -86,7 +94,8 @@ const styles=StyleSheet.create({
   title: {
     textTransform:'uppercase',
     fontSize:25,
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular', 
+    letterSpacing: 5,
     color: 'white',
     lineHeight: 50,
     fontWeight: 'bold',
@@ -123,7 +132,7 @@ const styles=StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular', 
     fontSize:25,
   },
   started: {
@@ -186,7 +195,8 @@ const styles=StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#ea580c',
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular', 
+    letterSpacing: 2,
     textAlign: 'center',
     bottom: 240,
     textTransform: 'uppercase'

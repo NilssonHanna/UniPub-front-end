@@ -1,55 +1,55 @@
 import React from 'react';
 import {StyleSheet,View,Text,Button,TextInput} from 'react-native';
 import theme from '../Styles/GlobalStyles';
-
 import {ExitButton, LoginButtons} from '../shared/Buttons';
-
-import { Chewy_400Regular } from '@expo-google-fonts/chewy';
-
-
-
+import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
 
 
 export default function LoginScreen({navigation}) {
+
+  const [fontsLoaded] = useFonts({
+    Chewy_400Regular,
+  });
 
      const pressHandlerNationSetting = () =>{
 
         navigation.navigate('TabsNations')
         
-        } 
+        }
 
-        const pressHandlerHome=() =>{
-
-          navigation.navigate('Home')
-          
-          }
+      const pressHandlerHome=() => {
+        navigation.navigate('Home')
+      }
+        
+    if (!fontsLoaded) {
+    return null;
+  }
     
   return ( 
   
   <View style={styles.container}>
 
-<View>
-        <ExitButton text="x" onPress={pressHandlerHome} />
-      </View>
+  <View>
+      <ExitButton text="x" onPress={pressHandlerHome} />
+  </View>
+
   <Text style={styles.title}>Welcome</Text>
     
 <View>
   <TextInput
-   placeholder="Username" 
+   placeholder="Username . . ." 
    placeholderTextColor="black" 
    style={styles.textInput}
    />
   <TextInput
-   placeholder="Password"
+   placeholder="Password . . ."
     placeholderTextColor="black" 
     style={styles.textInput}
     />
   
 </View>
     <View>
-
         <LoginButtons text="Login" onPress={pressHandlerNationSetting} />
-
       </View>
   </View>
  
@@ -77,15 +77,18 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     top: 100,
     backgroundColor: 'white',
-    fontFamily: 'Times New Roman'
-},
+    fontFamily: 'Chewy_400Regular', 
+    fontSize: 20,
+    letterSpacing: 2,
+  },
 
 title: {
   color: '#ea580c',
   textTransform:'uppercase',
-  fontSize:28,
+  fontSize:40,
   fontWeight:'bold',
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Chewy_400Regular',
+  letterSpacing: 5,
   textAlign:'center',
 },
 

@@ -1,15 +1,25 @@
 import React from 'react';
 import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
+import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
 
 export default function NationViewScreen({navigation, route}) {
+
+  const [fontsLoaded] = useFonts({
+    Chewy_400Regular,
+  });
+
   const maxSeats = route.params?.maxSeats; 
 
   const pressHandler = () =>{
 
     navigation.navigate('Menu')
     
+    }
+
+    if (!fontsLoaded) {
+      return null;
     }
 
     const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
@@ -40,18 +50,6 @@ const styles=StyleSheet.create({
     backgroundColor: theme.backgroundColor,
   },
 
-  title: {
-    textTransform:'uppercase',
-    fontSize:25,
-    fontFamily: 'Times New Roman',
-    color: 'white',
-    lineHeight: 40,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: '#00000070',
-    marginTop: -120,
-  },
-
 imageContainer: {
   flex: 1,
   alignItems: 'center',
@@ -69,7 +67,8 @@ image: {
 
 availableSeats: {
   fontSize: 22,
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Chewy_400Regular',
+  letterSpacing: 2, 
   fontWeight: 'bold',
   textAlign:'center',
   bottom: 60,
@@ -79,7 +78,8 @@ availableSeats: {
 
 openingTimes: {
   fontSize: 20,
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Chewy_400Regular',
+  letterSpacing: 2, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: '#ea580c',
@@ -89,7 +89,8 @@ openingTimes: {
 
 adress: {
   fontSize: 20,
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Chewy_400Regular',
+  letterSpacing: 2, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: '#ea580c',
@@ -105,13 +106,14 @@ bar: {
 title: {
   textTransform:'uppercase',
   fontSize:25,
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Chewy_400Regular',
+  letterSpacing: 5, 
   color: 'white',
   lineHeight: 50,
   fontWeight: 'bold',
   textAlign: 'center',
   backgroundColor: '#00000070',
-  marginTop: 120,
+  marginTop: 150,
 },
 
 image: {

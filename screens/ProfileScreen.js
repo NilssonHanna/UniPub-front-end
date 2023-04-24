@@ -1,18 +1,27 @@
 import React from 'react';
 import {StyleSheet,View,Text} from 'react-native';
+import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
 import theme from '../Styles/GlobalStyles';
 import { LoginButtons} from '../shared/Buttons';
 import HomeScreen from '../screens/HomeScreen';
 
 export default function ProfileScreen({navigation}) {
 
-
-
+  
     const pressHandlerLogin=() =>{
 
         navigation.navigate('Login')
         
         }
+  
+        const [fontsLoaded] = useFonts({
+    Chewy_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
     
   return ( 
   
@@ -39,9 +48,10 @@ const styles=StyleSheet.create({
   title: {
     color: '#ea580c',
     textTransform:'uppercase',
-    fontSize:25,
+    fontSize:30,
     fontWeight:'bold',
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Chewy_400Regular',
+    letterSpacing: 5,
     textAlign:'center',
 },
 })

@@ -1,10 +1,20 @@
 import { Center, Row } from 'native-base';
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
+import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';
 
 
 
 export default function StartButtons ({text,onPress}){
+
+  const [fontsLoaded] = useFonts({
+    Chewy_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.button]}>
@@ -14,6 +24,15 @@ export default function StartButtons ({text,onPress}){
     );
   }
   export function LoginButtons ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Chewy_400Regular,
+    });
+  
+    if (!fontsLoaded) {
+      return null;
+    }
+
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={styles.loginButtonContainer}>
@@ -24,6 +43,15 @@ export default function StartButtons ({text,onPress}){
   }
 
   export function WhiteButtons ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Chewy_400Regular,
+    });
+  
+    if (!fontsLoaded) {
+      return null;
+    }
+    
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.whiteButton]}>
@@ -165,11 +193,11 @@ buttonText:{
 
   color: 'white',
   textTransform:'uppercase',
-  fontSize:18,
+  fontSize:20,
   fontWeight:'bold',
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Chewy_400Regular',
   textAlign:'center',
-  letterSpacing:0.5
+  letterSpacing: 4,
 
 },
     orangeButtonText:{
@@ -178,9 +206,9 @@ buttonText:{
         textTransform:'uppercase',
         fontSize:20,
         fontWeight:'bold',
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Chewy_400Regular', 
         textAlign:'center',
-        letterSpacing:0.5
+        letterSpacing: 4,
     
     },
 
@@ -188,11 +216,11 @@ buttonText:{
 
       color: '#ea580c',
       textTransform:'uppercase',
-      fontSize:18,
+      fontSize:20,
       fontWeight:'bold',
-      fontFamily: 'Times New Roman',
+      fontFamily: 'Chewy_400Regular', 
       textAlign:'center',
-      letterSpacing:0.5
+      letterSpacing: 4,
     
     },
 })
