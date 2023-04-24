@@ -39,6 +39,7 @@ export default function StartButtons ({text,onPress}){
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.ButtonContainer, styles.orangeButton]}>
           <Text style={styles.orangeButtonText}> {text} </Text>
+
         </View>
       </TouchableOpacity>
     );
@@ -88,7 +89,10 @@ const styles=StyleSheet.create({
         elevation:5
     },
 
+  
+
     button:{
+
 
         borderRadius:50,
         paddingVertical:30,
@@ -111,6 +115,7 @@ const styles=StyleSheet.create({
       backgroundColor:'white',
   
   },
+
 
   exitButton:{
     width: 30,
@@ -137,6 +142,7 @@ const styles=StyleSheet.create({
     
 
   },
+
 
   orangeButton:{
 

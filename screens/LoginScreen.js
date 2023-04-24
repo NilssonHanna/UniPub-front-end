@@ -1,7 +1,9 @@
 import React from 'react';
 import {StyleSheet,View,Text,Button,TextInput} from 'react-native';
 import theme from '../Styles/GlobalStyles';
+
 import {ExitButton, LoginButtons} from '../shared/Buttons';
+
 import { Chewy_400Regular } from '@expo-google-fonts/chewy';
 
 
@@ -45,7 +47,9 @@ export default function LoginScreen({navigation}) {
   
 </View>
     <View>
+
         <LoginButtons text="Login" onPress={pressHandlerNationSetting} />
+
       </View>
   </View>
  
