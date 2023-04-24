@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 import Bar from '../shared/ProgressBar';
 import theme from '../Styles/GlobalStyles';
 
@@ -23,6 +24,9 @@ const PauseEntryButton = () => {
 
 export default function NationManagingScreen({navigation, route}) {
 
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+  });
 
   const [index, setIndex] = useState(0);
   const maxSeats = route.params?.maxSeats || 0;
@@ -45,6 +49,7 @@ export default function NationManagingScreen({navigation, route}) {
   const pressHandler = () => {
     navigation.navigate('NationManaging');
   };
+
 
 
   return ( 
@@ -88,8 +93,9 @@ const styles=StyleSheet.create({
   title: {
     textTransform:'uppercase',
     fontSize:25,
-    /* fontFamily: 'Chewy_400Regular',  */
-    letterSpacing: 5,
+
+    fontFamily: 'Montserrat', 
+    letterSpacing: 1,
     color: 'white',
     lineHeight: 50,
     fontWeight: 'bold',
@@ -126,7 +132,9 @@ const styles=StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-   /*  fontFamily: 'Chewy_400Regular',  */
+
+    fontFamily: 'Montserrat', 
+
     fontSize:25,
   },
   started: {
@@ -189,7 +197,9 @@ const styles=StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#ea580c',
-   /*  fontFamily: 'Chewy_400Regular',  */
+
+    fontFamily: 'Montserrat', 
+
     letterSpacing: 2,
     textAlign: 'center',
     bottom: 240,

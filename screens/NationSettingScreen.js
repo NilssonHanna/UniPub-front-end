@@ -1,11 +1,10 @@
+
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import theme from "../Styles/GlobalStyles";
 import { BlueButtons } from "../shared/Buttons";
 import NumberPicker from "../shared/NumberPicker";
 import NationDetails from "../src/components/NationDetails";
-
-/*import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';*/
 
 export default function NationSettingScreen({ navigation, route }) {
   const { id } = route.params;
@@ -14,20 +13,27 @@ export default function NationSettingScreen({ navigation, route }) {
 
   const pressHandler = () => {
     navigation.navigate("NationManaging", {
+
       selectedValue,
       maxSeats: selectedValue,
     });
   };
 
-  const onValueChange = (value) => {
-    setSelectedValue(value);
+  /* const onValueChange = (value) => {
+    setSelectedValue(value)  }; */
+
   };
+
+ /* if (!fontsLoaded) {
+    return null;
+  }*/
+
 
   return (
     <View style={styles.container}>
       <NationDetails id={id} fields={fieldsToDisplay} />
 
-      <Text style={styles.maximumSeats}>Set amount of maximum seats:</Text>
+      <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
       <View style={styles.numberpicker}>
         <NumberPicker onValueChange={onValueChange} />
       </View>
@@ -35,51 +41,64 @@ export default function NationSettingScreen({ navigation, route }) {
         Selected seats available: {selectedValue}
       </Text>
 
-      <BlueButtons
-        text="Start calculating amount of seats"
-        onPress={pressHandler}
-      />
+
+    <View style = {styles.submit}>
+      <OrangeButtons text="Submit seats" onPress={pressHandler} />
+      </View>
     </View>
+
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
     flex: 1,
     backgroundColor: theme.backgroundColor,
-    paddingTop: 50,
-    paddingHorizontal: 24,
   },
   title: {
-    color: "black",
-    textTransform: "uppercase",
+    color: '#ea580c',
+    textTransform: 'uppercase',
     fontSize: 25,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    textAlign: "center",
-    marginBottom: 25,
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat', 
+    textAlign: 'center',
+    top: 60,
+    letterSpacing: 1,
   },
-  numberpicker: {
-    height: "30%",
-    width: "50%",
-    alignSelf: "center",
-    marginBottom: 50,
-    marginTop: 90,
+  numberpicker:{
+    height: '30%', // for example
+    width: '50%', // for example
+    alignSelf: 'center',
+    top: 180,
   },
+
   selectedValue: {
     fontSize: 20,
-    fontFamily: "Times New Roman",
-    textAlign: "center",
-    marginBottom: 20,
+
+    fontFamily: 'Montserrat', 
+    letterSpacing: 1,
+    textAlign: 'center',
+    top: 200,
+    color: '#ea580c',
+
   },
 
   maximumSeats: {
     fontSize: 20,
-    fontFamily: "Times New Roman",
-    fontWeight: "bold",
-    marginTop: 20,
-    textAlign: "center",
-    marginBottom: 20,
+    fontFamily: 'Montserrat', 
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#ea580c',
+    top:  100,
+    
+  },
+
+  submit: {
+    top:  220,
+    justifyContent: 'space-around',
+    alignSelf: 'center',
+    width: '70%',
   },
 });

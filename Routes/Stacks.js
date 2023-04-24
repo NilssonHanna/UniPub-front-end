@@ -46,12 +46,12 @@ const MainStack = () => {
         />
 
    
-
         <Stack.Screen 
           name="NationManaging" 
           component={NationManagingScreen} 
         /> 
        
+
          
        
         

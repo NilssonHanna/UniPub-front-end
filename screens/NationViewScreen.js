@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
 import theme from "../Styles/GlobalStyles";
@@ -19,13 +20,20 @@ export default function NationViewScreen({ navigation, route }) {
   };
 
   return (
+
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Text style={styles.title}>Stockholms nation</Text>
       </ImageBackground>
-      <Text style={styles.availableSeats}>Available Seats:</Text>
-      <View style={styles.bar}>
-<Bar />
+
+      
+        <Text style={styles.availableSeats}>Available Seats: {maxSeats}</Text>
+        
+       <StartButtons text="Menu" onPress={pressHandler} />
+
+       <Text style={styles.openingTimes}>Opening times:</Text>
+       <Text style={styles.adress}>Adress:</Text>
+
       </View>
       <StartButtons text="Menu" onPress={pressHandler} />
       <NationDetails id={id} fields={fieldsToDisplay} />
@@ -38,75 +46,78 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
-  title: {
-    color: "black",
-    textTransform: "uppercase",
-    fontSize: 25,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    textAlign: "center",
-  },
 
-  imageContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  image: {
-    width: "100%",
-    height: undefined,
-    aspectRatio: 1,
-    resizeMode: "contain",
-    marginTop: -50,
-  },
 
-  availableSeats: {
-    fontSize: 25,
-    fontFamily: "Times New Roman",
-    fontWeight: "bold",
-    alignItems: "center",
-    bottom: 10,
-    left: 100,
-  },
+imageContainer: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  
+},
+image: {
+  width: '100%',
+  height: undefined,
+  aspectRatio: 1,
+  resizeMode: 'contain',
+  marginTop: -50,
+  
+},
 
-  openingTimes: {
-    fontSize: 20,
-    fontFamily: "Times New Roman",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    bottom: 10,
-    left: 20,
-  },
+availableSeats: {
+  fontSize: 22,
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
+  fontWeight: 'bold',
+  textAlign:'center',
+  bottom: 60,
+  textTransform: 'uppercase',
+  color: '#ea580c',
+},
 
-  adress: {
-    fontSize: 20,
-    fontFamily: "Times New Roman",
-    fontWeight: "bold",
-    fontStyle: "italic",
-    bottom: 10,
-    left: 20,
-  },
+openingTimes: {
+  fontSize: 20,
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+  color: '#ea580c',
+  bottom: 10,
+  left: 20,
+},
 
-  bar: {
-    left: "22%",
-    bottom: 100,
-  },
+adress: {
+  fontSize: 20,
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+  color: '#ea580c',
+  bottom: 10,
+  left: 20,
+},
 
-  title: {
-    textTransform: "uppercase",
-    fontSize: 25,
-    fontFamily: "Times New Roman",
-    color: "white",
-    lineHeight: 50,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#00000070",
-    marginTop: 120,
-  },
+bar: {
+  bottom: 100,
+  marginHorizontal: 20,
+},
 
-  image: {
-    flex: 1,
-    justifyContent: "center",
-    height: "75%",
-  },
-});
+title: {
+  textTransform:'uppercase',
+  fontSize:25,
+  fontFamily: 'Montserrat',
+  letterSpacing: 1, 
+  color: 'white',
+  lineHeight: 50,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  backgroundColor: '#00000070',
+  marginTop: 150,
+},
+
+image: {
+  flex: 1,
+  justifyContent: 'center',
+  height: '75%'
+},
+})
+

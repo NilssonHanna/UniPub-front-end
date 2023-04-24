@@ -1,9 +1,20 @@
+import { Center, Row } from 'native-base';
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 
 
 
 export default function StartButtons ({text,onPress}){
+
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.button]}>
@@ -13,6 +24,15 @@ export default function StartButtons ({text,onPress}){
     );
   }
   export function LoginButtons ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Montserrat: Montserrat_400Regular,
+    });
+  
+    if (!fontsLoaded) {
+      return null;
+    }
+
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={styles.loginButtonContainer}>
@@ -22,24 +42,42 @@ export default function StartButtons ({text,onPress}){
     );
   }
 
-  
-
   export function WhiteButtons ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Montserrat: Montserrat_400Regular,
+    });
+  
+    if (!fontsLoaded) {
+      return null;
+    }
+    
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.whiteButton]}>
-          <Text style={styles.buttonText}> {text} </Text>
+          <Text style={styles.whiteButtonText}> {text} </Text>
         </View>
       </TouchableOpacity>
     );
   }
 
 
-  export function BlueButtons ({text,onPress}){
+  export function OrangeButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={[styles.buttonContainer, styles.blueButton]}>
-          <Text style={styles.bluebuttonText}> {text} </Text>
+        <View style={[styles.ButtonContainer, styles.orangeButton]}>
+          <Text style={styles.orangeButtonText}> {text} </Text>
+
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  export function ExitButton ({text,onPress}){
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.exitButton}>
+          <Text style={styles.exitButtonText}> {text} </Text>
         </View>
       </TouchableOpacity>
     );
@@ -55,23 +93,6 @@ const styles=StyleSheet.create({
         alignSelf: 'center',
         width: '70%',
         marginBottom: 40,
-    },
-
-    button:{
-
-        borderRadius:50,
-        paddingVertical:30,
-        backgroundColor:'#ea580c',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-      },
-        shadowOpacity: 2,
-        shadowRadius: 10,
-    
-        elevation: 5,
-  
     },
 
     loginButtonContainer:{
@@ -94,8 +115,26 @@ const styles=StyleSheet.create({
         shadowOpacity:0.25,
         shadowRadius:3.84,
         elevation:5
+    },
 
-         
+  
+
+    button:{
+
+
+        borderRadius:50,
+        paddingVertical:30,
+        backgroundColor:'#ea580c',
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+        shadowOpacity: 2,
+        shadowRadius: 10,
+    
+        elevation: 5,
+  
     },
 
     whiteButton:{
@@ -105,34 +144,83 @@ const styles=StyleSheet.create({
   
   },
 
-  blueButton:{
+
+  exitButton:{
+    width: 30,
+    height: 30,
+    borderRadius: 25,
+    backgroundColor: '#ea580c',
+    justifyContent: 'center', 
+    alignItems: 'center',  
+    left:300,
+    bottom:70,
+    
+
+  },
+
+  exitButtonText:{
+    color: 'white',
+    textTransform:'uppercase',
+    fontSize:15,
+    fontWeight:'bold',
+    fontFamily: 'Montserrat',
+    /* textAlign:'center', */
+    alignSelf:'center',
+    letterSpacing:0.5,
+    
+
+  },
+
+
+  orangeButton:{
 
     borderRadius:50,
-    paddingVertical:30,
+    paddingVertical:25,
     backgroundColor:'#ea580c',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+  },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
 
 },
 
 buttonText:{
 
-  color: 'black',
+  color: 'white',
   textTransform:'uppercase',
-  fontSize:18,
+  fontSize:20,
   fontWeight:'bold',
-  fontFamily: 'Times New Roman',
+  fontFamily: 'Montserrat',
   textAlign:'center',
-  letterSpacing:0.5
+  letterSpacing: 1,
 
 },
-    bluebuttonText:{
+    orangeButtonText:{
 
-        color: 'black',
+        color: 'white',
         textTransform:'uppercase',
-        fontSize:15,
+        fontSize:20,
         fontWeight:'bold',
-        fontFamily: 'Times New Roman',
+        fontFamily: 'Montserrat', 
         textAlign:'center',
-        letterSpacing:0.5
+        letterSpacing: 1,
     
-    }
+    },
+
+    whiteButtonText:{
+
+      color: '#ea580c',
+      textTransform:'uppercase',
+      fontSize:20,
+      fontWeight:'bold',
+      fontFamily: 'Montserrat', 
+      textAlign:'center',
+      letterSpacing: 1,
+    
+    },
 })

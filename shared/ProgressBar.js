@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 const Bar = ({ index, maxSeats }) => {
   let color = '#00FF00';
-  if (index >= 0.9) {
+  if (index >= 1) {
     color = '#FF0000';
   } else if (index >= 0.5) {
     color = '#FFA500';
