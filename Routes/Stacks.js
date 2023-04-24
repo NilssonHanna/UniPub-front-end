@@ -33,10 +33,17 @@ const MainStack = () => {
           
                   />
 
-    <Stack.Screen 
+<Stack.Screen 
           name="TabsNations" 
           component={TabsNations} 
         />
+
+<Stack.Screen 
+          name="NationSetting" 
+          component={NationSettingScreen}
+        />
+
+   
 
       {/*   <Stack.Screen 
           name="NationManaging" 
@@ -44,10 +51,7 @@ const MainStack = () => {
         />
        */}
          
-        <Stack.Screen 
-          name="NationSetting" 
-          component={NationSettingScreen}
-        />
+       
         
         <Stack.Screen 
           name="NationView" 

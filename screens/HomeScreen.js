@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import StartButtons from '../shared/Buttons';
+import theme from '../Styles/GlobalStyles'
 
 export default function HomeScreen({ navigation }) {
 
@@ -22,7 +23,7 @@ export default function HomeScreen({ navigation }) {
 
 
   return (
-    <View style={{flex: 1, backgroundColor: '#1070B6' }}>
+    <View style={[styles.container]}/* style={{flex: 1, backgroundColor: '#1070B6'}} */>
 
       <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
       <Image
@@ -39,14 +40,25 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
 
   image: {
     width: 250,
     height: 250,
   },
 });
+ */
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.backgroundColor
+  },
+  image: {
+    width: 250,
+    height: 250,
+  },
+});
 
 
 
