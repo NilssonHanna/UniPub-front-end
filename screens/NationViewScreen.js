@@ -27,17 +27,15 @@ export default function NationViewScreen({ navigation, route }) {
       </ImageBackground>
 
       
-        <Text style={styles.availableSeats}>Available Seats: {maxSeats}</Text>
+        <Text style={styles.availableSeats}>Available Seats:</Text>
         
        <StartButtons text="Menu" onPress={pressHandler} />
 
        <Text style={styles.openingTimes}>Opening times:</Text>
        <Text style={styles.adress}>Adress:</Text>
 
-      </View>
-      <StartButtons text="Menu" onPress={pressHandler} />
       <NationDetails id={id} fields={fieldsToDisplay} />
-    </View>
+      </View>
   );
 }
 

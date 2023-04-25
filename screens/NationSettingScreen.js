@@ -5,6 +5,7 @@ import theme from "../Styles/GlobalStyles";
 import { BlueButtons } from "../shared/Buttons";
 import NumberPicker from "../shared/NumberPicker";
 import NationDetails from "../src/components/NationDetails";
+import { OrangeButtons } from "../shared/Buttons";
 
 export default function NationSettingScreen({ navigation, route }) {
   const { id } = route.params;
@@ -19,10 +20,10 @@ export default function NationSettingScreen({ navigation, route }) {
     });
   };
 
-  /* const onValueChange = (value) => {
-    setSelectedValue(value)  }; */
+   const onValueChange = (value) => {
+    setSelectedValue(value)  }; 
 
-  };
+  
 
  /* if (!fontsLoaded) {
     return null;
@@ -48,8 +49,8 @@ export default function NationSettingScreen({ navigation, route }) {
     </View>
 
 
-  );
-}
+  )};
+
 
 const styles = StyleSheet.create({
   container: {
