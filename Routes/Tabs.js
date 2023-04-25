@@ -29,7 +29,7 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused}) => (
                       <MaterialCommunityIcons 
                       name="home" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),  
                     tabBarLabelStyle: {
@@ -49,7 +49,7 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="map-marker-radius" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {
@@ -69,7 +69,7 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="view-list" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {

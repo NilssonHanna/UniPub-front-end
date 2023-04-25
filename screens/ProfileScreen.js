@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet,View,Text} from 'react-native';
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import { LoginButtons} from '../shared/Buttons';
 import HomeScreen from '../screens/HomeScreen';
@@ -16,6 +16,7 @@ export default function ProfileScreen({navigation}) {
   
     const [fontsLoaded] = useFonts({
       Montserrat: Montserrat_400Regular,
+      MontserratBold: Montserrat_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -46,12 +47,13 @@ const styles=StyleSheet.create({
   },
 
   title: {
-    color: '#ea580c',
+    color: 'black',
     textTransform:'uppercase',
-    fontSize:30,
+    fontSize:25,
     fontWeight:'bold',
-    fontFamily: 'Montserrat',
-    letterSpacing: 1,
+    fontFamily: 'MontserratBold',
+    letterSpacing: 2,
     textAlign:'center',
+    top: 30,
 },
 })

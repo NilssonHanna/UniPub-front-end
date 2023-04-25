@@ -2,13 +2,14 @@ import React from 'react';
 import {StyleSheet,View,Text,Button,TextInput} from 'react-native';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 
 export default function LoginScreen({navigation}) {
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
   });
 
      const pressHandlerNationSetting = () =>{
@@ -83,12 +84,12 @@ const styles = StyleSheet.create({
   },
 
 title: {
-  color: '#ea580c',
+  color: 'black',
   textTransform:'uppercase',
-  fontSize:40,
+  fontSize:35,
   fontWeight:'bold',
-  fontFamily: 'Montserrat',
-  letterSpacing: 1,
+  fontFamily: 'MontserratBold',
+  letterSpacing: 2,
   textAlign:'center',
 },
 
