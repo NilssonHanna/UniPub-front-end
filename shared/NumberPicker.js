@@ -4,7 +4,7 @@ import ScrollPicker from 'react-native-wheel-scrollview-picker';
 
 export default class NumberPicker extends Component {
   render() {
-    const numberRange = Array.from({ length: 200 }, (_, i) => i); // create an array with numbers from 0 to 100
+    const numberRange = Array.from({ length: 200 }, (_, i) => i); 
     
     return (
       <ScrollPicker

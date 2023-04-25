@@ -19,7 +19,8 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate(screenName);
   };
  */
-  const imageUrl = "https://drive.google.com/uc?id=1Zc0Z4GenUwxw-OIgpplyL-gdIbxnK51Z";
+  const imageUrl = "https://drive.google.com/uc?id=1YPVjLl0MbGYJL9dNHx_nA0wnzx2jbSeg";
+
 
 
   return (
@@ -55,8 +56,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.backgroundColor
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 300,
   },
 });
 

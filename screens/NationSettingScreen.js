@@ -1,55 +1,64 @@
-
 import React, { useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 import theme from "../Styles/GlobalStyles";
-import { BlueButtons } from "../shared/Buttons";
+import { OrangeButtons } from "../shared/Buttons";
 import NumberPicker from "../shared/NumberPicker";
-import NationDetails from "../src/components/NationDetails";
+import ChangeDetails from "../src/components/ChangeDetails";
 
 export default function NationSettingScreen({ navigation, route }) {
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });
+
   const { id } = route.params;
+
   const [selectedValue, setSelectedValue] = useState(0);
-  const fieldsToDisplay = ["name", "description", "guestCount"];
+  const fieldsToDisplay = ["name"];
 
   const pressHandler = () => {
     navigation.navigate("NationManaging", {
-
-      selectedValue,
-      maxSeats: selectedValue,
+      id: id,
+      selectedValue: selectedValue,
     });
   };
 
-  /* const onValueChange = (value) => {
-    setSelectedValue(value)  }; */
-
+  const onValueChange = (value) => {
+    setSelectedValue(value);
   };
 
- /* if (!fontsLoaded) {
+  /* if (!fontsLoaded) {
     return null;
   }*/
 
-
   return (
     <View style={styles.container}>
-      <NationDetails id={id} fields={fieldsToDisplay} />
-
-      <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
+      <Text style={styles.maximumSeats}>
+        Set amount of maximum seats for the evening:
+      </Text>
       <View style={styles.numberpicker}>
         <NumberPicker onValueChange={onValueChange} />
+        <ChangeDetails
+          id={id}
+          fields={fieldsToDisplay}
+          selectedValue={selectedValue}
+        />
       </View>
       <Text style={styles.selectedValue}>
         Selected seats available: {selectedValue}
       </Text>
 
-
-    <View style = {styles.submit}>
-      <OrangeButtons text="Submit seats" onPress={pressHandler} />
+      <View style={styles.submit}>
+        <OrangeButtons text="Submit seats" onPress={pressHandler} />
       </View>
     </View>
-
-
   );
-
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -57,48 +66,49 @@ const styles = StyleSheet.create({
     backgroundColor: theme.backgroundColor,
   },
   title: {
-    color: '#ea580c',
-    textTransform: 'uppercase',
+    color: "black",
+    textTransform: "uppercase",
     fontSize: 25,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat', 
-    textAlign: 'center',
-    top: 60,
-    letterSpacing: 1,
+    fontWeight: "bold",
+    fontFamily: "MontserratBold",
+    textAlign: "center",
+    top: 50,
+    letterSpacing: 2,
+    padding: 10,
   },
-  numberpicker:{
-    height: '30%', // for example
-    width: '50%', // for example
-    alignSelf: 'center',
-    top: 180,
+
+  numberpicker: {
+    height: "30%", // for example
+    width: "50%", // for example
+    alignSelf: "center",
+    top: 160,
   },
 
   selectedValue: {
     fontSize: 20,
 
-    fontFamily: 'Montserrat', 
+    fontFamily: "Montserrat",
     letterSpacing: 1,
-    textAlign: 'center',
+    textAlign: "center",
     top: 200,
-    color: '#ea580c',
-
+    color: "black",
   },
 
   maximumSeats: {
     fontSize: 20,
-    fontFamily: 'Montserrat', 
+    fontFamily: "Montserrat",
     letterSpacing: 1,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#ea580c',
-    top:  100,
-    
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "black",
+    top: 80,
+    padding: 10,
   },
 
   submit: {
-    top:  220,
-    justifyContent: 'space-around',
-    alignSelf: 'center',
-    width: '70%',
+    top: 220,
+    justifyContent: "space-around",
+    alignSelf: "center",
+    width: "70%",
   },
 });

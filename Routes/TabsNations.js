@@ -35,7 +35,7 @@ const TabsNations=() => {
                     
                 /> */}
 
-    <Tab.Screen 
+     <Tab.Screen 
                 name="NationSetting" 
                 component={NationSettingScreen} 
                 options={{
@@ -44,7 +44,7 @@ const TabsNations=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="counter" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {
@@ -55,7 +55,7 @@ const TabsNations=() => {
                     
                   }}
                
-            />
+            /> 
             
             <Tab.Screen 
                 name="NationManaging" 
@@ -66,7 +66,7 @@ const TabsNations=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="plus-minus-box" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),  
                     tabBarLabelStyle: {
@@ -86,7 +86,7 @@ const TabsNations=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="account" 
-                      color={focused ? 'white' : 'black'}   
+                      color={focused ? '#556B2F' : 'black'}   
                       size={30} />
                     ),
                     tabBarLabelStyle: {
