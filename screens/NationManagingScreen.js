@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
@@ -50,9 +51,7 @@ export default function NationManagingScreen({navigation, route}) {
     navigation.navigate('NationManaging');
   };
 
-  if (!fontsLoaded) {
-    return null;
-  }
+
 
   return ( 
     <View style={styles.container}>
@@ -135,7 +134,9 @@ const styles=StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
+
     fontFamily: 'Montserrat', 
+
     fontSize:25,
   },
   started: {
@@ -210,6 +211,5 @@ const styles=StyleSheet.create({
     top: 60,
     marginHorizontal: 20,
   },
-
 
 });

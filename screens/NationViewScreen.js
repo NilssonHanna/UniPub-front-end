@@ -1,55 +1,55 @@
-import React from 'react';
+import React, { useState } from "react";
 import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
+import NationDetails from "../src/components/NationDetails";
 
-export default function NationViewScreen({navigation, route}) {
-
+export default function NationViewScreen({ navigation, route }) {
+  
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
     MontserratBold: Montserrat_700Bold,
   });
-
-  const maxSeats = route.params?.maxSeats; 
-
-  const pressHandler = () =>{
-
-    navigation.navigate('Menu')
-    
-    }
-
-    if (!fontsLoaded) {
-      return null;
-    }
-
-    const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
   
-  return ( 
-  
+  const { id } = route.params;
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const fieldsToDisplay = ["name", "description", "address"];
+
+  const pressHandler = () => {
+    navigation.navigate("Menu");
+  };
+
+  const image = {
+    uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
+  };
+
+  return (
+
     <View style={styles.container}>
-
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Text style={styles.title}>Stockholms nation</Text>
-      
       </ImageBackground>
+
       
-        <Text style={styles.availableSeats}>Available Seats: {maxSeats}</Text>
+        <Text style={styles.availableSeats}>Available Seats:</Text>
         
        <StartButtons text="Menu" onPress={pressHandler} />
 
        <Text style={styles.openingTimes}>Opening times:</Text>
        <Text style={styles.adress}>Adress:</Text>
+
+      <NationDetails id={id} fields={fieldsToDisplay} />
       </View>
- 
-   )
+  );
 }
 
-const styles=StyleSheet.create({
-  container:{
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
+
 
 imageContainer: {
   flex: 1,
@@ -123,3 +123,4 @@ image: {
   height: '75%'
 },
 })
+

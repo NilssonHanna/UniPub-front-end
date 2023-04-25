@@ -4,52 +4,50 @@ import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-googl
 import theme from '../Styles/GlobalStyles';
 import { OrangeButtons } from '../shared/Buttons';
 import NumberPicker from '../shared/NumberPicker';
+import NationDetails from "../src/components/NationDetails";
 
-
-
-export default function NationSettingScreen({ navigation }) {
+export default function NationSettingScreen({ navigation, route }) {
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
     MontserratBold: Montserrat_700Bold,
   });
 
+  const { id } = route.params;
+
   const [selectedValue, setSelectedValue] = useState(0);
-  
-  
-  const [showTip, setShowTip] = useState(false);
+  const fieldsToDisplay = ["name", "description", "guestCount"];
 
   const pressHandler = () => {
- 
-    navigation.navigate('NationManaging', {
+    navigation.navigate("NationManaging", {
+
       selectedValue,
-      maxSeats: selectedValue
+      maxSeats: selectedValue,
     });
   };
 
-  /* const onValueChange = (value) => {
-    setSelectedValue(value);
-    
-  }; */
+   const onValueChange = (value) => {
+    setSelectedValue(value)  }; 
 
-  const onValueChange = (value) => {
-    setSelectedValue(value);
-  };
+  
 
-  if (!fontsLoaded) {
+ /* if (!fontsLoaded) {
     return null;
-  }
+  }*/
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Stockholms nation</Text>
+      <NationDetails id={id} fields={fieldsToDisplay} />
 
       <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
       <View style={styles.numberpicker}>
-      <NumberPicker onValueChange={onValueChange} />
+        <NumberPicker onValueChange={onValueChange} />
       </View>
-      <Text style={styles.selectedValue}>Selected seats available: {selectedValue}</Text>
+      <Text style={styles.selectedValue}>
+        Selected seats available: {selectedValue}
+      </Text>
+
 
     <View style = {styles.submit}>
       <OrangeButtons text="Submit seats" onPress={pressHandler} />
@@ -57,8 +55,8 @@ export default function NationSettingScreen({ navigation }) {
     </View>
 
 
-  );
-}
+  )};
+
 
 const styles = StyleSheet.create({
   container: {
@@ -86,13 +84,14 @@ const styles = StyleSheet.create({
 
   selectedValue: {
     fontSize: 20,
+
     fontFamily: 'Montserrat', 
     letterSpacing: 1,
     textAlign: 'center',
     top: 200,
     color: 'black',
   },
-  
+
   maximumSeats: {
     fontSize: 20,
     fontFamily: 'Montserrat', 
@@ -110,7 +109,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignSelf: 'center',
     width: '70%',
-    
-   
   },
 });
