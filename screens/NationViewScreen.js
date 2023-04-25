@@ -1,12 +1,17 @@
-
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, ImageBackground } from "react-native";
-import theme from "../Styles/GlobalStyles";
-import StartButtons from "../shared/Buttons";
-import Bar from "../shared/ProgressBar";
+import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
+import theme from '../Styles/GlobalStyles';
+import StartButtons from '../shared/Buttons';
 import NationDetails from "../src/components/NationDetails";
 
 export default function NationViewScreen({ navigation, route }) {
+  
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });
+  
   const { id } = route.params;
   const [hasLoaded, setHasLoaded] = useState(false);
   const fieldsToDisplay = ["name", "description", "address"];
@@ -62,34 +67,34 @@ image: {
 },
 
 availableSeats: {
-  fontSize: 22,
-  fontFamily: 'Montserrat',
+  fontSize: 20,
+  fontFamily: 'MontserratBold',
   letterSpacing: 1, 
   fontWeight: 'bold',
   textAlign:'center',
   bottom: 60,
   textTransform: 'uppercase',
-  color: '#ea580c',
+  color: 'black',
 },
 
 openingTimes: {
-  fontSize: 20,
-  fontFamily: 'Montserrat',
+  fontSize: 18,
+  fontFamily: 'MontserratBold',
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
-  color: '#ea580c',
+  color: 'black',
   bottom: 10,
   left: 20,
 },
 
 adress: {
-  fontSize: 20,
-  fontFamily: 'Montserrat',
+  fontSize: 18,
+  fontFamily: 'MontserratBold',
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
-  color: '#ea580c',
+  color: 'black',
   bottom: 10,
   left: 20,
 },
@@ -102,8 +107,8 @@ bar: {
 title: {
   textTransform:'uppercase',
   fontSize:25,
-  fontFamily: 'Montserrat',
-  letterSpacing: 1, 
+  fontFamily: 'MontserratBold',
+  letterSpacing: 2, 
   color: 'white',
   lineHeight: 50,
   fontWeight: 'bold',

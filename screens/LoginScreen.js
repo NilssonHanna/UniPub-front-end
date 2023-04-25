@@ -3,9 +3,15 @@ import { StyleSheet, View, Text, Button, TextInput, Alert } from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 
+
+
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });
 
 const LoginScreen = ({ navigation }) => {
  const [username, setUsername] = useState('');
@@ -56,9 +62,8 @@ return null;
 
 
  return (
-  
-
-   <View style={styles.container}>
+ 
+    <View style={styles.container}>
     {/*    <View>
         <ExitButton text="x" onPress={pressHandlerHome} />
       </View>  */}
@@ -92,22 +97,40 @@ return null;
    </View>
  );
 };
-
-
-const styles = StyleSheet.create({
+  
+const styles = StyleSheet.create({ 
  container: {
-   flex: 1,
-   backgroundColor: theme.backgroundColor,
- },
- textInput: {
-   height: 50,
-   borderWidth: 1,
-   borderColor: 'black',
-   marginHorizontal: 20,
-   marginVertical: 10,
-   borderRadius: 25,
-   paddingLeft: 10,
- },
+     flex: 1,
+    backgroundColor: theme.backgroundColor,
+    padding:24,
+    paddingTop: 100, // add padding to position title at the top
+    paddingHorizontal: 24, // 
+  },
+
+  textInput:{
+    height:60,
+    borderWidth:2,
+    borderColor:'black',
+    marginHorizontal:20,
+    marginVertical:15,
+    borderRadius:25,
+    paddingLeft:10,
+    top: 100,
+    backgroundColor: 'white',
+    fontFamily: 'Montserrat',
+    fontSize: 20,
+    letterSpacing: 1,
+  },
+
+title: {
+  color: 'black',
+  textTransform:'uppercase',
+  fontSize:35,
+  fontWeight:'bold',
+  fontFamily: 'MontserratBold',
+  letterSpacing: 2,
+  textAlign:'center',
+},
 });
 
 

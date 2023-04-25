@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Bar from '../shared/ProgressBar';
 import theme from '../Styles/GlobalStyles';
 
@@ -26,6 +26,7 @@ export default function NationManagingScreen({navigation, route}) {
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
   });
 
   const [index, setIndex] = useState(0);
@@ -93,21 +94,22 @@ const styles=StyleSheet.create({
   title: {
     textTransform:'uppercase',
     fontSize:25,
-
-    fontFamily: 'Montserrat', 
-    letterSpacing: 1,
+    fontFamily: 'MontserratBold',
+    letterSpacing: 2, 
     color: 'white',
     lineHeight: 50,
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#00000070',
-    marginTop: -120,
+    marginTop: 300,
   },
 
   image: {
-    flex: 1,
-    justifyContent: 'center',
-    height: '45%'
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1,
+    resizeMode: 'contain',
+    marginTop: -50,
   },
 
   button: {
@@ -149,7 +151,7 @@ const styles=StyleSheet.create({
     alignSelf: 'center',
     width: 100,
     height: 100,
-    backgroundColor: '#ea580c',
+    backgroundColor: '#556B2F',
     flexDirection: 'row',
     left: '20%',
     position: 'absolute',
@@ -170,7 +172,7 @@ const styles=StyleSheet.create({
     justifyContent: 'space-around',
     width: 100,
     height: 100,
-    backgroundColor: '#ea580c',
+    backgroundColor: '#556B2F',
     marginLeft: 30,
     flexDirection: 'row',
     left: '45%',
@@ -194,22 +196,20 @@ const styles=StyleSheet.create({
   },
 
   index: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#ea580c',
-
+    color: 'black',
     fontFamily: 'Montserrat', 
-
-    letterSpacing: 2,
+    letterSpacing: 1,
+    paddingHorizontal: 15,
     textAlign: 'center',
-    bottom: 240,
+    top: 70,
     textTransform: 'uppercase'
   },
 
   bar: {
-    bottom: 250,
+    top: 60,
     marginHorizontal: 20,
   },
-
 
 });
