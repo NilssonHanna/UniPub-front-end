@@ -3,8 +3,7 @@ import { StyleSheet, View, Text, Button, TextInput, Alert } from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
-
-/*import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';*/
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 
 
 const LoginScreen = ({ navigation }) => {
@@ -15,7 +14,7 @@ const LoginScreen = ({ navigation }) => {
 });*/
 
 
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
+
 
 
 /*const pressHandlerHome=() => {

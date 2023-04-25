@@ -49,7 +49,7 @@ export default function NationSettingScreen({ navigation, route }) {
 
 
   );
-}
+
 
 const styles = StyleSheet.create({
   container: {
