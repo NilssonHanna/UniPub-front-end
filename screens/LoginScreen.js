@@ -46,9 +46,10 @@ const pressHandlerHome=() => {
 
     const matchingNationID = matchingNation.id;
     const nationIDs = data.map((nation) => nation.id);
+    console.log('id login', matchingNationID)
 
     if (nationIDs.includes(matchingNationID)) {
-      navigation.navigate('NationSetting', { id: matchingNationID });
+      navigation.navigate('TabsNations', { id: matchingNationID });
     } else {
       Alert.alert('Log in failed. Invalid username or password');
     }

@@ -8,8 +8,11 @@ import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
-const TabsNations=() => {
+const TabsNations=({route}) => {
 
+    const { id } = route.params;
+  console.log('id in TabsNations', id);
+    //console.log('id i tabsnations' ,route );
     return(
         <Tab.Navigator 
             screenOptions={{ 
@@ -38,6 +41,7 @@ const TabsNations=() => {
      <Tab.Screen 
                 name="NationSetting" 
                 component={NationSettingScreen} 
+                initialParams={{ id }}
                 options={{
                     tabBarLabel: 'SETTINGS',
                     tabBarStyle: { display: 'none'},
@@ -60,6 +64,7 @@ const TabsNations=() => {
             <Tab.Screen 
                 name="NationManaging" 
                 component={NationManagingScreen} 
+                initialParams={{ id }}
                 options={{ 
                 
                     tabBarLabel: 'MANAGE',
@@ -81,6 +86,7 @@ const TabsNations=() => {
             <Tab.Screen 
                 name="Profile" 
                 component={ProfileScreen}
+                initialParams={{ id }}
                 options={{
                     tabBarLabel: 'PROFILE',
                     tabBarIcon: ({ color, size, focused }) => (

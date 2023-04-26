@@ -14,6 +14,7 @@ export default function NationSettingScreen({ navigation, route }) {
   });
 
   const { id } = route.params;
+  console.log('id nationSettingscreen', id)
 
   const [selectedValue, setSelectedValue] = useState(0);
   //const fieldsToDisplay = ["name", "description", "guestCount"];

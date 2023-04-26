@@ -18,8 +18,7 @@ export default function NationViewScreen({ navigation, route }) {
 
 
   const pressHandler = () => {
-    console.log("Jag klickar på knappen")
-    navigation.navigate("Menu");
+      navigation.navigate("Menu", {id});
   };
 
   const image = {
@@ -56,7 +55,6 @@ export default function NationViewScreen({ navigation, route }) {
       <View>
           <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
           </View>
-
         
       <View style = {styles.menu}>
        <StartButtons text="Menu" onPress={pressHandler} />
@@ -179,4 +177,3 @@ menu: {
   marginHorizontal: 80
 }
 })
-
