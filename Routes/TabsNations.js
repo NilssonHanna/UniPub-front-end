@@ -8,8 +8,11 @@ import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
-const TabsNations=() => {
+const TabsNations=({route}) => {
 
+    const { id } = route.params;
+  console.log('id in TabsNations', id);
+    //console.log('id i tabsnations' ,route );
     return(
         <Tab.Navigator 
             screenOptions={{ 
@@ -35,16 +38,17 @@ const TabsNations=() => {
                     
                 /> */}
 
-   {/*  <Tab.Screen 
+     <Tab.Screen 
                 name="NationSetting" 
                 component={NationSettingScreen} 
+                initialParams={{ id }}
                 options={{
                     tabBarLabel: 'SETTINGS',
                     tabBarStyle: { display: 'none'},
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="counter" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {
@@ -55,18 +59,19 @@ const TabsNations=() => {
                     
                   }}
                
-            /> */}
+            /> 
             
             <Tab.Screen 
                 name="NationManaging" 
                 component={NationManagingScreen} 
+                initialParams={{ id }}
                 options={{ 
                 
                     tabBarLabel: 'MANAGE',
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="plus-minus-box" 
-                      color={focused ? 'white' : 'black'}  
+                      color={focused ? '#556B2F' : 'black'}  
                       size={30} />
                     ),  
                     tabBarLabelStyle: {
@@ -81,12 +86,13 @@ const TabsNations=() => {
             <Tab.Screen 
                 name="Profile" 
                 component={ProfileScreen}
+                initialParams={{ id }}
                 options={{
                     tabBarLabel: 'PROFILE',
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="account" 
-                      color={focused ? 'white' : 'black'}   
+                      color={focused ? '#556B2F' : 'black'}   
                       size={30} />
                     ),
                     tabBarLabelStyle: {

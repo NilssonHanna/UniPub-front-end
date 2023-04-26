@@ -3,36 +3,32 @@ import { StyleSheet, View, Text, Button, TextInput, Alert } from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
-/* import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat'; */
-
-/*import { useFonts, Chewy_400Regular } from '@expo-google-fonts/chewy';*/
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 
 const LoginScreen = ({ navigation }) => {
+
  const [username, setUsername] = useState('');
+ 
  const [password, setPassword] = useState('');
- /*const [fontsLoaded] = useFonts({
-  Chewy_400Regular,
-});*/
+ 
+ const [fontsLoaded] = useFonts({
+  Montserrat: Montserrat_400Regular,
+  MontserratBold: Montserrat_700Bold,
+});
 
 
-
-
-
-/*const pressHandlerHome=() => {
+const pressHandlerHome=() => {
   navigation.navigate('Home')
-}*/
+}
   
-/*if (!fontsLoaded) {
-return null;
-}*/
 
  const pressHandler = async () => {
-  console.log('trycker')
   if (!username || !password) {
     Alert.alert('All fields are required');
     return;
   }
+  
 
 
   try {
@@ -50,9 +46,10 @@ return null;
 
     const matchingNationID = matchingNation.id;
     const nationIDs = data.map((nation) => nation.id);
+    console.log('id login', matchingNationID)
 
     if (nationIDs.includes(matchingNationID)) {
-      navigation.navigate('NationSetting', {id: matchingNationID });
+      navigation.navigate('TabsNations', { id: matchingNationID });
     } else {
       Alert.alert('Log in failed. Invalid username or password');
     }
@@ -62,61 +59,73 @@ return null;
   }
 };
 
+if (!fontsLoaded) {
+  return null;
+  }
 
- return (
+
+return (
+
+  <View style={styles.container}>
+
+  <View>
+      <ExitButton text="x" onPress={pressHandlerHome} />
+  </View>
+
+  <Text style={styles.title}>Welcome</Text>
+    
+      <View>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Username"
+          onChangeText={(text) => setUsername(text)}
+          autoCompleteType="username"
+        />
+    
+          <TextInput
+            style={styles.textInput}
+            placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry={true}
+          />
+        </View>
   
-
-   <View style={styles.container}>
-    {/*    <View>
-        <ExitButton text="x" onPress={pressHandlerHome} />
-      </View>  */}
-      <Text style={styles.title}>Welcome</Text>
-
-     <View style={{ marginVertical: 200 }}>
-       <View style={{ marginHorizontal: 24 }}>
-         <TextInput
-           style={styles.textInput}
-           placeholder="Username"
-           onChangeText={(text) => setUsername(text)}
-           autoCompleteType="username"
-         />
-       </View>
-       <View style={{ marginVertical: 0 }}>
-         <View style={{ marginHorizontal: 24 }}>
-           <TextInput
-             style={styles.textInput}
-             placeholder="Password"
-             onChangeText={(text) => setPassword(text)}
-             secureTextEntry={true}
-           />
-         </View>
-       </View>
-     </View>
-     <View style={{ marginVertical: -150 }}>
-       <View style={{ marginHorizontal: 24 }}>
-         <LoginButtons text="Log in" onPress={pressHandler} />
-       </View>
-     </View>
-   </View>
- );
-};
-
+   
+    <View>
+        <LoginButtons text="Log in" onPress={pressHandler} />
+    </View>
+  </View>
+)};
 
 const styles = StyleSheet.create({
- container: {
-   flex: 1,
-   backgroundColor: theme.backgroundColor,
- },
- textInput: {
-   height: 50,
-   borderWidth: 1,
-   borderColor: 'black',
-   marginHorizontal: 20,
-   marginVertical: 10,
-   borderRadius: 25,
-   paddingLeft: 10,
- },
-});
+  container: {
+    flex: 1,
+    backgroundColor: theme.backgroundColor,
+    padding:24,
+    paddingTop: 100, // add padding to position title at the top
+    paddingHorizontal: 24, // 
+  },
 
+  title: {
+    color: 'black',
+    textTransform:'uppercase',
+    fontSize:35,
+    fontWeight:'bold',
+    fontFamily: 'MontserratBold',
+    letterSpacing: 2,
+    textAlign:'center',
+  },
+  
+  textInput: {
+    height: 50,
+    borderWidth: 1,
+    borderColor: "black",
+    marginHorizontal: 20,
+    marginVertical: 10,
+    borderRadius: 25,
+    paddingLeft: 10,
+    top: 100,
+  },
+});
 
 export default LoginScreen;

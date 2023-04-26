@@ -1,43 +1,45 @@
-
-import React, { useState } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import theme from "../Styles/GlobalStyles";
-import { BlueButtons } from "../shared/Buttons";
-import NumberPicker from "../shared/NumberPicker";
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import theme from '../Styles/GlobalStyles';
+import { OrangeButtons } from '../shared/Buttons';
+import NumberPicker from '../shared/NumberPicker';
 import NationDetails from "../src/components/NationDetails";
-import { OrangeButtons } from "../shared/Buttons";
 
 export default function NationSettingScreen({ navigation, route }) {
-  const { id } = route.params;
-  console.log('det här är id',id)
-  const [selectedValue, setSelectedValue] = useState(0);
-  const fieldsToDisplay = ["name", "description", "guestCount"];
-  const displayName=["name"]
-  
 
-  const pressHandler = () => { //här måste vi se till att skicka med id på samma sätt som log in
-    navigation.navigate("TabsNations",{
-      /* id: matchingNationID, */
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });
+
+  const { id } = route.params;
+  console.log('id nationSettingscreen', id)
+
+  const [selectedValue, setSelectedValue] = useState(0);
+  //const fieldsToDisplay = ["name", "description", "guestCount"];
+
+  const pressHandler = () => {
+    navigation.navigate("NationManaging", {
+
       selectedValue,
       maxSeats: selectedValue,
     });
   };
 
-  const onValueChange = (value) => {
-    setSelectedValue(value)  };
+   const onValueChange = (value) => {
+    setSelectedValue(value)  }; 
 
- 
+  
 
- /* if (!fontsLoaded) {
+  if (!fontsLoaded) {
     return null;
-  }*/
+  }
 
 
   return (
     <View style={styles.container}>
-      <NationDetails id={id} /* fields={fieldsToDisplay} */ fields={displayName} />
-
-
+       <NationDetails id={id} fields={["name"]} style={styles.title}/>
 
       <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
       <View style={styles.numberpicker}>
@@ -54,8 +56,8 @@ export default function NationSettingScreen({ navigation, route }) {
     </View>
 
 
-  );
-};
+  )};
+
 
 const styles = StyleSheet.create({
   container: {
@@ -63,20 +65,22 @@ const styles = StyleSheet.create({
     backgroundColor: theme.backgroundColor,
   },
   title: {
-    color: '#ea580c',
+    color: 'black',
     textTransform: 'uppercase',
     fontSize: 25,
     fontWeight: 'bold',
-    fontFamily: 'Montserrat', 
+    fontFamily: 'MontserratBold', 
     textAlign: 'center',
-    top: 60,
-    letterSpacing: 1,
+    top: 50,
+    letterSpacing: 2,
+    padding: 10,
   },
+
   numberpicker:{
     height: '30%', // for example
     width: '50%', // for example
     alignSelf: 'center',
-    top: 180,
+    top: 160,
   },
 
   selectedValue: {
@@ -86,8 +90,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textAlign: 'center',
     top: 200,
-    color: '#ea580c',
-
+    color: 'black',
   },
 
   maximumSeats: {
@@ -96,8 +99,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#ea580c',
-    top:  100,
+    color: 'black',
+    top:  80,
+    padding: 10
     
   },
 

@@ -14,7 +14,7 @@ import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
-const MainStack = () => {
+const MainStack = ({route}) => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false, /* gestureEnabled: false */}}>
@@ -35,26 +35,21 @@ const MainStack = () => {
           
                   />
 
-
-<Stack.Screen 
-          name="NationSetting" 
-          component={NationSettingScreen}
-        />
-
 <Stack.Screen 
           name="TabsNations" 
           component={TabsNations} 
         />
 
+{/* <Stack.Screen 
+          name="NationSetting" 
+          component={NationSettingScreen}
+        />
 
    
-        {/* <Stack.Screen 
+        <Stack.Screen 
           name="NationManaging" 
           component={NationManagingScreen} 
         />  */}
-       
-
-         
        
         
         <Stack.Screen 
@@ -64,6 +59,7 @@ const MainStack = () => {
         <Stack.Screen 
           name="Menu" 
           component={MenuScreen} 
+          options={{ route }} 
                   />
 
 <Stack.Screen 

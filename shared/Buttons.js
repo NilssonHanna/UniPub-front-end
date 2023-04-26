@@ -1,9 +1,6 @@
-import { Center, Row } from 'native-base';
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
-import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
-
-
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 export default function StartButtons ({text,onPress}){
 
@@ -35,7 +32,7 @@ export default function StartButtons ({text,onPress}){
 
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={styles.loginButtonContainer}>
+        <View style={styles.loginButton}>
           <Text style={styles.buttonText}> {text} </Text>
         </View>
       </TouchableOpacity>
@@ -46,6 +43,7 @@ export default function StartButtons ({text,onPress}){
 
     const [fontsLoaded] = useFonts({
       Montserrat: Montserrat_400Regular,
+      MontserratBold: Montserrat_700Bold,
     });
   
     if (!fontsLoaded) {
@@ -95,36 +93,33 @@ const styles=StyleSheet.create({
         marginBottom: 40,
     },
 
-    loginButtonContainer:{
+    loginButton:{
         
-        height:60,
-        bottom: -150,
-        alignItems:'center',
-        justifyContent: 'space-around',
-        borderRadius:35,
-        marginHorizontal:20,
-        marginVertical:10,
-        borderWidth:1,
-        borderColor:"black",
-        backgroundColor:'#ea580c',
-        shadowColor:'#000',
-        shadowOffset:{
-            width:0,
-            height:4
-        },
-        shadowOpacity:0.25,
-        shadowRadius:3.84,
-        elevation:5
+      borderRadius:50,
+      paddingVertical:20,
+      paddingHorizontal: 20,
+      top: 200,
+      backgroundColor:'#556B2F',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+      shadowOpacity: 2,
+      shadowRadius: 10,
+  
+      elevation: 5,
+
     },
 
-  
 
     button:{
 
 
         borderRadius:50,
-        paddingVertical:30,
-        backgroundColor:'#ea580c',
+        paddingVertical:20,
+        paddingHorizontal: 20,
+        backgroundColor:'#556B2F',
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -139,8 +134,11 @@ const styles=StyleSheet.create({
 
     whiteButton:{
 
-      paddingVertical: 10,
+      paddingVertical: 20,
       backgroundColor:'white',
+      height: 80,
+      width: 300,
+      borderRadius: 50,
   
   },
 
@@ -149,7 +147,7 @@ const styles=StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 25,
-    backgroundColor: '#ea580c',
+    backgroundColor: '#556B2F',
     justifyContent: 'center', 
     alignItems: 'center',  
     left:300,
@@ -176,7 +174,7 @@ const styles=StyleSheet.create({
 
     borderRadius:50,
     paddingVertical:25,
-    backgroundColor:'#ea580c',
+    backgroundColor:'#556B2F',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -214,13 +212,14 @@ buttonText:{
 
     whiteButtonText:{
 
-      color: '#ea580c',
+      color: 'black',
       textTransform:'uppercase',
-      fontSize:20,
+      fontSize:16,
       fontWeight:'bold',
-      fontFamily: 'Montserrat', 
+      fontFamily: 'MontserratBold', 
       textAlign:'center',
       letterSpacing: 1,
+      paddingHorizontal: 20
     
     },
 })
