@@ -35,7 +35,7 @@ const TabsNations=() => {
                     
                 /> */}
 
-    <Tab.Screen 
+   {/*  <Tab.Screen 
                 name="NationSetting" 
                 component={NationSettingScreen} 
                 options={{
@@ -55,7 +55,7 @@ const TabsNations=() => {
                     
                   }}
                
-            />
+            /> */}
             
             <Tab.Screen 
                 name="NationManaging" 

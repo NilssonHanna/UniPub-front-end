@@ -5,24 +5,28 @@ import theme from "../Styles/GlobalStyles";
 import { BlueButtons } from "../shared/Buttons";
 import NumberPicker from "../shared/NumberPicker";
 import NationDetails from "../src/components/NationDetails";
+import { OrangeButtons } from "../shared/Buttons";
 
 export default function NationSettingScreen({ navigation, route }) {
   const { id } = route.params;
+  console.log('det här är id',id)
   const [selectedValue, setSelectedValue] = useState(0);
   const fieldsToDisplay = ["name", "description", "guestCount"];
+  const displayName=["name"]
+  
 
-  const pressHandler = () => {
-    navigation.navigate("NationManaging", {
-
+  const pressHandler = () => { //här måste vi se till att skicka med id på samma sätt som log in
+    navigation.navigate("TabsNations",{
+      /* id: matchingNationID, */
       selectedValue,
       maxSeats: selectedValue,
     });
   };
 
-  /* const onValueChange = (value) => {
-    setSelectedValue(value)  }; */
+  const onValueChange = (value) => {
+    setSelectedValue(value)  };
 
-  };
+ 
 
  /* if (!fontsLoaded) {
     return null;
@@ -31,7 +35,9 @@ export default function NationSettingScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <NationDetails id={id} fields={fieldsToDisplay} />
+      <NationDetails id={id} /* fields={fieldsToDisplay} */ fields={displayName} />
+
+
 
       <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
       <View style={styles.numberpicker}>
@@ -49,7 +55,7 @@ export default function NationSettingScreen({ navigation, route }) {
 
 
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

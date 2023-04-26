@@ -35,21 +35,23 @@ const MainStack = () => {
           
                   />
 
-<Stack.Screen 
-          name="TabsNations" 
-          component={TabsNations} 
-        />
 
 <Stack.Screen 
           name="NationSetting" 
           component={NationSettingScreen}
         />
 
+<Stack.Screen 
+          name="TabsNations" 
+          component={TabsNations} 
+        />
+
+
    
-        <Stack.Screen 
+        {/* <Stack.Screen 
           name="NationManaging" 
           component={NationManagingScreen} 
-        /> 
+        />  */}
        
 
          
