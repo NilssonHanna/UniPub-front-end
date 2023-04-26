@@ -24,6 +24,9 @@ const PauseEntryButton = () => {
 
 export default function NationManagingScreen({navigation, route}) {
 
+  //console.log('id i managing screen', id)
+  /* const { id } = route.params; *///här måste vi ta emot id
+
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
     MontserratBold: Montserrat_700Bold,

@@ -14,9 +14,10 @@ export default function NationSettingScreen({ navigation, route }) {
   });
 
   const { id } = route.params;
+  console.log('id nationSettingscreen', id)
 
   const [selectedValue, setSelectedValue] = useState(0);
-  const fieldsToDisplay = ["name", "description", "guestCount"];
+  //const fieldsToDisplay = ["name", "description", "guestCount"];
 
   const pressHandler = () => {
     navigation.navigate("NationManaging", {
@@ -31,14 +32,14 @@ export default function NationSettingScreen({ navigation, route }) {
 
   
 
- /* if (!fontsLoaded) {
+  if (!fontsLoaded) {
     return null;
-  }*/
+  }
 
 
   return (
     <View style={styles.container}>
-      <NationDetails id={id} fields={fieldsToDisplay} />
+       <NationDetails id={id} fields={["name"]} style={styles.title}/>
 
       <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
       <View style={styles.numberpicker}>

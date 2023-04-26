@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
+import {StyleSheet,View,Text, Image, ImageBackground, ScrollView} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
@@ -14,49 +14,62 @@ export default function NationViewScreen({ navigation, route }) {
   
   const { id } = route.params;
   const [hasLoaded, setHasLoaded] = useState(false);
-  const fieldsToDisplay = ["name", "description", "address"];
+//const fieldsToDisplay = ["name", "description", "guestCount"];
+const guestCount = "guestCount"
 
   const pressHandler = () => {
-    navigation.navigate("Menu");
+    navigation.navigate("Menu", {id});
   };
 
   const image = {
     uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
   };
 
-  return (
+  if (!fontsLoaded) {
+    return null;
+    }
 
-    <View style={styles.container}>
+  return (
+    <ScrollView style={styles.scrollContainer}>
+
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      <Text style={styles.title}>Stockholms nation</Text>
+      
+    
+          <NationDetails id={id} fields={["name"]} style={styles.title}/>
+  
+      
       </ImageBackground>
 
-      
-        <Text style={styles.availableSeats}>Available Seats:</Text>
+      <Text style={styles.availableSeats}>Available Seats: </Text>
+
+      <View>
+          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
+          </View>
         
+      <View style = {styles.menu}>
        <StartButtons text="Menu" onPress={pressHandler} />
+       </View>
 
-       <Text style={styles.openingTimes}>Opening times:</Text>
-       <Text style={styles.adress}>Adress:</Text>
+       <View>
+       <Text style={styles.header}> Opening Hours: </Text>
+          <NationDetails id={id} fields={["openingHours"]} style={styles.openingTimes}  />
+          </View>
 
-      <NationDetails id={id} fields={fieldsToDisplay} />
-      </View>
+      <View>
+      <Text style={styles.header} > Address: </Text>
+          <NationDetails id={id} fields={["address"]} style={styles.adress} />
+          </View>
+  
+      </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
 
-
-imageContainer: {
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  
-},
 image: {
   width: '100%',
   height: undefined,
@@ -72,36 +85,47 @@ availableSeats: {
   letterSpacing: 1, 
   fontWeight: 'bold',
   textAlign:'center',
-  bottom: 60,
+  top: 20,
   textTransform: 'uppercase',
   color: 'black',
 },
 
 openingTimes: {
-  fontSize: 18,
-  fontFamily: 'MontserratBold',
+  fontSize: 14,
+  fontFamily: 'Montserrat',
   letterSpacing: 1, 
-  fontWeight: 'bold',
   fontStyle: 'italic',
   color: 'black',
-  bottom: 10,
-  left: 20,
+  paddingRight: 15,
+  paddingVertical: 5,
+  top: 60,
+
 },
 
 adress: {
-  fontSize: 18,
-  fontFamily: 'MontserratBold',
+  fontSize: 14,
+  fontFamily: 'Montserrat',
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: 'black',
-  bottom: 10,
-  left: 20,
+  paddingRight: 15,
+  paddingVertical: 5,
+  top: 60,
 },
 
-bar: {
-  bottom: 100,
-  marginHorizontal: 20,
+descriptionText: {
+  fontSize: 15,
+  fontFamily: 'Montserrat',
+  textTransform:'uppercase',
+  letterSpacing: 2, 
+  letterSpacing: 1,
+  fontStyle: 'italic',
+  color: 'black',
+  paddingRight: 15,
+  paddingVertical: 5,
+  top: 60,
+  textAlign: 'center'
 },
 
 title: {
@@ -114,13 +138,22 @@ title: {
   fontWeight: 'bold',
   textAlign: 'center',
   backgroundColor: '#00000070',
-  marginTop: 150,
+  top: 300,
 },
 
-image: {
-  flex: 1,
-  justifyContent: 'center',
-  height: '75%'
+header: {
+  fontSize: 16,
+  fontFamily: 'MontserratBold',
+  letterSpacing: 1, 
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+  color: 'black',
+  paddingVertical: 5,
+  top: 60,
 },
+
+menu: {
+  top: 80,
+  marginHorizontal: 80
+}
 })
-
