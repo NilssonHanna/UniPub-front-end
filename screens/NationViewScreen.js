@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {StyleSheet,View,Text, Image, ImageBackground} from 'react-native';
+import {StyleSheet,View,Text, Image, ImageBackground, ScrollView} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
@@ -13,10 +13,12 @@ export default function NationViewScreen({ navigation, route }) {
   });
   
   const { id } = route.params;
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const fieldsToDisplay = ["name", "description", "address"];
+  //const [hasLoaded, setHasLoaded] = useState(false);
+  const [nationData, setNationData] = useState({});
+
 
   const pressHandler = () => {
+    console.log("Jag klickar på knappen")
     navigation.navigate("Menu");
   };
 
@@ -24,39 +26,70 @@ export default function NationViewScreen({ navigation, route }) {
     uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
   };
 
-  return (
+  if (!fontsLoaded) {
+    return null;
+    }
 
-    <View style={styles.container}>
+  return (
+    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+      <View style={styles.bottomSpace} />
+
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      <Text style={styles.title}>Stockholms nation</Text>
+      
+    
+      <NationDetails
+          id={id}
+          fields={["name"]}
+          style={styles.title}
+          onLoad={(data) => setNationData(data)}
+        />
+  
+      
       </ImageBackground>
 
-      
-        <Text style={styles.availableSeats}>Available Seats:</Text>
-        
-       <StartButtons text="Menu" onPress={pressHandler} />
-
-       <Text style={styles.openingTimes}>Opening times:</Text>
-       <Text style={styles.adress}>Adress:</Text>
-
-      <NationDetails id={id} fields={fieldsToDisplay} />
+      <View>
+        <Text style={styles.availableSeats}>
+          Available Seats: {nationData.maxCapacity - nationData.guestCount}
+        </Text>
       </View>
+
+      <View>
+          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
+          </View>
+
+        
+      <View style = {styles.menu}>
+       <StartButtons text="Menu" onPress={pressHandler} />
+       </View>
+
+       <View>
+       <Text style={styles.header}> Opening Hours: </Text>
+          <NationDetails id={id} fields={["openingHours"]} style={styles.openingTimes}  />
+          </View>
+
+      <View>
+      <Text style={styles.header} > Adress: </Text>
+          <NationDetails id={id} fields={["address"]} style={styles.adress} />
+          </View>
+  
+      </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
 
+  contentContainer: {
+    paddingBottom: 100, 
+  },
 
-imageContainer: {
-  flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  
-},
+  bottomSpace: {
+    height: 50, 
+  },
+
 image: {
   width: '100%',
   height: undefined,
@@ -72,41 +105,53 @@ availableSeats: {
   letterSpacing: 1, 
   fontWeight: 'bold',
   textAlign:'center',
-  bottom: 60,
+  top: 40,
   textTransform: 'uppercase',
   color: 'black',
 },
 
 openingTimes: {
-  fontSize: 18,
-  fontFamily: 'MontserratBold',
+  fontSize: 14,
+  fontFamily: 'Montserrat',
   letterSpacing: 1, 
-  fontWeight: 'bold',
   fontStyle: 'italic',
   color: 'black',
-  bottom: 10,
-  left: 20,
+  paddingLeft: 15,
+  paddingRight: 15,
+  paddingVertical: 10,
+  top: 80,
+
 },
 
 adress: {
-  fontSize: 18,
-  fontFamily: 'MontserratBold',
+  fontSize: 14,
+  fontFamily: 'Montserrat',
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: 'black',
-  bottom: 10,
-  left: 20,
+  paddingLeft: 15,
+  paddingRight: 15,
+  paddingVertical: 10,
+  top: 80,
 },
 
-bar: {
-  bottom: 100,
-  marginHorizontal: 20,
+descriptionText: {
+  fontSize: 15,
+  fontFamily: 'Montserrat',
+  textTransform:'uppercase',
+  letterSpacing: 2, 
+  letterSpacing: 1,
+  fontStyle: 'italic',
+  color: 'black',
+  paddingVertical: 5,
+  top: 60,
+  textAlign: 'center'
 },
 
 title: {
   textTransform:'uppercase',
-  fontSize:25,
+  fontSize:22,
   fontFamily: 'MontserratBold',
   letterSpacing: 2, 
   color: 'white',
@@ -114,13 +159,24 @@ title: {
   fontWeight: 'bold',
   textAlign: 'center',
   backgroundColor: '#00000070',
-  marginTop: 150,
+  top: 220,
 },
 
-image: {
-  flex: 1,
-  justifyContent: 'center',
-  height: '75%'
+header: {
+  fontSize: 16,
+  fontFamily: 'MontserratBold',
+  letterSpacing: 1, 
+  fontWeight: 'bold',
+  fontStyle: 'italic',
+  color: 'black',
+  paddingVertical: 5,
+  paddingLeft: 15,
+  top: 80,
 },
+
+menu: {
+  top: 80,
+  marginHorizontal: 80
+}
 })
 

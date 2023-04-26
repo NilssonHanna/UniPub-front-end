@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }) {
      </View>
 
       <View >
-        <StartButtons text="Continue as guest" onPress={pressHandlerMap}/>
+        <StartButtons text="Continue as student" onPress={pressHandlerMap}/>
         <StartButtons text="Login as a nation" onPress={pressHandlerLogin} />
       </View>
     </View>

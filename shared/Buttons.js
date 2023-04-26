@@ -1,9 +1,6 @@
-import { Center, Row } from 'native-base';
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-
-
 
 export default function StartButtons ({text,onPress}){
 
@@ -35,7 +32,7 @@ export default function StartButtons ({text,onPress}){
 
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={styles.loginButtonContainer}>
+        <View style={styles.loginButton}>
           <Text style={styles.buttonText}> {text} </Text>
         </View>
       </TouchableOpacity>
@@ -96,30 +93,25 @@ const styles=StyleSheet.create({
         marginBottom: 40,
     },
 
-    loginButtonContainer:{
+    loginButton:{
         
-        height:60,
-        bottom: -150,
-        alignItems:'center',
-        justifyContent: 'space-around',
-        borderRadius:35,
-        marginHorizontal:20,
-        marginVertical:10,
+      borderRadius:50,
+      paddingVertical:20,
+      paddingHorizontal: 20,
+      top: 200,
+      backgroundColor:'#556B2F',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+      shadowOpacity: 2,
+      shadowRadius: 10,
   
-        backgroundColor:'#556B2F',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-      },
-        shadowOpacity: 2,
-        shadowRadius: 10,
-    
-        elevation: 5,
-  
+      elevation: 5,
+
     },
 
-  
 
     button:{
 
@@ -142,8 +134,11 @@ const styles=StyleSheet.create({
 
     whiteButton:{
 
-      paddingVertical: 10,
+      paddingVertical: 20,
       backgroundColor:'white',
+      height: 80,
+      width: 300,
+      borderRadius: 50,
   
   },
 
@@ -219,11 +214,12 @@ buttonText:{
 
       color: 'black',
       textTransform:'uppercase',
-      fontSize:15,
+      fontSize:16,
       fontWeight:'bold',
       fontFamily: 'MontserratBold', 
       textAlign:'center',
       letterSpacing: 1,
+      paddingHorizontal: 20
     
     },
 })

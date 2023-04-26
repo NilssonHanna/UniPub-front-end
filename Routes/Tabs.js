@@ -15,7 +15,7 @@ const Tabs=() => {
                 tabBarStyle: { position: 'absolute'},
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'black',
-                tabBarActiveBackgroundColor: 'black',
+                tabBarActiveBackgroundColor: '#556B2F',
                 tabBarInactiveBackgroundColor: 'white',
           }}
             >
@@ -29,7 +29,7 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused}) => (
                       <MaterialCommunityIcons 
                       name="home" 
-                      color={focused ? '#556B2F' : 'black'}  
+                      color={focused ? 'white' : 'black'}  
                       size={30} />
                     ),  
                     tabBarLabelStyle: {
@@ -49,7 +49,7 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="map-marker-radius" 
-                      color={focused ? '#556B2F' : 'black'}  
+                      color={focused ? 'white' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {
@@ -69,7 +69,7 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="view-list" 
-                      color={focused ? '#556B2F' : 'black'}  
+                      color={focused ? 'white' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {
