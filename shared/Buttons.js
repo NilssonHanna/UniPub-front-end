@@ -63,7 +63,7 @@ export default function StartButtons ({text,onPress}){
   export function OrangeButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={[styles.ButtonContainer, styles.orangeButton]}>
+        <View style={[styles.buttonContainer, styles.orangeButton]}>
           <Text style={styles.orangeButtonText}> {text} </Text>
 
         </View>
@@ -98,9 +98,11 @@ const styles=StyleSheet.create({
       borderRadius:50,
       paddingVertical:20,
       paddingHorizontal: 20,
-      top: 200,
       backgroundColor:'#556B2F',
       shadowColor: "#000",
+      width:300,
+      left:15,
+      height:65,
       shadowOffset: {
         width: 0,
         height: 2,
