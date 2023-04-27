@@ -1,11 +1,12 @@
-
 import React, { useState } from 'react';
 import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import NationDetails from "../src/components/NationDetails";
 import Bar from '../shared/ProgressBar';
 import theme from '../Styles/GlobalStyles';
 
 const PauseEntryButton = () => {
+
   const [isPaused, setIsPaused] = useState(false);
 
   const handlePress = () => {
@@ -24,8 +25,7 @@ const PauseEntryButton = () => {
 
 export default function NationManagingScreen({navigation, route}) {
 
-  //console.log('id i managing screen', id)
-  /* const { id } = route.params; *///här måste vi ta emot id
+  const { id } = route.params;
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
@@ -54,12 +54,20 @@ export default function NationManagingScreen({navigation, route}) {
     navigation.navigate('NationManaging');
   };
 
-
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return ( 
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      <Text style={styles.title}>Stockholms nation</Text>
+      
+      <NationDetails
+          id={id}
+          fields={["name"]}
+          style={styles.title}
+          onLoad={(data) => setNationData(data)}
+        />
       
       </ImageBackground>
    
@@ -202,11 +210,11 @@ const styles=StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',
-    fontFamily: 'Montserrat', 
+    fontFamily: 'MontserratBold', 
     letterSpacing: 1,
     paddingHorizontal: 15,
     textAlign: 'center',
-    top: 70,
+    top: 75,
     textTransform: 'uppercase'
   },
 
