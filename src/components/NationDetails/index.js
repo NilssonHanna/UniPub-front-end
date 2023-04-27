@@ -3,6 +3,7 @@ import axios from "axios";
 import { View, Text } from "react-native";
 
 const NationDetails = ({ id, fields, style, onLoad }) => {
+
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nation, setNation] = useState([]);
 

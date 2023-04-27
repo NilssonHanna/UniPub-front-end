@@ -13,6 +13,7 @@ export default function NationViewScreen({ navigation, route }) {
   });
   
   const { id } = route.params;
+
   //const [hasLoaded, setHasLoaded] = useState(false);
   const [nationData, setNationData] = useState({});
 
@@ -30,27 +31,32 @@ export default function NationViewScreen({ navigation, route }) {
     }
 
   return (
+
     <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
       <View style={styles.bottomSpace} />
 
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       
     
+
       <NationDetails
           id={id}
           fields={["name"]}
           style={styles.title}
           onLoad={(data) => setNationData(data)}
-        />
-  
+
+          <NationDetails id={id} fields={["name"]} style={styles.title}/>
+
       
       </ImageBackground>
+
 
       <View>
         <Text style={styles.availableSeats}>
           Available Seats: {nationData.maxCapacity - nationData.guestCount}
         </Text>
       </View>
+
 
       <View>
           <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
@@ -66,9 +72,10 @@ export default function NationViewScreen({ navigation, route }) {
           </View>
 
       <View>
-      <Text style={styles.header} > Adress: </Text>
+
           <NationDetails id={id} fields={["address"]} style={styles.adress} />
-          </View>
+          
+      </View>
   
       </ScrollView>
   );
@@ -79,6 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
+
 
   contentContainer: {
     paddingBottom: 100, 
@@ -104,6 +112,7 @@ availableSeats: {
   fontWeight: 'bold',
   textAlign:'center',
   top: 40,
+  top: 20,
   textTransform: 'uppercase',
   color: 'black',
 },
@@ -142,9 +151,8 @@ descriptionText: {
   letterSpacing: 1,
   fontStyle: 'italic',
   color: 'black',
-  paddingVertical: 5,
-  top: 60,
-  textAlign: 'center'
+  paddingRight: 15,
+
 },
 
 title: {
@@ -177,3 +185,4 @@ menu: {
   marginHorizontal: 80
 }
 })
+
