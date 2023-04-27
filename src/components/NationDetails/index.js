@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { View, Text } from "react-native";
 
-const NationDetails = ({ id, fields,style }) => {
+const NationDetails = ({ id, fields, style, onLoad }) => {
+
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nation, setNation] = useState([]);
 
@@ -12,6 +13,7 @@ const NationDetails = ({ id, fields,style }) => {
       .then((response) => {
         console.log("response", response);
         setNation(response.data);
+        onLoad(response.data);
       })
       .catch((error) => {
         console.log("axios error", error);
@@ -24,7 +26,7 @@ const NationDetails = ({ id, fields,style }) => {
   return (
     <View>
       {fields.map((field) => (
-        <Text key={field}style={style}>{nation[field]}</Text>
+        <Text key={field} style={style}> {nation[field]}</Text>
       ))}
     </View>
   );

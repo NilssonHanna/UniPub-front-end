@@ -13,12 +13,13 @@ export default function NationViewScreen({ navigation, route }) {
   });
   
   const { id } = route.params;
-  const [hasLoaded, setHasLoaded] = useState(false);
-//const fieldsToDisplay = ["name", "description", "guestCount"];
-const guestCount = "guestCount"
+
+  //const [hasLoaded, setHasLoaded] = useState(false);
+  const [nationData, setNationData] = useState({});
+
 
   const pressHandler = () => {
-    navigation.navigate("Menu", {id});
+      navigation.navigate("Menu", {id});
   };
 
   const image = {
@@ -30,17 +31,32 @@ const guestCount = "guestCount"
     }
 
   return (
-    <ScrollView style={styles.scrollContainer}>
+
+    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+      <View style={styles.bottomSpace} />
 
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       
     
+
+      <NationDetails
+          id={id}
+          fields={["name"]}
+          style={styles.title}
+          onLoad={(data) => setNationData(data)}
+
           <NationDetails id={id} fields={["name"]} style={styles.title}/>
-  
+
       
       </ImageBackground>
 
-      <Text style={styles.availableSeats}>Available Seats: </Text>
+
+      <View>
+        <Text style={styles.availableSeats}>
+          Available Seats: {nationData.maxCapacity - nationData.guestCount}
+        </Text>
+      </View>
+
 
       <View>
           <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
@@ -56,9 +72,10 @@ const guestCount = "guestCount"
           </View>
 
       <View>
-      <Text style={styles.header} > Address: </Text>
+
           <NationDetails id={id} fields={["address"]} style={styles.adress} />
-          </View>
+          
+      </View>
   
       </ScrollView>
   );
@@ -68,6 +85,15 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     backgroundColor: theme.backgroundColor,
+  },
+
+
+  contentContainer: {
+    paddingBottom: 100, 
+  },
+
+  bottomSpace: {
+    height: 50, 
   },
 
 image: {
@@ -85,6 +111,7 @@ availableSeats: {
   letterSpacing: 1, 
   fontWeight: 'bold',
   textAlign:'center',
+  top: 40,
   top: 20,
   textTransform: 'uppercase',
   color: 'black',
@@ -96,9 +123,10 @@ openingTimes: {
   letterSpacing: 1, 
   fontStyle: 'italic',
   color: 'black',
+  paddingLeft: 15,
   paddingRight: 15,
-  paddingVertical: 5,
-  top: 60,
+  paddingVertical: 10,
+  top: 80,
 
 },
 
@@ -109,9 +137,10 @@ adress: {
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: 'black',
+  paddingLeft: 15,
   paddingRight: 15,
-  paddingVertical: 5,
-  top: 60,
+  paddingVertical: 10,
+  top: 80,
 },
 
 descriptionText: {
@@ -123,14 +152,12 @@ descriptionText: {
   fontStyle: 'italic',
   color: 'black',
   paddingRight: 15,
-  paddingVertical: 5,
-  top: 60,
-  textAlign: 'center'
+
 },
 
 title: {
   textTransform:'uppercase',
-  fontSize:25,
+  fontSize:22,
   fontFamily: 'MontserratBold',
   letterSpacing: 2, 
   color: 'white',
@@ -138,7 +165,7 @@ title: {
   fontWeight: 'bold',
   textAlign: 'center',
   backgroundColor: '#00000070',
-  top: 300,
+  top: 220,
 },
 
 header: {
@@ -149,7 +176,8 @@ header: {
   fontStyle: 'italic',
   color: 'black',
   paddingVertical: 5,
-  top: 60,
+  paddingLeft: 15,
+  top: 80,
 },
 
 menu: {
@@ -157,3 +185,4 @@ menu: {
   marginHorizontal: 80
 }
 })
+

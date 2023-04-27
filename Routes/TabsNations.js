@@ -20,7 +20,7 @@ const TabsNations=({route}) => {
                 tabBarStyle: { position: 'absolute'},
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'black',
-                tabBarActiveBackgroundColor: 'black',
+                tabBarActiveBackgroundColor: '#556B2F',
                 tabBarInactiveBackgroundColor: 'white',
           }}
             >
@@ -48,7 +48,7 @@ const TabsNations=({route}) => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="counter" 
-                      color={focused ? '#556B2F' : 'black'}  
+                      color={focused ? 'white' : 'black'}  
                       size={30} />
                     ),
                     tabBarLabelStyle: {
@@ -71,7 +71,7 @@ const TabsNations=({route}) => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="plus-minus-box" 
-                      color={focused ? '#556B2F' : 'black'}  
+                      color={focused ? 'white' : 'black'}  
                       size={30} />
                     ),  
                     tabBarLabelStyle: {
@@ -92,7 +92,7 @@ const TabsNations=({route}) => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="account" 
-                      color={focused ? '#556B2F' : 'black'}   
+                      color={focused ? 'white' : 'black'}   
                       size={30} />
                     ),
                     tabBarLabelStyle: {
