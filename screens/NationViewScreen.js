@@ -45,7 +45,7 @@ export default function NationViewScreen({ navigation, route }) {
           style={styles.title}
           onLoad={(data) => setNationData(data)}
 
-          <NationDetails id={id} fields={["name"]} style={styles.title}/>
+        />
 
       
       </ImageBackground>
@@ -151,7 +151,9 @@ descriptionText: {
   letterSpacing: 1,
   fontStyle: 'italic',
   color: 'black',
-  paddingRight: 15,
+  paddingVertical: 5,
+  top: 60,
+  textAlign: 'center',
 
 },
 

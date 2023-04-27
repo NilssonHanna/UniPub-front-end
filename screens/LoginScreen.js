@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, Alert, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
@@ -91,9 +91,17 @@ return (
         </View>
   
    
-    <View>
+   {/*  <View>
+      
+
         <LoginButtons text="Log in" onPress={pressHandler} />
-    </View>
+    </View> */}
+
+<View style={styles.login}>
+    
+          <LoginButtons text="Log in"  onPress={pressHandler}> </LoginButtons>
+        
+        </View>
   </View>
 )};
 
@@ -117,7 +125,7 @@ const styles = StyleSheet.create({
   },
   
   textInput: {
-    height: 50,
+    height: 40,
     borderWidth: 1,
     borderColor: "black",
     marginHorizontal: 20,
@@ -126,6 +134,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     top: 100,
   },
+login:{
+  top:200
+}
+  
+  
 });
 
 export default LoginScreen;
