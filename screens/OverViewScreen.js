@@ -5,6 +5,7 @@ import theme from "../Styles/GlobalStyles";
 import NationList from "../src/components/NationList";
 
 export default function OverViewScreen({ navigation }) {
+  
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
@@ -20,18 +21,27 @@ export default function OverViewScreen({ navigation }) {
     }
 
   return (
+    <View style={styles.container}>
     <View style={styles.nationContainer}>
       <NationList onPress={pressHandler} />
+    </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
+  container:{
+    flex: 1,
+    backgroundColor: theme.backgroundColor,
+  },
+
+
   nationContainer: {
     flex: 1,
     backgroundcolor: theme.backgroundColor,
     paddingTop: 50,
-    paddingBottom: 50,
+    
   
   },
   image: {

@@ -45,7 +45,7 @@ export default function NationManagingScreen({navigation, route}) {
  // }
   };
 
-  const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
+  //const image = {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG'}
   
   //const progress = index / maxSeats;
   const progress = maxSeats === 0 ? 0 : index / maxSeats;
@@ -60,16 +60,10 @@ export default function NationManagingScreen({navigation, route}) {
 
   return ( 
     <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      
-      <NationDetails
-          id={id}
-          fields={["name"]}
-          style={styles.title}
-          onLoad={(data) => setNationData(data)}
-        />
-      
-      </ImageBackground>
+
+<NationDetails id={id} fields={["name"]} style={styles.title}/>
+
+<Text style={styles.clicker}>Click below: </Text>
    
     <View style ={styles.bar}>
       <Bar index={progress}/>
@@ -103,16 +97,27 @@ const styles=StyleSheet.create({
 
   },
   title: {
-    textTransform:'uppercase',
-    fontSize:25,
-    fontFamily: 'MontserratBold',
-    letterSpacing: 2, 
     color: 'white',
-    lineHeight: 50,
+    textTransform: 'uppercase',
+    fontSize: 25,
+    fontWeight: 'bold',
+    fontFamily: 'MontserratBold', 
+    textAlign: 'center',
+    top: 50,
+    letterSpacing: 2,
+    padding: 10,
+  },
+
+  clicker: {
+    fontSize: 18,
+    fontFamily: 'Montserrat', 
+    letterSpacing: 1,
     fontWeight: 'bold',
     textAlign: 'center',
-    backgroundColor: '#00000070',
-    marginTop: 300,
+    color: 'white',
+    top:  80,
+    padding: 10
+    
   },
 
   image: {
@@ -162,12 +167,14 @@ const styles=StyleSheet.create({
     alignSelf: 'center',
     width: 100,
     height: 100,
-    backgroundColor: '#556B2F',
+    backgroundColor: '#658534',
     flexDirection: 'row',
     left: '20%',
     position: 'absolute',
     marginTop: 480,
+    bordercolor: 'white',
     borderRadius: 50,
+    borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -183,7 +190,7 @@ const styles=StyleSheet.create({
     justifyContent: 'space-around',
     width: 100,
     height: 100,
-    backgroundColor: '#556B2F',
+    backgroundColor: '#658534',
     marginLeft: 30,
     flexDirection: 'row',
     left: '45%',
@@ -207,19 +214,18 @@ const styles=StyleSheet.create({
   },
 
   index: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
-    fontFamily: 'MontserratBold', 
+    color: 'white',
+    fontFamily: 'Montserrat', 
     letterSpacing: 1,
     paddingHorizontal: 15,
     textAlign: 'center',
-    top: 75,
-    textTransform: 'uppercase'
+    top: 300,
   },
 
   bar: {
-    top: 60,
+    top: 260,
     marginHorizontal: 20,
   },
 

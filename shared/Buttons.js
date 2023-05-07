@@ -33,7 +33,7 @@ export default function StartButtons ({text,onPress}){
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={styles.loginButton}>
-          <Text style={styles.buttonText}> {text} </Text>
+          <Text style={styles.LoginButtonText}> {text} </Text>
         </View>
       </TouchableOpacity>
     );
@@ -96,13 +96,10 @@ const styles=StyleSheet.create({
     loginButton:{
         
       borderRadius:50,
-      paddingVertical:20,
-      paddingHorizontal: 20,
-      backgroundColor:'#556B2F',
+      paddingVertical:15,
+      marginHorizontal: 20,
+      backgroundColor:'white',
       shadowColor: "#000",
-      width:300,
-      left:15,
-      height:65,
       shadowOffset: {
         width: 0,
         height: 2,
@@ -119,9 +116,11 @@ const styles=StyleSheet.create({
 
 
         borderRadius:50,
-        paddingVertical:20,
-        paddingHorizontal: 20,
-        backgroundColor:'#556B2F',
+        borderColor: 'white',
+        borderWidth:1,
+        paddingVertical:10,
+        paddingHorizontal: 5,
+        backgroundColor:'#222222',
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -135,12 +134,12 @@ const styles=StyleSheet.create({
     },
 
     whiteButton:{
-
-      paddingVertical: 20,
-      backgroundColor:'white',
-      height: 80,
-      width: 300,
-      borderRadius: 50,
+      backgroundColor:'#333333',
+      height: 100,
+      width: 350,
+      borderRadius: 10,
+      bordercolor: 'white',
+      borderWidth: 2,
   
   },
 
@@ -149,7 +148,7 @@ const styles=StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 25,
-    backgroundColor: '#556B2F',
+    backgroundColor: '#222222',
     justifyContent: 'center', 
     alignItems: 'center',  
     left:300,
@@ -175,8 +174,10 @@ const styles=StyleSheet.create({
   orangeButton:{
 
     borderRadius:50,
-    paddingVertical:25,
-    backgroundColor:'#556B2F',
+    borderWidth: 1, 
+    borderColor: 'white',
+    paddingVertical:10,
+    backgroundColor:'#658534',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -192,21 +193,29 @@ const styles=StyleSheet.create({
 buttonText:{
 
   color: 'white',
-  textTransform:'uppercase',
-  fontSize:20,
+  fontSize:18,
   fontWeight:'bold',
   fontFamily: 'Montserrat',
   textAlign:'center',
   letterSpacing: 1,
 
 },
+
+  LoginButtonText:{
+
+    color: 'black',
+    fontSize:18,
+    fontWeight:'bold',
+    fontFamily: 'Montserrat',
+    textAlign:'center',
+
+},
     orangeButtonText:{
 
         color: 'white',
-        textTransform:'uppercase',
         fontSize:20,
         fontWeight:'bold',
-        fontFamily: 'Montserrat', 
+        fontFamily: 'MontserratBold', 
         textAlign:'center',
         letterSpacing: 1,
     
@@ -214,14 +223,14 @@ buttonText:{
 
     whiteButtonText:{
 
-      color: 'black',
-      textTransform:'uppercase',
-      fontSize:16,
+      color: 'white',
+      //textTransform:'uppercase',
+      fontSize:14,
+      left: 100,
       fontWeight:'bold',
       fontFamily: 'MontserratBold', 
-      textAlign:'center',
       letterSpacing: 1,
-      paddingHorizontal: 20
+      paddingHorizontal: 20,
     
     },
 })

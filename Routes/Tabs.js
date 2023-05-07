@@ -14,9 +14,9 @@ const Tabs=() => {
                 headerShown: false,
                 tabBarStyle: { position: 'absolute'},
                 tabBarActiveTintColor: 'white',
-                tabBarInactiveTintColor: 'black',
-                tabBarActiveBackgroundColor: '#556B2F',
-                tabBarInactiveBackgroundColor: 'white',
+                tabBarInactiveTintColor: '#a9a9a9',
+                tabBarActiveBackgroundColor: '#222222',
+                tabBarInactiveBackgroundColor: '#222222',
           }}
             >
             
@@ -29,12 +29,12 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused}) => (
                       <MaterialCommunityIcons 
                       name="home" 
-                      color={focused ? 'white' : 'black'}  
-                      size={30} />
+                      color={focused ? 'white' : '#a9a9a9'}  
+                      size={25} />
                     ),  
                     tabBarLabelStyle: {
                       fontFamily: 'Times New Roman',
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: 2,
                     },
                 }}
@@ -49,12 +49,12 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="map-marker-radius" 
-                      color={focused ? 'white' : 'black'}  
-                      size={30} />
+                      color={focused ? 'white' : '#a9a9a9'}  
+                      size={25} />
                     ),
                     tabBarLabelStyle: {
                       fontFamily: 'Times New Roman',
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: 2,
                     },
                   }}
@@ -69,12 +69,12 @@ const Tabs=() => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="view-list" 
-                      color={focused ? 'white' : 'black'}  
-                      size={30} />
+                      color={focused ? 'white' : '#a9a9a9'}  
+                      size={25} />
                     ),
                     tabBarLabelStyle: {
                       fontFamily: 'Times New Roman',
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: 2,
                     },
                   }}

@@ -72,12 +72,13 @@ return (
       <ExitButton text="x" onPress={pressHandlerHome} />
   </View>
 
-  <Text style={styles.title}>Welcome</Text>
+  <Text style={styles.title}>Welcome back.</Text>
     
       <View>
         <TextInput
           style={styles.textInput}
           placeholder="Username"
+          placeholderTextColor={'white'}
           onChangeText={(text) => setUsername(text)}
           autoCompleteType="username"
         />
@@ -85,6 +86,7 @@ return (
           <TextInput
             style={styles.textInput}
             placeholder="Password"
+            placeholderTextColor={'white'}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}
           />
@@ -115,9 +117,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: 'black',
-    textTransform:'uppercase',
-    fontSize:35,
+    color: 'white',
+    //textTransform:'uppercase',
+    fontSize:30,
     fontWeight:'bold',
     fontFamily: 'MontserratBold',
     letterSpacing: 2,
@@ -128,14 +130,18 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderColor: "black",
+    backgroundColor: '#222222',
     marginHorizontal: 20,
     marginVertical: 10,
     borderRadius: 25,
+    borderWidth: 1,
+    borderColor:'white',
     paddingLeft: 10,
     top: 100,
+    color: 'white',
   },
 login:{
-  top:200
+  top:130
 }
   
   
