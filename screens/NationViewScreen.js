@@ -50,6 +50,9 @@ export default function NationViewScreen({ navigation, route }) {
       
       </ImageBackground>
 
+      <View>
+          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
+      </View>
 
       <View>
         <Text style={styles.availableSeats}>
@@ -57,10 +60,6 @@ export default function NationViewScreen({ navigation, route }) {
         </Text>
       </View>
 
-
-      <View>
-          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
-          </View>
         
       <View style = {styles.menu}>
        <StartButtons text="Menu" onPress={pressHandler} />
@@ -72,7 +71,7 @@ export default function NationViewScreen({ navigation, route }) {
           </View>
 
       <View>
-
+        <Text style={styles.header}> Adress: </Text>
           <NationDetails id={id} fields={["address"]} style={styles.adress} />
           
       </View>
@@ -111,10 +110,8 @@ availableSeats: {
   letterSpacing: 1, 
   fontWeight: 'bold',
   textAlign:'center',
-  top: 40,
-  top: 20,
-  textTransform: 'uppercase',
-  color: 'black',
+  top: 50,
+  color: 'white',
 },
 
 openingTimes: {
@@ -122,7 +119,7 @@ openingTimes: {
   fontFamily: 'Montserrat',
   letterSpacing: 1, 
   fontStyle: 'italic',
-  color: 'black',
+  color: 'white',
   paddingLeft: 15,
   paddingRight: 15,
   paddingVertical: 10,
@@ -136,7 +133,7 @@ adress: {
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
-  color: 'black',
+  color: 'white',
   paddingLeft: 15,
   paddingRight: 15,
   paddingVertical: 10,
@@ -146,14 +143,13 @@ adress: {
 descriptionText: {
   fontSize: 15,
   fontFamily: 'Montserrat',
-  textTransform:'uppercase',
   letterSpacing: 2, 
   letterSpacing: 1,
   fontStyle: 'italic',
-  color: 'black',
+  color: 'white',
   paddingVertical: 5,
-  top: 60,
-  textAlign: 'center',
+  top: 10,
+  textAlign: 'left',
 
 },
 
@@ -176,7 +172,7 @@ header: {
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
-  color: 'black',
+  color: 'white',
   paddingVertical: 5,
   paddingLeft: 15,
   top: 80,

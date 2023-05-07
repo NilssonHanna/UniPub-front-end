@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet,View,Text, Image} from 'react-native';
+import {StyleSheet,View,Text, Image, ScrollView} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
 import { LoginButtons} from '../shared/Buttons';
-import HomeScreen from '../screens/HomeScreen';
 import NationDetails from '../src/components/NationDetails';
 
 export default function ProfileScreen({navigation,route}) {
@@ -30,10 +29,10 @@ export default function ProfileScreen({navigation,route}) {
 
     
   return ( 
-  
-  <View style={styles.container}>
+    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+    <View style={styles.bottomSpace} />
 
-<NationDetails id={id} fields={["name"]} style={styles.descriptionText}  />
+<NationDetails id={id} fields={["name"]} style={styles.title}  />
 
   <Image
         source={{ uri: imageUrl }}
@@ -51,59 +50,55 @@ export default function ProfileScreen({navigation,route}) {
         <LoginButtons text="Log out" onPress={pressHandlerLogin} />
 </View>
 
-  </View>
+
+  </ScrollView>
  
    )
 }
 
 const styles=StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: theme.backgroundColor,
-        padding:24,
-        paddingTop: 100, // add padding to position title at the top
-        paddingHorizontal: 24, // 
-      },
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: theme.backgroundColor,
+  },
+
+
+  contentContainer: {
+    paddingBottom: 100, 
+  },
+
+  bottomSpace: {
+    height: 50, 
+  },
 
   title: {
-    color: 'black',
-    textTransform:'uppercase',
-    fontSize:20,
-    fontWeight:'bold',
-    fontFamily: 'MontserratBold',
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: 25,
+    fontWeight: 'bold',
+    fontFamily: 'MontserratBold', 
+    textAlign: 'center',
     letterSpacing: 2,
-    textAlign:'center',
-    top: 10,
+    padding: 10,
 },
 
-descriptionText:{
-
-    color: 'black',
-    textTransform:'uppercase',
-    fontSize:22,
-    fontWeight:'bold',
-    fontFamily: 'MontserratBold',
-    letterSpacing: 2,
-    textAlign:'center',
-    top: -40,
-},
 
 logOut: {
 
-  bottom: 50,
+  top: 160,
   alignSelf: 'center',
-  right: 18,
+  width: 200,
+  fontFamily: 'Monserrat'
 },
 
 change: {
-  color: 'black',
-    textTransform:'uppercase',
+  color: 'white',
     fontSize:12,
     fontWeight:'bold',
     fontFamily: 'MontserratBold',
     letterSpacing: 2,
     textAlign:'center',
-    top: -120,
+    top: 140,
     paddingVertical: 20
 },
 
@@ -113,7 +108,7 @@ image: {
   alignSelf: 'center',
   marginTop: 'auto',
   marginBottom: 'auto',
-  top: -80,
+  top: 80,
 },
 
 })

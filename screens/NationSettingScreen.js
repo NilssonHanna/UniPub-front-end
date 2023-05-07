@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.backgroundColor,
   },
   title: {
-    color: 'black',
+    color: 'white',
     textTransform: 'uppercase',
     fontSize: 25,
     fontWeight: 'bold',
@@ -84,29 +84,28 @@ const styles = StyleSheet.create({
   },
 
   selectedValue: {
-    fontSize: 20,
-
+    fontSize: 18,
     fontFamily: 'Montserrat', 
     letterSpacing: 1,
     textAlign: 'center',
     top: 200,
-    color: 'black',
+    color: 'white',
   },
 
   maximumSeats: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Montserrat', 
     letterSpacing: 1,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'black',
+    color: 'white',
     top:  80,
     padding: 10
     
   },
 
   submit: {
-    top:  220,
+    top:  230,
     justifyContent: 'space-around',
     alignSelf: 'center',
     width: '70%',

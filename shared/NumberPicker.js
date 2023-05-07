@@ -16,10 +16,10 @@ export default class NumberPicker extends Component {
               key={index}
               style={{
                 textAlign: 'center',
-                fontSize: 25,
-                color: isSelected ? 'white' : 'black',
+                fontSize:  isSelected ? 28 : 22,
+                color: isSelected ? 'white' : '#a9a9a9',
                 fontWeight:'bold',
-                fontFamily: 'Times New Roman',
+                fontFamily: 'MontSerrat',
                 
                  }}
             >
@@ -30,12 +30,12 @@ export default class NumberPicker extends Component {
         onValueChange={(data) => {
             this.props.onValueChange(data);
         }}
-        wrapperHeight={180}
-        wrapperWidth={1}
+        wrapperHeight={200}
+        wrapperWidth={2}
         wrapperColor='#'
         itemHeight={40}
-        highlightColor='black'
-        highlightBorderWidth={1}
+        highlightColor='white'
+        highlightBorderWidth={2}
        
        
         

@@ -19,9 +19,9 @@ const TabsNations=({route}) => {
                 headerShown: false,
                 tabBarStyle: { position: 'absolute'},
                 tabBarActiveTintColor: 'white',
-                tabBarInactiveTintColor: 'black',
-                tabBarActiveBackgroundColor: '#556B2F',
-                tabBarInactiveBackgroundColor: 'white',
+                tabBarInactiveTintColor: '#a9a9a9',
+                tabBarActiveBackgroundColor: '#222222',
+                tabBarInactiveBackgroundColor: '#222222',
           }}
             >
 
@@ -48,12 +48,12 @@ const TabsNations=({route}) => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="counter" 
-                      color={focused ? 'white' : 'black'}  
-                      size={30} />
+                      color={focused ? 'white' : '#a9a9a9'}  
+                      size={25} />
                     ),
                     tabBarLabelStyle: {
                       fontFamily: 'Times New Roman',
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: 2,
                     },
                     
@@ -71,12 +71,12 @@ const TabsNations=({route}) => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="plus-minus-box" 
-                      color={focused ? 'white' : 'black'}  
-                      size={30} />
+                      color={focused ? 'white' : '#a9a9a9'}  
+                      size={25} />
                     ),  
                     tabBarLabelStyle: {
                       fontFamily: 'Times New Roman',
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: 2,
                     },
                 }}
@@ -92,12 +92,12 @@ const TabsNations=({route}) => {
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="account" 
-                      color={focused ? 'white' : 'black'}   
-                      size={30} />
+                      color={focused ? 'white' : '#a9a9a9'}   
+                      size={25} />
                     ),
                     tabBarLabelStyle: {
                       fontFamily: 'Times New Roman',
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: 2,
                     },
                   }}

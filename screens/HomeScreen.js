@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
     navigation.navigate(screenName);
   };
  */
-  const imageUrl = "https://drive.google.com/uc?id=1YPVjLl0MbGYJL9dNHx_nA0wnzx2jbSeg";
+  const imageUrl = "https://drive.google.com/uc?id=16kfkY0zJn0dKF9d0iIk0H4Ngpw4sFWFb";
 
 
 
@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation }) {
       />
      </View>
 
-      <View >
+      <View style = {styles.startButtons} >
         <StartButtons text="Continue as student" onPress={pressHandlerMap}/>
         <StartButtons text="Continue as nation" onPress={pressHandlerLogin} />
       </View>
@@ -56,8 +56,13 @@ const styles = StyleSheet.create({
     backgroundColor: theme.backgroundColor
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 350,
+    top: -40,
+  },
+
+  startButtons:{
+    bottom: 80,
   },
 });
 

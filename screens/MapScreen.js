@@ -56,7 +56,7 @@ export default function MapScreen({ navigation }) {
             <Marker key={index} coordinate={marker.coordinate} >
               <Callout>
                 <Text style={styles.nation}>{marker.name}</Text>
-                <Button color={'#556B2F'} title='Info' onPress={() => pressHandler(marker.name)} />
+                <Button color={'#666666'} title='Info' onPress={() => pressHandler(marker.name)} />
               </Callout>
             </Marker>
           ))}
@@ -89,9 +89,5 @@ const styles = StyleSheet.create({
     letterSpacing:0.5
 
   },
-  buttonstyle:{
-
-    color:'#556B2F'
-  }
 
 });
