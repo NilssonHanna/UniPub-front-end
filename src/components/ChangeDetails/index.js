@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { View, Text } from "react-native";
 
-const ChangeDetails = ({ id, fields, selectedValue }) => {
+const ChangeDetails = ({ id, fields, selectedValue}) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nation, setNation] = useState([]);
 
   useEffect(() => {
+    console.log("useEffect")
     axios
       .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
         maxCapacity: selectedValue,

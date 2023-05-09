@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
   Text,
+  Button,
   Image,
   TouchableOpacity,
   ImageBackground,
@@ -13,52 +14,55 @@ import {
   Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
 import Bar from "../shared/ProgressBar";
+import axios from "axios";
 import theme from "../Styles/GlobalStyles";
-import ChangeDetails from "../src/components/ChangeDetails";
-import NationDetails from "../src/components/NationDetails";
-
-const PauseEntryButton = () => {
-  const [isPaused, setIsPaused] = useState(false);
-
-  /*  const handlePress = () => {
-    setIsPaused(!isPaused);
-  };
-
-  return (
-    <TouchableOpacity
-      style={[styles.button, isPaused ? styles.paused : styles.started]}
-      onPress={handlePress}
-    >
-      <Text style={styles.buttonText}>
-        {isPaused ? "Start Entry" : "Pause Entry"}
-      </Text>
-    </TouchableOpacity>
-  );*/
-};
+import useGetDetails from "../src/hooks/useGetDetails";
 
 export default function NationManagingScreen({ navigation, route }) {
   const { id, selectedValue } = route.params;
-  /*const [username, IncreaseSeats] = useState("");
-  const [password, DecreaseSeats] = useState("");*/
-
-  const fieldsToDisplay = ["name", "guestCount", "maxCapacity"];
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
     MontserratBold: Montserrat_700Bold,
   });
-  /*const [index, setIndex] = useState(0);*/
-  /*const maxSeats = route.params?.maxSeats || 0;*/
 
-  /*const decrementIndex = () => {
-    setIndex(Math.max(index - 1, 0));
+  /*const [index, setIndex] = useState(0);
+  const maxSeats = route.params?.maxSeats || 0;*/
+  
+  const nation = useGetDetails(id);
+  
+
+  const handlePlusClick = () => {
+    console.log("handlePlusClick");
+    axios
+    .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+      guestChange: "add",
+    })
+    .then((response) => {
+      console.log("response", response.data);
+    })
+    .catch((error) => {
+      console.log("axios error", error);
+    })
+  };
+  
+  // Minus button function
+  const handleMinusClick = () => {
+    console.log("handlaminusClick");
+    axios
+    .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+      guestChange: "remove",
+    })
+    .then((response) => {
+      console.log("response", response.data);
+    })
+    .catch((error) => {
+      console.log("axios error", error);
+    })
   };
 
-  const incrementIndex = () => {
-    // if (index < maxSeats) {
-    setIndex(index + 1);
-    // }
-  };*/
+  //console.log(DecreaseSeats); 
+  //console.log(IncreaseSeats);
 
   const image = {
     uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
@@ -67,9 +71,9 @@ export default function NationManagingScreen({ navigation, route }) {
   //const progress = index / maxSeats;
   //const progress = selectedValue === 0 ? 0 : index / selectedValue;
 
-  const pressHandler = () => {
+  /*const pressHandler = () => {
     navigation.navigate("NationManaging");
-  };
+  };*/
 
   return (
     <View style={styles.container}>
@@ -82,8 +86,29 @@ export default function NationManagingScreen({ navigation, route }) {
       </View> */}
 
       <View>
-        <NationDetails id={id} fields={["maxCapacity"]} />
-        {/* Additional UI components and logic */}
+        <View style={styles.iconButtonPlus}>
+          <Button
+            title="+"
+            onPress={handlePlusClick} //gör till loop
+          />
+        </View>
+
+        <View style={styles.iconButtonMinus}>
+          <Button
+            title="-"
+            onPress= {handleMinusClick}
+          />
+        </View>
+
+        {/*  <Text style={styles.index}>
+          {guestCount}/{route.params.selectedValue} students have entered
+        </Text> */}
+
+        <Text>{nation.guestCount}</Text>
+        <Text>{nation.name}</Text>
+        <Text>{nation.maxCapacity}</Text>
+      
+        
       </View>
 
       {/*  <PauseEntryButton /> */}
@@ -122,10 +147,10 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 80,
+    marginVertical: 0,
     justifyContent: "space-around",
     alignSelf: "center",
-    top: 50,
+    top: 0,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -159,7 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     left: "20%",
     position: "absolute",
-    marginTop: 480,
+    marginTop: 100,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -181,7 +206,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     left: "45%",
     position: "absolute",
-    marginTop: 480,
+    marginTop: 100,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {

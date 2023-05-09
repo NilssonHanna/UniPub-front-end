@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-const NationDetails = ({ id, fields }) => {
+const NationDetails = ({ id, fields, style }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nation, setNation] = useState([]);
 
@@ -24,11 +24,10 @@ const NationDetails = ({ id, fields }) => {
   return (
     <View>
       {fields.map((field) => (
-        <Text key={field}>{field}: {nation[field]}</Text>
+        <Text key={field} style={style}> {nation[field]}</Text>
       ))}
     </View>
   );
 };
 
 export default NationDetails;
-

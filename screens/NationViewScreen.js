@@ -10,14 +10,13 @@ import StartButtons from "../shared/Buttons";
 import NationDetails from "../src/components/NationDetails";
 
 export default function NationViewScreen({ navigation, route }) {
-  const { id } = route.params;
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const fieldsToDisplay = ["name", "description", "address", "openingHours"];
-
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
     MontserratBold: Montserrat_700Bold,
   });
+
+  const { id } = route.params;
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   const pressHandler = () => {
     navigation.navigate("Menu");
@@ -27,20 +26,33 @@ export default function NationViewScreen({ navigation, route }) {
     uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
   };
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Text style={styles.title}>Stockholms nation</Text>
+        <NationDetails id={id} fields={["name"]} style={styles.title} />
       </ImageBackground>
 
       <Text style={styles.availableSeats}>Available Seats:</Text>
 
       <StartButtons text="Menu" onPress={pressHandler} />
 
-      <Text style={styles.openingTimes}>Opening hours:</Text>
-      <Text style={styles.adress}>Adress:</Text>
+      <View style={{ flexDirection: "row" }}>
+        <Text style={styles.header}> Opening Hours: </Text>
+        <NationDetails
+          id={id}
+          fields={["openingHours"]}
+          style={styles.openingTimes}
+        />
+      </View>
 
-      <NationDetails id={id} fields={fieldsToDisplay} />
+      <View style={{ flexDirection: "row" }}>
+        <Text style={styles.header}> Address: </Text>
+        <NationDetails id={id} fields={["address"]} style={styles.adress} />
+      </View>
     </View>
   );
 }
@@ -51,11 +63,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.backgroundColor,
   },
 
-  imageContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   image: {
     width: "100%",
     height: undefined,
@@ -76,25 +83,25 @@ const styles = StyleSheet.create({
   },
 
   openingTimes: {
-    fontSize: 18,
-    fontFamily: "MontserratBold",
+    fontSize: 14,
+    fontFamily: "Montserrat",
     letterSpacing: 1,
-    fontWeight: "bold",
     fontStyle: "italic",
     color: "black",
-    bottom: 10,
-    left: 20,
+    paddingRight: 15,
+
+    paddingVertical: 5,
   },
 
   adress: {
-    fontSize: 18,
-    fontFamily: "MontserratBold",
+    fontSize: 14,
+    fontFamily: "Montserrat",
     letterSpacing: 1,
     fontWeight: "bold",
     fontStyle: "italic",
     color: "black",
-    bottom: 10,
-    left: 20,
+    paddingRight: 15,
+    paddingVertical: 5,
   },
 
   bar: {
@@ -119,5 +126,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     height: "75%",
+  },
+  header: {
+    fontSize: 16,
+    fontFamily: "MontserratBold",
+    letterSpacing: 1,
+    fontWeight: "bold",
+    fontStyle: "italic",
+    color: "black",
+    paddingVertical: 5,
   },
 });
