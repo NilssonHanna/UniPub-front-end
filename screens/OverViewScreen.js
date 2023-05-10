@@ -42,8 +42,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundcolor: theme.backgroundColor,
     paddingTop: 50,
-    
-  
   },
-
 });

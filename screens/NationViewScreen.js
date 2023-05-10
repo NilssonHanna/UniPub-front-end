@@ -177,4 +177,3 @@ menu: {
   marginHorizontal: 80
 }
 })
-

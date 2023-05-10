@@ -3,6 +3,7 @@ import axios from "axios";
 import { View, ScrollView, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { WhiteButtons } from "../../../shared/Buttons";
 
+
 const NationList = ({ onPress }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nations, setNations] = useState([]);

@@ -1,62 +1,65 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
-import theme from '../Styles/GlobalStyles';
-import { OrangeButtons } from '../shared/Buttons';
-import NumberPicker from '../shared/NumberPicker';
-import NationDetails from "../src/components/NationDetails";
 
-export default function NationSettingScreen({ navigation, route }) {
-
-  const [fontsLoaded] = useFonts({
-    Montserrat: Montserrat_400Regular,
-    MontserratBold: Montserrat_700Bold,
-  });
-
-  const { id } = route.params;
-  console.log('id nationSettingscreen', id)
-
-  const [selectedValue, setSelectedValue] = useState(0);
-  //const fieldsToDisplay = ["name", "description", "guestCount"];
-
-  const pressHandler = () => {
-    navigation.navigate("NationManaging", {
-
-      selectedValue,
-      maxSeats: selectedValue,
-    });
-  };
-
-   const onValueChange = (value) => {
-    setSelectedValue(value)  }; 
-
+  import React, { useState } from "react";
+  import { StyleSheet, View, Text, Image } from "react-native";
+  import {
+    useFonts,
+    Montserrat_400Regular,
+    Montserrat_700Bold,
+  } from "@expo-google-fonts/montserrat";
+  import theme from "../Styles/GlobalStyles";
+  import { OrangeButtons } from "../shared/Buttons";
+  import NumberPicker from "../shared/NumberPicker";
+  import ChangeDetails from "../src/components/ChangeDetails";
   
-
-  if (!fontsLoaded) {
-    return null;
+  export default function NationSettingScreen({ navigation, route }) {
+    const [fontsLoaded] = useFonts({
+      Montserrat: Montserrat_400Regular,
+      MontserratBold: Montserrat_700Bold,
+    });
+  
+    const { id } = route.params;
+  
+    const [selectedValue, setSelectedValue] = useState(0);
+    const fieldsToDisplay = ["name"];
+  
+    const pressHandler = () => {
+      navigation.navigate("NationManaging", {
+        id: id,
+        selectedValue: selectedValue,
+      });
+    };
+  
+    const onValueChange = (value) => {
+      setSelectedValue(value);
+    };
+  
+    /* if (!fontsLoaded) {
+      return null;
+    }*/
+  
+    return (
+      <View style={styles.container}>
+        <Text style={styles.maximumSeats}>
+          Set amount of maximum seats for the evening:
+        </Text>
+        <View style={styles.numberpicker}>
+          <NumberPicker onValueChange={onValueChange} />
+          <ChangeDetails
+            id={id}
+            fields={fieldsToDisplay}
+            selectedValue={selectedValue}
+          />
+        </View>
+        <Text style={styles.selectedValue}>
+          Selected seats available: {selectedValue}
+        </Text>
+  
+        <View style={styles.submit}>
+          <OrangeButtons text="Submit seats" onPress={pressHandler} />
+        </View>
+      </View>
+    );
   }
-
-
-  return (
-    <View style={styles.container}>
-       <NationDetails id={id} fields={["name"]} style={styles.title}/>
-
-      <Text style={styles.maximumSeats}>Set amount of maximum seats for the evening:</Text>
-      <View style={styles.numberpicker}>
-        <NumberPicker onValueChange={onValueChange} />
-      </View>
-      <Text style={styles.selectedValue}>
-        Selected seats available: {selectedValue}
-      </Text>
-
-
-    <View style = {styles.submit}>
-      <OrangeButtons text="Submit seats" onPress={pressHandler} />
-      </View>
-    </View>
-
-
-  )};
 
 
 const styles = StyleSheet.create({
