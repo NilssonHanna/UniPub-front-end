@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/* import React, { useState } from "react";
 import {StyleSheet,View,Text, Image, ImageBackground, ScrollView} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
@@ -50,13 +50,90 @@ export default function NationViewScreen({ navigation, route }) {
       
       </ImageBackground>
 
+
+      <View>
+        <Text style={styles.availableSeats}>
+          Available Seats: {nationData.maxCapacity - nationData.guestCount}
+        </Text>
+      </View>
+
+
+      <View>
+          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
+          </View>
+        
+      <View style = {styles.menu}>
+       <StartButtons text="Menu" onPress={pressHandler} />
+       </View>
+
+       <View>
+       <Text style={styles.header}> Opening Hours: </Text>
+          <NationDetails id={id} fields={["openingHours"]} style={styles.openingTimes}  />
+          </View>
+
+      <View>
+
+          <NationDetails id={id} fields={["address"]} style={styles.adress} />
+          
+      </View>
+  
+      </ScrollView>
+  );
+} */
+
+import React, { useState } from "react";
+import {StyleSheet,View,Text, Image, ImageBackground, ScrollView} from 'react-native';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
+import theme from '../Styles/GlobalStyles';
+import StartButtons from '../shared/Buttons';
+import NationDetails from "../src/components/NationDetails";
+import useGetDetails from "../src/hooks/useGetDetails";
+
+export default function NationViewScreen({ navigation, route }) {
+  
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });
+  
+  const { id } = route.params;
+  const nation = useGetDetails(id);
+
+
+
+
+  const pressHandler = () => {
+      navigation.navigate("Menu", {id});
+  }
+
+
+  
+  
+
+  const image = {
+    uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
+  };
+
+  if (!fontsLoaded) {
+    return null;
+    }
+
+  return (
+
+    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+      <View style={styles.bottomSpace} />
+
+      <ImageBackground source={{ uri: nation.header }} resizeMode="cover" style={styles.image}>
+        <NationDetails id={id} fields={["name"]} style={styles.title} />
+      </ImageBackground>
+
       <View>
           <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
       </View>
 
       <View>
         <Text style={styles.availableSeats}>
-          Available Seats: {nationData.maxCapacity - nationData.guestCount}
+          Available Seats: {nation.maxCapacity - nation.guestCount}
         </Text>
       </View>
 
@@ -183,4 +260,3 @@ menu: {
   marginHorizontal: 80
 }
 })
-

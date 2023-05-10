@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     
   
   },
-  image: {
+/*   image: {
     width: 80,
     height: 80,
     resizeMode: "contain",
     marginLeft: 20,
-  },
+  }, */
 });

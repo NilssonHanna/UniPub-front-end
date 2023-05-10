@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, Alert, TouchableOpacity} from 'react-native';
+import { StyleSheet, Button, View, Text, Modal, TextInput, Alert, TouchableOpacity,KeyboardAvoidingView} from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
@@ -12,6 +12,11 @@ const LoginScreen = ({ navigation }) => {
  
  const [password, setPassword] = useState('');
  
+ const [isModalVisible, setIsModalVisible] = useState(false);
+
+ 
+
+ 
  const [fontsLoaded] = useFonts({
   Montserrat: Montserrat_400Regular,
   MontserratBold: Montserrat_700Bold,
@@ -21,6 +26,10 @@ const LoginScreen = ({ navigation }) => {
 const pressHandlerHome=() => {
   navigation.navigate('Home')
 }
+
+const pressHandlerForgotpassword = () => {
+  setIsModalVisible(true);
+};
   
 
  const pressHandler = async () => {
@@ -90,20 +99,48 @@ return (
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}
           />
-        </View>
+
+</View>
+      <View style={styles.forgotpassword}>
+          <TouchableOpacity onPress={pressHandlerForgotpassword}>
+            <Text style={styles.forgotpasswordText}>Forgot password?</Text>
+          </TouchableOpacity>
+
+          </View>
+       
   
    
-   {/*  <View>
-      
+   
 
-        <LoginButtons text="Log in" onPress={pressHandler} />
-    </View> */}
-
-<View style={styles.login}>
+  <View style={styles.login}>
     
           <LoginButtons text="Log in"  onPress={pressHandler}> </LoginButtons>
         
         </View>
+       
+        <Modal transparent visible={isModalVisible}>
+        <KeyboardAvoidingView behavior='padding' style={styles.keyboardAvoidingView}>
+          
+       
+  <View style={styles.modalContent}>
+    
+   {/*  <View style={styles.exit} >
+        <ExitButton text="x" onPress= {() => setIsModalVisible(false)}/>
+    </View>   */}   
+  <Text 
+  style={styles.forgotpasswordTitle}>Forgot password?</Text>
+  <Text style={styles.forgotpasswordInfo}> Did you forget your password? Don't worry, we've got your back! Just enter your email address below and we'll guide you back to your account.</Text>
+    <TextInput placeholder="Enter your email"  
+    style={styles.resetPassword}/>
+<TouchableOpacity onPress={() => setIsModalVisible(false)}>
+<Text style={styles.submitButton}> Submit</Text>
+
+</TouchableOpacity >
+  
+  </View>
+  </KeyboardAvoidingView>
+</Modal>
+
   </View>
 )};
 
@@ -142,9 +179,68 @@ const styles = StyleSheet.create({
   },
 login:{
   top:130
+},
+forgotpassword:{
+top:210,
+left:105,
+},
+
+forgotpasswordTitle:{
+  textAlign: 'center',
+   fontFamily: 'MontserratBold',
+    fontSize: 25
+},
+forgotpasswordInfo:{
+  /* textAlign: 'center', */
+  fontFamily: 'Montserrat',
+   fontSize: 12,
+   marginTop:20
+},
+
+resetPassword:{
+  borderWidth: 1,
+  borderColor: 'lightgrey',
+  padding: 10,
+  marginTop:20
+},
+
+forgotpasswordText:{
+  color: 'white',
+  position:'absolute'
+},
+keyboardAvoidingView: {
+  flex: 1,
+  paddingBottom:50
+},
+
+modalContent:{
+
+
+    height: '40%',
+    backgroundColor: 'white',
+    padding: 20,
+    marginTop: 'auto',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    borderColor: 'grey',
+     borderWidth: 1,
+   
+},
+
+submitButton: {
+  fontFamily:'MontserratBold',
+  textAlign: 'center',
+  color:'green',
+  fontSize:20,
+  marginTop:20,
+},
+
+exit: {
+  /* top: 70, */
 }
-  
-  
-});
+
+
+} 
+);
 
 export default LoginScreen;

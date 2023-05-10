@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity,Text,View } from 'react-native';
+import { StyleSheet, TouchableOpacity,Text,View, Image } from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 export default function StartButtons ({text,onPress}){
@@ -7,7 +7,7 @@ export default function StartButtons ({text,onPress}){
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
   });
-
+  console.log(Montserrat_400Regular); 
   if (!fontsLoaded) {
     return null;
   }
@@ -39,7 +39,7 @@ export default function StartButtons ({text,onPress}){
     );
   }
 
-  export function WhiteButtons ({text,onPress}){
+  export function WhiteButtons ({text,onPress, image}){
 
     const [fontsLoaded] = useFonts({
       Montserrat: Montserrat_400Regular,
@@ -52,15 +52,34 @@ export default function StartButtons ({text,onPress}){
     
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={[styles.buttonContainer, styles.whiteButton]}>
-          <Text style={styles.whiteButtonText}> {text} </Text>
+      <View style={{ backgroundColor: "#fff", borderRadius: 10, elevation: 5, paddingVertical: 40, marginVertical: 10, width: 300 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 22 }}>
+          {image && (
+            <View style={{ marginRight: 10 }}>
+              <Image
+                source={{ uri: image }}
+                style={{ width: 50, height: 50, borderRadius: 10 }}
+              />
+            </View>
+          )}
+          <Text style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}>{text}</Text>
         </View>
-      </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
     );
   }
 
 
   export function OrangeButtons ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Montserrat: Montserrat_400Regular,
+    });
+  
+    if (!fontsLoaded) {
+      return null;
+    }
+
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.orangeButton]}>
@@ -72,6 +91,14 @@ export default function StartButtons ({text,onPress}){
   }
 
   export function ExitButton ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Montserrat: Montserrat_400Regular,
+    });
+  
+    if (!fontsLoaded) {
+      return null;
+    }
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={styles.exitButton}>
@@ -110,8 +137,6 @@ const styles=StyleSheet.create({
       elevation: 5,
 
     },
-
-
     button:{
 
 
