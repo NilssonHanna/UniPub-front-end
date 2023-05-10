@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import {StyleSheet,View,Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import NationDetails from "../src/components/NationDetails";
@@ -84,13 +84,258 @@ export default function NationManagingScreen({navigation, route}) {
 
         <Text style = {styles.index}>{index}/{route.params.selectedValue} students have entered</Text>
      
-       {/*  <PauseEntryButton /> */}
+     
   
+    </View>
+  );
+} */
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
+import Bar from "../shared/ProgressBar";
+import axios from "axios";
+import theme from "../Styles/GlobalStyles";
+import useGetDetails from "../src/hooks/useGetDetails";
+
+export default function NationManagingScreen({ navigation, route }) {
+  const { id, selectedValue } = route.params;
+
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });
+
+  /*const [index, setIndex] = useState(0);
+  const maxSeats = route.params?.maxSeats || 0;*/
+  
+  const nation = useGetDetails(id);
+  
+
+  const handlePlusClick = () => {
+    console.log("handlePlusClick");
+    axios
+    .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+      guestChange: "add",
+    })
+    .then((response) => {
+      console.log("response", response.data);
+    })
+    .catch((error) => {
+      console.log("axios error", error);
+    })
+  };
+  
+  // Minus button function
+  const handleMinusClick = () => {
+    console.log("handlaminusClick");
+    axios
+    .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+      guestChange: "remove",
+    })
+    .then((response) => {
+      console.log("response", response.data);
+    })
+    .catch((error) => {
+      console.log("axios error", error);
+    })
+  };
+
+  //console.log(DecreaseSeats); 
+  //console.log(IncreaseSeats);
+
+  const image = {
+    uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
+  };
+
+  //const progress = index / maxSeats;
+  //const progress = selectedValue === 0 ? 0 : index / selectedValue;
+
+  /*const pressHandler = () => {
+    navigation.navigate("NationManaging");
+  };*/
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <Text style={styles.title}>Stockholms nation</Text>
+      </ImageBackground>
+
+      {/* <View style={styles.bar}>
+        <Bar index={progress} />
+      </View> */}
+
+      <View>
+        <View style={styles.iconButtonPlus}>
+          <Button
+            title="+"
+            onPress={handlePlusClick} //gör till loop
+          />
+        </View>
+
+        <View style={styles.iconButtonMinus}>
+          <Button
+            title="-"
+            onPress= {handleMinusClick}
+          />
+        </View>
+
+        {/*  <Text style={styles.index}>
+          {guestCount}/{route.params.selectedValue} students have entered
+        </Text> */}
+
+        <Text style={styles.textInfo}>{nation.guestCount}</Text>
+        <Text>{nation.name}</Text>
+        <Text>{nation.maxCapacity}</Text>
+      
+        
+      </View>
+
+      {/*  <PauseEntryButton /> */}
     </View>
   );
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.backgroundColor,
+  },
+  title: {
+    textTransform: "uppercase",
+    fontSize: 25,
+    fontFamily: "MontserratBold",
+    letterSpacing: 2,
+    color: "white",
+    lineHeight: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#00000070",
+    marginTop: 300,
+  },
+
+  image: {
+    width: "100%",
+    height: undefined,
+    aspectRatio: 1,
+    resizeMode: "contain",
+    marginTop: -50,
+  },
+
+  button: {
+    width: 200,
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 0,
+    justifyContent: "space-around",
+    alignSelf: "center",
+    top: 0,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 5,
+    shadowRadius: 5,
+    elevation: 10,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+
+    fontFamily: "Montserrat",
+
+    fontSize: 25,
+  },
+  started: {
+    backgroundColor: "red",
+  },
+  paused: {
+    backgroundColor: "green",
+  },
+
+  iconButtonMinus: {
+    justifyContent: "space-around",
+    alignSelf: "center",
+    width: 100,
+    height: 100,
+    backgroundColor: "#556B2F",
+    flexDirection: "row",
+    left: "20%",
+    position: "absolute",
+    marginTop: 100,
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
+  },
+
+  iconButtonPlus: {
+    justifyContent: "space-around",
+    width: 100,
+    height: 100,
+    backgroundColor: "#556B2F",
+    marginLeft: 30,
+    flexDirection: "row",
+    left: "45%",
+    position: "absolute",
+    marginTop: 100,
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
+  },
+  iconButtonText: {
+    fontSize: 80,
+    fontWeight: "bold",
+    color: "white",
+  },
+
+  index: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "black",
+    fontFamily: "Montserrat",
+    letterSpacing: 1,
+    paddingHorizontal: 15,
+    textAlign: "center",
+    top: 70,
+    textTransform: "uppercase",
+  },
+
+  bar: {
+    top: 60,
+    marginHorizontal: 20,
+  },
+  textInfo:{
+    color:'white'
+  }
+});
+/* const styles=StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor: theme.backgroundColor,
@@ -167,7 +412,7 @@ const styles=StyleSheet.create({
     alignSelf: 'center',
     width: 100,
     height: 100,
-    backgroundColor: '#658534',
+    backgroundColor: 'white',
     flexDirection: 'row',
     left: '20%',
     position: 'absolute',
@@ -229,4 +474,4 @@ const styles=StyleSheet.create({
     marginHorizontal: 20,
   },
 
-});
+}); */

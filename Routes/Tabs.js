@@ -12,11 +12,14 @@ const Tabs=() => {
         <Tab.Navigator 
             screenOptions={{ 
                 headerShown: false,
-                tabBarStyle: { position: 'absolute'},
+                tabBarStyle: { 
+                  position: 'absolute',
+                  borderTopWidth: 5, // Add a border on top of the tab bar
+                  borderTopColor: '#658534',},
                 tabBarActiveTintColor: 'white',
-                tabBarInactiveTintColor: '#a9a9a9',
-                tabBarActiveBackgroundColor: '#222222',
-                tabBarInactiveBackgroundColor: '#222222',
+                tabBarInactiveTintColor: 'black',
+                tabBarActiveBackgroundColor: 'gray',
+                tabBarInactiveBackgroundColor: 'white',
           }}
             >
             
@@ -26,17 +29,9 @@ const Tabs=() => {
                 options={{ 
                     tabBarStyle: { display: 'none'},
                     tabBarLabel: 'HOME',
-                    tabBarIcon: ({ color, size, focused}) => (
-                      <MaterialCommunityIcons 
-                      name="home" 
-                      color={focused ? 'white' : '#a9a9a9'}  
-                      size={25} />
+                    tabBarIcon: ({ color, size }) => (
+                      <MaterialCommunityIcons name="home" color={'black'} size={30} />
                     ),  
-                    tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
-                      fontSize: 12,
-                      letterSpacing: 2,
-                    },
                 }}
                     
                 />
@@ -46,17 +41,9 @@ const Tabs=() => {
                 component={MapScreen} 
                 options={{
                     tabBarLabel: 'MAP',
-                    tabBarIcon: ({ color, size, focused }) => (
-                      <MaterialCommunityIcons 
-                      name="map-marker-radius" 
-                      color={focused ? 'white' : '#a9a9a9'}  
-                      size={25} />
+                    tabBarIcon: ({ color, size }) => (
+                      <MaterialCommunityIcons name="map-marker-radius" color={'black'} size={30} />
                     ),
-                    tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
-                      fontSize: 12,
-                      letterSpacing: 2,
-                    },
                   }}
                
             />
@@ -66,21 +53,13 @@ const Tabs=() => {
                 component={OverViewScreen}
                 options={{
                     tabBarLabel: 'NATIONS',
-                    tabBarIcon: ({ color, size, focused }) => (
-                      <MaterialCommunityIcons 
-                      name="view-list" 
-                      color={focused ? 'white' : '#a9a9a9'}  
-                      size={25} />
+                    tabBarIcon: ({ color, size }) => (
+                      <MaterialCommunityIcons name="view-list" color={'black'} size={30} />
                     ),
-                    tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
-                      fontSize: 12,
-                      letterSpacing: 2,
-                    },
                   }}
             />
 
-            
+
         
         </Tab.Navigator>
     );

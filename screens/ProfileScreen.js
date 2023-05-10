@@ -88,7 +88,7 @@ logOut: {
   top: 160,
   alignSelf: 'center',
   width: 200,
-  fontFamily: 'Monserrat'
+  fontFamily: 'Montserrat'
 },
 
 change: {
