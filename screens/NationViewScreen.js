@@ -4,6 +4,7 @@ import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-goog
 import theme from '../Styles/GlobalStyles';
 import StartButtons from '../shared/Buttons';
 import NationDetails from "../src/components/NationDetails";
+import useGetDetails from "../src/hooks/useGetDetails";
 
 export default function NationViewScreen({ navigation, route }) {
   
@@ -13,14 +14,18 @@ export default function NationViewScreen({ navigation, route }) {
   });
   
   const { id } = route.params;
+  const nation = useGetDetails(id);
 
-  //const [hasLoaded, setHasLoaded] = useState(false);
-  const [nationData, setNationData] = useState({});
+
 
 
   const pressHandler = () => {
       navigation.navigate("Menu", {id});
-  };
+  }
+
+
+  
+  
 
   const image = {
     uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
@@ -35,19 +40,8 @@ export default function NationViewScreen({ navigation, route }) {
     <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
       <View style={styles.bottomSpace} />
 
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      
-    
-
-      <NationDetails
-          id={id}
-          fields={["name"]}
-          style={styles.title}
-          onLoad={(data) => setNationData(data)}
-
-        />
-
-      
+      <ImageBackground source={{ uri: nation.header }} resizeMode="cover" style={styles.image}>
+        <NationDetails id={id} fields={["name"]} style={styles.title} />
       </ImageBackground>
 
       <View>
@@ -56,7 +50,7 @@ export default function NationViewScreen({ navigation, route }) {
 
       <View>
         <Text style={styles.availableSeats}>
-          Available Seats: {nationData.maxCapacity - nationData.guestCount}
+          Available Seats: {nation.maxCapacity - nation.guestCount}
         </Text>
       </View>
 

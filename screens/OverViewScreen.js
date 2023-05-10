@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor: theme.backgroundColor,
+
   },
 
 
@@ -44,10 +45,5 @@ const styles = StyleSheet.create({
     
   
   },
-  image: {
-    width: 80,
-    height: 80,
-    resizeMode: "contain",
-    marginLeft: 20,
-  },
+
 });

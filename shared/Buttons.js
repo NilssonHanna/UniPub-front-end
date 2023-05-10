@@ -134,12 +134,16 @@ const styles=StyleSheet.create({
     },
 
     whiteButton:{
-      backgroundColor:'#333333',
+      backgroundColor:'black',
       height: 100,
-      width: 350,
-      borderRadius: 10,
-      bordercolor: 'white',
-      borderWidth: 2,
+      width: 200,
+      //borderRadius: 10,
+      //bordercolor: 'white',
+      //borderWidth: 2,
+      borderBottomWidth: 1,
+      borderBottomColor: 'white',
+      marginHorizontal: 10,
+      paddingBottom: 10,
   
   },
 
@@ -225,12 +229,11 @@ buttonText:{
 
       color: 'white',
       //textTransform:'uppercase',
-      fontSize:14,
-      left: 100,
-      fontWeight:'bold',
+      fontSize:15,
+      textAlign:'left',
       fontFamily: 'MontserratBold', 
       letterSpacing: 1,
-      paddingHorizontal: 20,
+      paddingHorizontal: 10,
     
     },
 })

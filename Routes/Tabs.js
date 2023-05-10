@@ -6,18 +6,27 @@ import OverViewScreen from '../screens/OverViewScreen';
 
 const Tab = createBottomTabNavigator();
 
+
+
 const Tabs=() => {
 
     return(
         <Tab.Navigator 
             screenOptions={{ 
                 headerShown: false,
-                tabBarStyle: { position: 'absolute'},
+
+                tabBarStyle: { 
+                  position: 'absolute',
+                  borderTopWidth: 5, // Add a border on top of the tab bar
+                  borderTopColor: '#658534',},
+
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: '#a9a9a9',
                 tabBarActiveBackgroundColor: '#222222',
                 tabBarInactiveBackgroundColor: '#222222',
+
           }}
+          
             >
             
             <Tab.Screen 

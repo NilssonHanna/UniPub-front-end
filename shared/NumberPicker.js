@@ -19,7 +19,7 @@ export default class NumberPicker extends Component {
                 fontSize:  isSelected ? 28 : 22,
                 color: isSelected ? 'white' : '#a9a9a9',
                 fontWeight:'bold',
-                fontFamily: 'MontSerrat',
+                fontFamily: 'Times New Roman',
                 
                  }}
             >
