@@ -20,7 +20,7 @@ const TabsNations=({route}) => {
                 tabBarStyle: { 
                   position: 'absolute',
                   borderTopWidth: 5, // Add a border on top of the tab bar
-                  borderTopColor: '#658534',},
+                  borderTopColor: '#222222',},
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: '#a9a9a9',
                 tabBarActiveBackgroundColor: '#222222',

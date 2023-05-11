@@ -23,11 +23,16 @@ export default function OverViewScreen({ navigation }) {
   return (
     <View style={styles.container}>
     <View style={styles.nationContainer}>
-      <NationList onPress={pressHandler} />
+      <NationList 
+      onPress={pressHandler} 
+      onLoad={(data) => setNations(data)}
+      
+      />
     </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
 

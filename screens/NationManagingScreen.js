@@ -4,7 +4,6 @@ import {
   View,
   Text,
   Button,
-  Image,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
@@ -17,6 +16,7 @@ import Bar from "../shared/ProgressBar";
 import axios from "axios";
 import theme from "../Styles/GlobalStyles";
 import useGetDetails from "../src/hooks/useGetDetails";
+import NationDetails from "../src/components/NationDetails";
 
 export default function NationManagingScreen({ navigation, route }) {
   const { id, selectedValue } = route.params;
@@ -53,9 +53,7 @@ export default function NationManagingScreen({ navigation, route }) {
       .then((response) => {})
       .catch((error) => {});
   };
-  const image = {
-    uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
-  };
+
 
   const progress = maxBar === 0 ? 0 : guestBar / maxBar;
   const validProgress = isNaN(progress) ? 0 : progress;
@@ -66,9 +64,8 @@ export default function NationManagingScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Text style={styles.title}>Stockholms nation</Text>
-      </ImageBackground>
+  
+  <NationDetails id={id} fields={["name"]} style={styles.title} />
 
       <View style={styles.bar}>
         <Bar index={validProgress} />
@@ -86,8 +83,6 @@ export default function NationManagingScreen({ navigation, route }) {
         <Text style={styles.white}>
           {nation.guestCount}/{nation.maxCapacity} students have entered
         </Text>
-
-        <Text style={styles.white}>{nation.name}</Text>
       </View>
     </View>
   );
@@ -108,7 +103,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "#00000070",
-    marginTop: 300,
+    marginTop: 50,
   },
 
   image: {
@@ -157,11 +152,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 100,
     height: 100,
-    backgroundColor: "#556B2F",
+    backgroundColor: "white",
     flexDirection: "row",
     left: "20%",
     position: "absolute",
-    marginTop: 100,
+    marginTop: 350,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -178,12 +173,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     width: 100,
     height: 100,
-    backgroundColor: "#556B2F",
+    backgroundColor: "white",
     marginLeft: 30,
     flexDirection: "row",
     left: "45%",
     position: "absolute",
-    marginTop: 100,
+    marginTop: 350,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
@@ -214,11 +209,19 @@ const styles = StyleSheet.create({
   },
 
   bar: {
-    top: 60,
+    top: 250,
     marginHorizontal: 20,
   },
 
   white: {
-    color: "white",
+    fontSize: 18,
+    fontFamily: 'Montserrat', 
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
+    top:  250,
+    padding: 10
+
   },
 });

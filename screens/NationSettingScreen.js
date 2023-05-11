@@ -10,6 +10,7 @@
   import { OrangeButtons } from "../shared/Buttons";
   import NumberPicker from "../shared/NumberPicker";
   import ChangeDetails from "../src/components/ChangeDetails";
+  import NationDetails from "../src/components/NationDetails";
   
   export default function NationSettingScreen({ navigation, route }) {
     const [fontsLoaded] = useFonts({
@@ -33,22 +34,27 @@
       setSelectedValue(value);
     };
   
-    /* if (!fontsLoaded) {
+   if (!fontsLoaded) {
       return null;
-    }*/
+    }
   
     return (
       <View style={styles.container}>
+
+      <NationDetails id={id} fields={["name"]} style={styles.title} />
+
+       <ChangeDetails
+            id={id}
+            fields={fieldsToDisplay} 
+            selectedValue={selectedValue}
+          />
+
         <Text style={styles.maximumSeats}>
           Set amount of maximum seats for the evening:
         </Text>
         <View style={styles.numberpicker}>
           <NumberPicker onValueChange={onValueChange} />
-          <ChangeDetails
-            id={id}
-            fields={fieldsToDisplay}
-            selectedValue={selectedValue}
-          />
+          
         </View>
         <Text style={styles.selectedValue}>
           Selected seats available: {selectedValue}

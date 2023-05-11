@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity,Text,View, Image } from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import { Ionicons } from "@expo/vector-icons";
+import Circle from './Circle';
 
 export default function StartButtons ({text,onPress}){
 
@@ -39,7 +41,7 @@ export default function StartButtons ({text,onPress}){
     );
   }
 
-  export function WhiteButtons ({text,onPress, image}){
+  export function WhiteButtons ({text,onPress, number}){
 
     const [fontsLoaded] = useFonts({
       Montserrat: Montserrat_400Regular,
@@ -52,22 +54,35 @@ export default function StartButtons ({text,onPress}){
     
     return (
       <TouchableOpacity onPress={onPress}>
-      <View style={{ backgroundColor: "#fff", borderRadius: 10, elevation: 5, paddingVertical: 40, marginVertical: 10, width: 300 }}>
-        <View style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 22 }}>
-          {image && (
-            <View style={{ marginRight: 10 }}>
-              <Image
-                source={{ uri: image }}
-                style={{ width: 50, height: 50, borderRadius: 10 }}
-              />
-            </View>
-          )}
-          <Text style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}>{text}</Text>
+        <View style={[styles.buttonContainer, styles.whiteButton]}>
+          <Text style={styles.whiteButtonText}> {text} </Text>
+          <View style={styles.circleContainer}>
+          <Circle index={number} />
+          </View>
+          <Ionicons name="arrow-forward-outline" size={25} color="white" style={styles.arrowIcon} />
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
     );
   }
+  
+  export function MenuButton ({text,onPress}){
+
+    const [fontsLoaded] = useFonts({
+      Montserrat: Montserrat_400Regular,
+    });
+    console.log(Montserrat_400Regular); 
+    if (!fontsLoaded) {
+      return null;
+    }
+  
+      return (
+        <TouchableOpacity onPress={onPress}>
+          <View style={styles.menuButton}>
+            <Text style={styles.menuButtonText}> {text} </Text>
+          </View>
+        </TouchableOpacity>
+      );
+    }
 
 
   export function OrangeButtons ({text,onPress}){
@@ -161,7 +176,7 @@ const styles=StyleSheet.create({
     whiteButton:{
       backgroundColor:'black',
       height: 100,
-      width: 200,
+      width: 220,
       //borderRadius: 10,
       //bordercolor: 'white',
       //borderWidth: 2,
@@ -169,8 +184,26 @@ const styles=StyleSheet.create({
       borderBottomColor: 'white',
       marginHorizontal: 10,
       paddingBottom: 10,
-  
   },
+
+  menuButton:{
+    borderRadius:50,
+    borderColor: 'white',
+    borderWidth:1,
+    paddingVertical:10,
+    paddingHorizontal: 5,
+    backgroundColor:'#222222',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+  },
+    shadowOpacity: 2,
+    shadowRadius: 10,
+
+    elevation: 5,
+
+},
 
 
   exitButton:{
@@ -239,6 +272,18 @@ buttonText:{
     textAlign:'center',
 
 },
+
+menuButtonText:{
+
+  color: 'white',
+  fontSize:18,
+  fontWeight:'bold',
+  fontFamily: 'Montserrat',
+  textAlign:'center',
+  letterSpacing: 1,
+
+
+},
     orangeButtonText:{
 
         color: 'white',
@@ -254,11 +299,25 @@ buttonText:{
 
       color: 'white',
       //textTransform:'uppercase',
-      fontSize:15,
+      fontSize:14,
       textAlign:'left',
       fontFamily: 'MontserratBold', 
       letterSpacing: 1,
       paddingHorizontal: 10,
-    
     },
+
+    arrowIcon: {
+      left:220,
+      paddingHorizontal: 10,
+      bottom: 60,
+    },
+
+    circleContainer: {
+      alignItems: "center",
+      justifyContent: "center",
+      left: 80,
+      bottom: 28,
+    },
+
+
 })
