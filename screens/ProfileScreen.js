@@ -1,114 +1,231 @@
-import React from 'react';
-import {StyleSheet,View,Text, Image, ScrollView} from 'react-native';
-import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
-import theme from '../Styles/GlobalStyles';
-import { LoginButtons} from '../shared/Buttons';
-import NationDetails from '../src/components/NationDetails';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
+import axios from "axios";
+import { FontAwesome } from '@expo/vector-icons';
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
+import theme from "../Styles/GlobalStyles";
+import { LoginButtons } from "../shared/Buttons";
+import useGetDetails from "../src/hooks/useGetDetails";
 
-export default function ProfileScreen({navigation,route}) {
+export default function ProfileScreen({ navigation, route }) {
+  const { id } = route.params;
+  const pressHandlerLogin = () => {
+    navigation.navigate("Login");
+  };
 
-    const { id } = route.params;
-    console.log('id profileScreen', id)
-    const pressHandlerLogin=() =>{
-
-        navigation.navigate('Login')
-        
-        }
-  
-    const [fontsLoaded] = useFonts({
-      Montserrat: Montserrat_400Regular,
-      MontserratBold: Montserrat_700Bold,
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
   });
 
-  const imageUrl = "https://drive.google.com/uc?id=1e3SSIxYPFS0GLAxLuOCLQ-teU-x7GHsd";
+  const [description, setDescription] = useState("");
+  const [openingHours, setOpeningHours] = useState("");
 
+  const nation = useGetDetails(id);
 
   if (!fontsLoaded) {
     return null;
   }
 
+  const handleDescription = () => {
+    axios
+      .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+        changeDescription: description,
+      })
+      .then((response) => {})
+      .catch((error) => {});
+  };
+
+  const handleHours = () => {
+    axios
+      .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+        ChangeHours: openingHours,
+      })
+      .then((response) => {})
+      .catch((error) => {});
+  };
+
+  return (
+    <ScrollView
+      style={styles.scrollContainer}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <Text style={styles.title}>{nation.name}</Text>
+
+      <View style={styles.container}>
+        <View style={styles.leftColumn}>
+          <View style={styles.separator} />
+          <View style={styles.row}>
+            <Text style={styles.label}>Write new description:</Text>
+            <TextInput
+              style={styles.value}
+              multiline={true}
+              numberOfLines={4}
+              value={description}
+              onChangeText={(text) => setDescription(text)}
+              placeholder= "Enter new description"
+              placeholderTextColor={'#a9a9a9'}
+            />
+            <TouchableOpacity style={styles.addButton} onPress={handleDescription}>
+              <Text style={styles.addText}>Add</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.separator} />
+          <View style={styles.row}>
+            <Text style={styles.label}>Write new opening hours:</Text>
+            <TextInput
+              style={styles.value}
+              multiline={true}
+              numberOfLines={4}
+              value={openingHours}
+              onChangeText={(text) => setOpeningHours(text)}
+              placeholder= "Enter new opening hours"
+              placeholderTextColor={'#a9a9a9'}
+            />
+            <TouchableOpacity style={styles.addButton} onPress={handleHours}>
+              <Text style={styles.addText}>Add</Text>
+            </TouchableOpacity>
+          </View>
+          
+        </View>
     
-  return ( 
-    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
-    <View style={styles.bottomSpace} />
+      </View>
 
-<NationDetails id={id} fields={["name"]} style={styles.title}  />
-
-  <Image
-        source={{ uri: imageUrl }}
-        style={styles.image}
-      />
-
-<Text style={styles.change}>Change menu here</Text>
-
-<Text style={styles.change}>Change description here</Text>
-
-<Text style={styles.change}>Change opening Hours here</Text>
+      <FontAwesome name="plus" size={30} color="white" style={styles.plusIcon} />
 
 
-<View style ={styles.logOut} >
+      <View style={styles.logOut}>
         <LoginButtons text="Log out" onPress={pressHandlerLogin} />
-</View>
+      </View>
 
-
-  </ScrollView>
- 
-   )
+      <View />
+    </ScrollView>
+  );
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
 
-
   contentContainer: {
-    paddingBottom: 100, 
+    paddingBottom: 100,
   },
 
   bottomSpace: {
-    height: 50, 
+    height: 50,
   },
 
   title: {
-    color: 'white',
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
     fontSize: 25,
-    fontWeight: 'bold',
-    fontFamily: 'MontserratBold', 
-    textAlign: 'center',
+    fontFamily: "MontserratBold",
     letterSpacing: 2,
-    padding: 10,
-},
+    color: "white",
+    lineHeight: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#00000070",
+    marginTop: 30,
+  },
 
+  logOut: {
+    top: 130,
+    alignSelf: "center",
+    width: 200,
+    fontFamily: "Montserrat",
+  },
 
-logOut: {
-
-  top: 160,
-  alignSelf: 'center',
-  width: 200,
-  fontFamily: 'Montserrat'
-},
-
-change: {
-  color: 'white',
-    fontSize:12,
-    fontWeight:'bold',
-    fontFamily: 'MontserratBold',
+  change: {
+    color: "white",
+    fontSize: 12,
+    fontWeight: "bold",
+    fontFamily: "Montserrat",
     letterSpacing: 2,
-    textAlign:'center',
+    textAlign: "center",
     top: 140,
-    paddingVertical: 20
-},
+    paddingVertical: 20,
+  },
 
-image: {
-  width: 120,
-  height: 120,
-  alignSelf: 'center',
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  top: 80,
-},
+  image: {
+    width: 120,
+    height: 120,
+    alignSelf: "center",
+    marginTop: "auto",
+    marginBottom: "auto",
+    top: 80,
+  },
 
-})
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: theme.backgroundColor,
+  },
+  contentContainer: {
+    paddingBottom: 100,
+  },
+  container: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
+    paddingVertical: 20,
+  },
+  leftColumn: {
+    flex: 1,
+    paddingRight: 0,
+  },
+  rightColumn: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  label: {
+    color: "white",
+    fontSize: 12,
+    letterSpacing: 2,
+    textAlign: "left",
+    flex: 1,
+    paddingRight: 20,
+  },
+  value: {
+    color: "white",
+    fontSize: 12,
+    letterSpacing: 2,
+    textAlign: "left",
+    flex: 2,
+  },
+  separator: {
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
+    marginVertical: 30,
+  },
+
+  addButton: {
+    paddingLeft: 20,
+  },
+  addText: {
+    color: "white",
+  },
+
+  plusIcon: {
+    left: 175,
+    top: 50,
+  }
+});

@@ -1,35 +1,67 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { View, ScrollView, Image, TouchableOpacity, StyleSheet} from "react-native";
+import { View, ScrollView, TouchableOpacity, StyleSheet, Image,  RefreshControl } from "react-native";
 import { WhiteButtons } from "../../../shared/Buttons";
 
-
-const NationList = ({ onPress }) => {
+const NationList = ({ onPress, guestCount, maxCapacity, onLoad }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nations, setNations] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
+  const fetchNations = () => {
     axios
       .get("https://nationapp-backend.onrender.com/nations/getNations")
       .then((response) => {
         console.log("response", response);
         setNations(response.data);
+        onLoad(response.data);
       })
       .catch((error) => {
         console.log("axios error", error);
       })
-      .finally(() => setHasLoaded(true));
-  }, []);
+      .finally(() => {
+        setHasLoaded(true);
+        setRefreshing(false);
+      });
+  };
 
-  if (!hasLoaded) return null;
+  useEffect(() => {
+    fetchNations();
+  }, []);
 
   const handlePress = (id) => {
     onPress(id);
   };
 
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchNations();
+  };
+
+  if (!hasLoaded) return null;
+
+  let color = "#00FF00";
+  if (index >= 1) {
+    color = "#FF0000";
+  } else if (index >= 0.5) {
+    color = "#FFA500";
+  }
+
+  const index = guestCount / maxCapacity;
+
+
   return (
     <View>
-      <ScrollView>
+      <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["white"]}
+            tintColor={"white"}
+            style={{ backgroundColor: "#222222", marginVertical: 10 }}
+          />
+        }
+      >
         <View>
           {nations.map((nation) => (
             <TouchableOpacity key={nation.id} onPress={() => handlePress(nation.id)}>
@@ -37,8 +69,8 @@ const NationList = ({ onPress }) => {
                 <Image source={{ uri: nation.image }} resizeMode="contain" style={styles.image} />
                 <WhiteButtons
                   text={nation.name}
+                  number={nation.guestCount / nation.maxCapacity}
                   onPress={() => handlePress(nation.id)}
-                  style={styles.whiteButton}
                 />
               </View>
             </TouchableOpacity>
@@ -50,21 +82,18 @@ const NationList = ({ onPress }) => {
 };
 
 const styles = StyleSheet.create({
-
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   image: {
-    width: 50,
-    height: 40,
-    marginRight: 10,
-    marginBottom: 40,
+    width: 80,
+    height: 80,
+    marginRight: 30,
+    marginBottom: 100,
+    left: 15,
   },
+
 });
 
-
-
 export default NationList;
-
-// onClick

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Button, View, Text, Modal, TextInput, Alert, TouchableOpacity,KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, Alert, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
@@ -11,11 +11,8 @@ const LoginScreen = ({ navigation }) => {
  const [username, setUsername] = useState('');
  
  const [password, setPassword] = useState('');
- 
+
  const [isModalVisible, setIsModalVisible] = useState(false);
-
- 
-
  
  const [fontsLoaded] = useFonts({
   Montserrat: Montserrat_400Regular,
@@ -99,25 +96,28 @@ return (
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={true}
           />
+        </View>
 
-</View>
-      <View style={styles.forgotpassword}>
+        <View style={styles.forgotpassword}>
           <TouchableOpacity onPress={pressHandlerForgotpassword}>
             <Text style={styles.forgotpasswordText}>Forgot password?</Text>
           </TouchableOpacity>
 
           </View>
-       
   
    
-   
+   {/*  <View>
+      
 
-  <View style={styles.login}>
+        <LoginButtons text="Log in" onPress={pressHandler} />
+    </View> */}
+
+<View style={styles.login}>
     
           <LoginButtons text="Log in"  onPress={pressHandler}> </LoginButtons>
         
         </View>
-       
+
         <Modal transparent visible={isModalVisible}>
         <KeyboardAvoidingView behavior='padding' style={styles.keyboardAvoidingView}>
           
@@ -140,7 +140,6 @@ return (
   </View>
   </KeyboardAvoidingView>
 </Modal>
-
   </View>
 )};
 
@@ -180,67 +179,64 @@ const styles = StyleSheet.create({
 login:{
   top:130
 },
+
 forgotpassword:{
-top:210,
-left:105,
-},
+  top:210,
+  left:105,
+  },
 
-forgotpasswordTitle:{
-  textAlign: 'center',
-   fontFamily: 'MontserratBold',
-    fontSize: 25
-},
-forgotpasswordInfo:{
-  /* textAlign: 'center', */
-  fontFamily: 'Montserrat',
-   fontSize: 12,
-   marginTop:20
-},
+  forgotpasswordText:{
+    color: 'white',
+    position:'absolute'
+  },
 
-resetPassword:{
-  borderWidth: 1,
-  borderColor: 'lightgrey',
-  padding: 10,
-  marginTop:20
-},
+  forgotpasswordTitle:{
+    textAlign: 'center',
+     fontFamily: 'MontserratBold',
+      fontSize: 25
+  },
+  forgotpasswordInfo:{
+    /* textAlign: 'center', */
+    fontFamily: 'Montserrat',
+     fontSize: 12,
+     marginTop:20
+  },
 
-forgotpasswordText:{
-  color: 'white',
-  position:'absolute'
-},
-keyboardAvoidingView: {
-  flex: 1,
-  paddingBottom:50
-},
+  resetPassword:{
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    padding: 10,
+    marginTop:20
+  },
 
-modalContent:{
+  submitButton: {
+    fontFamily:'MontserratBold',
+    textAlign: 'center',
+    color:'green',
+    fontSize:20,
+    marginTop:20,
+  },
 
-
-    height: '40%',
-    backgroundColor: 'white',
-    padding: 20,
-    marginTop: 'auto',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    borderColor: 'grey',
-     borderWidth: 1,
-   
-},
-
-submitButton: {
-  fontFamily:'MontserratBold',
-  textAlign: 'center',
-  color:'green',
-  fontSize:20,
-  marginTop:20,
-},
-
-exit: {
-  /* top: 70, */
-}
-
-
-} 
-);
+  keyboardAvoidingView: {
+    flex: 1,
+    paddingBottom:50
+  },
+  
+  modalContent:{
+  
+  
+      height: '40%',
+      backgroundColor: 'white',
+      padding: 20,
+      marginTop: 'auto',
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      borderColor: 'grey',
+       borderWidth: 1,
+     
+  },
+  
+  
+});
 
 export default LoginScreen;

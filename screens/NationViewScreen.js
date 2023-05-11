@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {StyleSheet,View,Text, Image, ImageBackground, ScrollView} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
-import StartButtons from '../shared/Buttons';
+import MenuButton from '../shared/Buttons';
 import NationDetails from "../src/components/NationDetails";
 import useGetDetails from "../src/hooks/useGetDetails";
 
@@ -12,24 +12,17 @@ export default function NationViewScreen({ navigation, route }) {
     Montserrat: Montserrat_400Regular,
     MontserratBold: Montserrat_700Bold,
   });
+
+  const pressHandler = () => {
+    navigation.navigate("Menu", {id});
+}
+
   
   const { id } = route.params;
   const nation = useGetDetails(id);
 
 
-
-
-  const pressHandler = () => {
-      navigation.navigate("Menu", {id});
-  }
-
-
-  
-  
-
-  const image = {
-    uri: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Stockholms_Nation%2C_Uppsala.JPG",
-  };
+ 
 
   if (!fontsLoaded) {
     return null;
@@ -43,21 +36,31 @@ export default function NationViewScreen({ navigation, route }) {
       <ImageBackground source={{ uri: nation.header }} resizeMode="cover" style={styles.image}>
         <NationDetails id={id} fields={["name"]} style={styles.title} />
       </ImageBackground>
-
-      <View>
-          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
-      </View>
-
-      <View>
-        <Text style={styles.availableSeats}>
+  
+      <View style={styles.container}>
+        <View style={styles.leftColumn}>
+          <View style={styles.separator} />
+          <View style={styles.row}>
+          <Text style={styles.label}>
           Available Seats: {nation.maxCapacity - nation.guestCount}
         </Text>
+          </View>
+
+          <View style={styles.separator} />
+          <View style={styles.row}>
+          <Text style={styles.label}>Description:</Text>
+          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
+          </View>
+          
+        </View>
+    
       </View>
 
-        
-      <View style = {styles.menu}>
-       <StartButtons text="Menu" onPress={pressHandler} />
-       </View>
+      <View style={styles.menuContainer}>
+        <MenuButton text="Menu" onPress={pressHandler} />
+      </View>
+  
+
 
        <View>
        <Text style={styles.header}> Opening Hours: </Text>
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
 
 
   contentContainer: {
-    paddingBottom: 100, 
+    paddingBottom: 200, 
   },
 
   bottomSpace: {
@@ -100,9 +103,8 @@ image: {
 
 availableSeats: {
   fontSize: 20,
-  fontFamily: 'MontserratBold',
+  fontFamily: 'Montserrat',
   letterSpacing: 1, 
-  fontWeight: 'bold',
   textAlign:'center',
   top: 50,
   color: 'white',
@@ -117,7 +119,7 @@ openingTimes: {
   paddingLeft: 15,
   paddingRight: 15,
   paddingVertical: 10,
-  top: 80,
+  top: 180,
 
 },
 
@@ -131,18 +133,15 @@ adress: {
   paddingLeft: 15,
   paddingRight: 15,
   paddingVertical: 10,
-  top: 80,
+  top: 180,
 },
 
 descriptionText: {
-  fontSize: 15,
+  fontSize: 12,
   fontFamily: 'Montserrat',
-  letterSpacing: 2, 
   letterSpacing: 1,
   fontStyle: 'italic',
-  color: 'white',
-  paddingVertical: 5,
-  top: 10,
+  color: '#a9a9a9',
   textAlign: 'left',
 
 },
@@ -169,11 +168,49 @@ header: {
   color: 'white',
   paddingVertical: 5,
   paddingLeft: 15,
-  top: 80,
+  top: 180,
 },
 
-menu: {
-  top: 80,
-  marginHorizontal: 80
-}
+menuContainer: {
+  position: 'absolute',
+  bottom: 220,
+  alignSelf: 'center',
+  width: 200,
+  zIndex: 1,
+},
+
+container: {
+  flexDirection: "row",
+  borderBottomWidth: 1,
+  borderBottomColor: "white",
+  paddingVertical: 20,
+},
+leftColumn: {
+  flex: 1,
+  paddingRight: 0,
+},
+row: {
+  flexDirection: "row",
+  alignItems: "center",
+  marginBottom: 20,
+},
+
+
+separator: {
+  borderBottomWidth: 1,
+  borderBottomColor: "white",
+  marginVertical: 30,
+},
+
+label: {
+  color: "white",
+  fontSize: 12,
+  letterSpacing: 1,
+  textAlign: "left",
+  flex: 1,
+  paddingRight: 5,
+  justifyContent: 'center'
+},
+
+
 })

@@ -23,17 +23,23 @@ export default function OverViewScreen({ navigation }) {
   return (
     <View style={styles.container}>
     <View style={styles.nationContainer}>
-      <NationList onPress={pressHandler} />
+      <NationList 
+      onPress={pressHandler} 
+      onLoad={(data) => setNations(data)}
+      
+      />
     </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
 
   container:{
     flex: 1,
     backgroundColor: theme.backgroundColor,
+
   },
 
 
@@ -41,13 +47,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundcolor: theme.backgroundColor,
     paddingTop: 50,
-    
-  
   },
-/*   image: {
-    width: 80,
-    height: 80,
-    resizeMode: "contain",
-    marginLeft: 20,
-  }, */
 });

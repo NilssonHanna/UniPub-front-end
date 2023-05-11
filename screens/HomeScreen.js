@@ -21,8 +21,8 @@ export default function HomeScreen({ navigation }) {
  */
   const imageUrl = "https://drive.google.com/uc?id=16kfkY0zJn0dKF9d0iIk0H4Ngpw4sFWFb";
 
-
-
+  
+  
   return (
     <View style={[styles.container]}/* style={{flex: 1, backgroundColor: '#1070B6'}} */>
 
@@ -36,7 +36,6 @@ export default function HomeScreen({ navigation }) {
       <View style = {styles.startButtons} >
         <StartButtons text="Continue as student" onPress={pressHandlerMap}/>
         <StartButtons text="Continue as nation" onPress={pressHandlerLogin} />
-          
       </View>
     </View>
   );

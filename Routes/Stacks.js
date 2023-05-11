@@ -9,12 +9,12 @@ import MenuScreen from '../screens/MenuScreen';
 import Tabs from './Tabs';
 import TabsNations from './TabsNations';
 import ProfileScreen from '../screens/ProfileScreen';
-import HomeScreen from '../screens/HomeScreen';
+
 
 
 const Stack = createNativeStackNavigator();
 
-const MainStack = ({route}) => {
+const MainStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false, /* gestureEnabled: false */}}>
@@ -40,7 +40,7 @@ const MainStack = ({route}) => {
           component={TabsNations} 
         />
 
-{/* <Stack.Screen 
+<Stack.Screen 
           name="NationSetting" 
           component={NationSettingScreen}
         />
@@ -49,7 +49,7 @@ const MainStack = ({route}) => {
         <Stack.Screen 
           name="NationManaging" 
           component={NationManagingScreen} 
-        />  */}
+        /> 
        
         
         <Stack.Screen 
@@ -59,7 +59,6 @@ const MainStack = ({route}) => {
         <Stack.Screen 
           name="Menu" 
           component={MenuScreen} 
-          options={{ route }} 
                   />
 
 <Stack.Screen 

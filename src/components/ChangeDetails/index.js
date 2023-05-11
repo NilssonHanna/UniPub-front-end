@@ -29,7 +29,7 @@ const ChangeDetails = ({ id, fields, selectedValue}) => {
     <View>
       {fields.map((field) => (
         <Text key={field} style={{color:'white'}}>
-          {field}: {nation[field]}
+          {nation[field]}
         </Text>
       ))}
     </View>
