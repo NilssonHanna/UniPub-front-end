@@ -77,7 +77,7 @@ export default function StartButtons ({text,onPress}){
   
       return (
         <TouchableOpacity onPress={onPress}>
-          <View style={styles.menuButton}>
+          <View style={[styles.buttonContainer, styles.menuButton]}>
             <Text style={styles.menuButtonText}> {text} </Text>
           </View>
         </TouchableOpacity>
@@ -140,7 +140,7 @@ const styles=StyleSheet.create({
       borderRadius:50,
       paddingVertical:15,
       marginHorizontal: 20,
-      backgroundColor:'white',
+      backgroundColor:'#658534',
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -189,10 +189,9 @@ const styles=StyleSheet.create({
   menuButton:{
     borderRadius:50,
     borderColor: 'white',
+    paddingVertical:15,
     borderWidth:1,
-    paddingVertical:10,
-    paddingHorizontal: 5,
-    backgroundColor:'#222222',
+    backgroundColor:'#FFA500',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -237,7 +236,6 @@ const styles=StyleSheet.create({
 
     borderRadius:50,
     borderWidth: 1, 
-    borderColor: 'white',
     paddingVertical:10,
     backgroundColor:'#658534',
     shadowColor: "#000",
@@ -265,7 +263,7 @@ buttonText:{
 
   LoginButtonText:{
 
-    color: 'black',
+    color: 'white',
     fontSize:18,
     fontWeight:'bold',
     fontFamily: 'Montserrat',
@@ -289,7 +287,7 @@ menuButtonText:{
         color: 'white',
         fontSize:20,
         fontWeight:'bold',
-        fontFamily: 'MontserratBold', 
+        fontFamily: 'Montserrat', 
         textAlign:'center',
         letterSpacing: 1,
     

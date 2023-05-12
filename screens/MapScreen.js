@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import axios from "axios";
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Button, ImageBackground, StyleSheet, Text, View } from 'react-native';
+
 
 export default function MapScreen({ navigation }) {
   const [nations, setNations] = useState([]);
@@ -55,6 +55,7 @@ export default function MapScreen({ navigation }) {
           {markers.map((marker, index) => (
             <Marker key={index} coordinate={marker.coordinate} >
               <Callout>
+              
                 <Text style={styles.nation}>{marker.name}</Text>
                 <Button color={'#666666'} title='Info' onPress={() => pressHandler(marker.name)} />
               </Callout>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize:14,
     fontFamily: 'Times New Roman',
     fontWeight:'bold',
-    letterSpacing:0.5
+    letterSpacing:0.5,
 
   },
 

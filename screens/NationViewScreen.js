@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {StyleSheet,View,Text, Image, ImageBackground, ScrollView} from 'react-native';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold  } from '@expo-google-fonts/montserrat';
 import theme from '../Styles/GlobalStyles';
-import MenuButton from '../shared/Buttons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {MenuButton, ExitButton} from '../shared/Buttons';
 import NationDetails from "../src/components/NationDetails";
 import useGetDetails from "../src/hooks/useGetDetails";
 
@@ -17,6 +18,9 @@ export default function NationViewScreen({ navigation, route }) {
     navigation.navigate("Menu", {id});
 }
 
+const pressHandlerOverview=() => {
+  navigation.navigate('OverView')
+}
   
   const { id } = route.params;
   const nation = useGetDetails(id);
@@ -32,6 +36,9 @@ export default function NationViewScreen({ navigation, route }) {
 
     <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
       <View style={styles.bottomSpace} />
+      <View style={styles.exit}>
+      <ExitButton text="x" onPress={pressHandlerOverview} />
+    </View>
 
       <ImageBackground source={{ uri: nation.header }} resizeMode="cover" style={styles.image}>
         <NationDetails id={id} fields={["name"]} style={styles.title} />
@@ -39,39 +46,51 @@ export default function NationViewScreen({ navigation, route }) {
   
       <View style={styles.container}>
         <View style={styles.leftColumn}>
-          <View style={styles.separator} />
           <View style={styles.row}>
-          <Text style={styles.label}>
-          Available Seats: {nation.maxCapacity - nation.guestCount}
-        </Text>
+          <NationDetails id={id} fields={["description"]} style={styles.descriptionText} />
+         
           </View>
 
           <View style={styles.separator} />
-          <View style={styles.row}>
-          <Text style={styles.label}>Description:</Text>
-          <NationDetails id={id} fields={["description"]} style={styles.descriptionText}  />
-          </View>
-          
+        <View style={styles.row}>
+        <Text style={styles.label}>
+        Available Seats:{" "}
+          {nation.maxCapacity - nation.guestCount < 0
+            ? 0
+            : nation.maxCapacity - nation.guestCount}
+        </Text>
+
+      
+           
         </View>
+      </View>
     
       </View>
 
-      <View style={styles.menuContainer}>
+      <View style={styles.menu}>
         <MenuButton text="Menu" onPress={pressHandler} />
       </View>
+     
   
 
 
-       <View>
-       <Text style={styles.header}> Opening Hours: </Text>
-          <NationDetails id={id} fields={["openingHours"]} style={styles.openingTimes}  />
-          </View>
+    
+ 
+      <View style={styles.row}>
+  <Icon name="clock-o" size={18} color="white" style={styles.icon} />
+  <Text style={styles.header}>Opening Hours:</Text>
+</View>
+<View style={styles.sectionContent}>
+  <NationDetails id={id} fields={["openingHours"]} style={styles.openingTimes} />
+</View>
 
-      <View>
-        <Text style={styles.header}> Adress: </Text>
-          <NationDetails id={id} fields={["address"]} style={styles.adress} />
-          
-      </View>
+<View style={styles.row}>
+  <Icon name="map-marker" size={18} color="white" style={styles.icon} />
+  <Text style={styles.header}>Adress:</Text>
+</View>
+<View style={styles.sectionContent}>
+  <NationDetails id={id} fields={["address"]} style={styles.adress} />
+</View>
   
       </ScrollView>
   );
@@ -85,11 +104,17 @@ const styles = StyleSheet.create({
 
 
   contentContainer: {
-    paddingBottom: 200, 
+    paddingBottom: 150, 
   },
 
   bottomSpace: {
     height: 50, 
+  },
+
+  exit: {
+    top: 65,
+    left: 35,
+    zIndex: 1,
   },
 
 image: {
@@ -101,49 +126,35 @@ image: {
   
 },
 
-availableSeats: {
-  fontSize: 20,
-  fontFamily: 'Montserrat',
-  letterSpacing: 1, 
-  textAlign:'center',
-  top: 50,
-  color: 'white',
-},
-
 openingTimes: {
-  fontSize: 14,
-  fontFamily: 'Montserrat',
-  letterSpacing: 1, 
-  fontStyle: 'italic',
-  color: 'white',
-  paddingLeft: 15,
-  paddingRight: 15,
-  paddingVertical: 10,
-  top: 180,
+  fontSize: 12,
+    fontFamily: 'Montserrat',
+    letterSpacing: 1,
+    fontStyle: 'italic',
+    color: 'white',
+    top: 80,
+    paddingBottom: 10,
 
 },
 
 adress: {
-  fontSize: 14,
-  fontFamily: 'Montserrat',
-  letterSpacing: 1, 
-  fontWeight: 'bold',
-  fontStyle: 'italic',
-  color: 'white',
-  paddingLeft: 15,
-  paddingRight: 15,
-  paddingVertical: 10,
-  top: 180,
+  fontSize: 12,
+    fontFamily: 'Montserrat',
+    letterSpacing: 1,
+    fontStyle: 'italic',
+    color: 'white',
+    top: 80,
 },
 
 descriptionText: {
-  fontSize: 12,
-  fontFamily: 'Montserrat',
-  letterSpacing: 1,
+  fontSize: 14,
+  fontFamily: 'MontserratBold',
+  letterSpacing: 2,
   fontStyle: 'italic',
-  color: '#a9a9a9',
-  textAlign: 'left',
-
+  color: 'white',
+  textAlign: 'center',
+  lineHeight: 20,
+  paddingHorizontal: 5,
 },
 
 title: {
@@ -160,23 +171,15 @@ title: {
 },
 
 header: {
-  fontSize: 16,
+  fontSize: 14,
   fontFamily: 'MontserratBold',
   letterSpacing: 1, 
   fontWeight: 'bold',
   fontStyle: 'italic',
   color: 'white',
-  paddingVertical: 5,
+  paddingVertical: 10,
   paddingLeft: 15,
-  top: 180,
-},
-
-menuContainer: {
-  position: 'absolute',
-  bottom: 220,
-  alignSelf: 'center',
-  width: 200,
-  zIndex: 1,
+  top: 80,
 },
 
 container: {
@@ -192,7 +195,7 @@ leftColumn: {
 row: {
   flexDirection: "row",
   alignItems: "center",
-  marginBottom: 20,
+  marginBottom: 10,
 },
 
 
@@ -203,14 +206,30 @@ separator: {
 },
 
 label: {
-  color: "white",
-  fontSize: 12,
-  letterSpacing: 1,
-  textAlign: "left",
+  color: 'white',
+  fontSize: 14,
+  letterSpacing: 2,
+  textAlign: 'center', // Updated to center alignment
   flex: 1,
-  paddingRight: 5,
-  justifyContent: 'center'
+  paddingHorizontal: 10,
+  flexWrap: 'nowrap',
+  fontFamily:"MontserratBold",
 },
 
+icon: {
+  top: 100,
+  color: '#658534',
+  paddingLeft: 5,
+  marginRight: 5,
+  
+},
+
+sectionContent: {
+  marginLeft: 35,
+},
+
+menu: {
+  top: 60,
+}
 
 })

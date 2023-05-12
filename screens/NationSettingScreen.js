@@ -41,12 +41,11 @@
     return (
       <View style={styles.container}>
 
-      <NationDetails id={id} fields={["name"]} style={styles.title} />
-
        <ChangeDetails
             id={id}
             fields={fieldsToDisplay} 
             selectedValue={selectedValue}
+            style={styles.title}
           />
 
         <Text style={styles.maximumSeats}>
@@ -63,6 +62,7 @@
         <View style={styles.submit}>
           <OrangeButtons text="Submit seats" onPress={pressHandler} />
         </View>
+
       </View>
     );
   }
@@ -119,4 +119,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '70%',
   },
+  name: {
+    top: 30,
+
+  }
 });
