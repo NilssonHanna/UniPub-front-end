@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     paddingBottom: 200,
   },
   container: {
-    //flexDirection: "row",
+    flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: "white",
     paddingVertical: 0,
