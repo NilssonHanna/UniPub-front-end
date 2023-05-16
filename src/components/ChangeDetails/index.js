@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-const ChangeDetails = ({ id, fields, selectedValue}) => {
+const ChangeDetails = ({ id, fields, selectedValue, style}) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [nation, setNation] = useState([]);
 
@@ -28,12 +28,19 @@ const ChangeDetails = ({ id, fields, selectedValue}) => {
   return (
     <View>
       {fields.map((field) => (
-        <Text key={field} style={{color:'white'}}>
+        <Text key={field} style={[styles.fieldText, style]}>
           {nation[field]}
         </Text>
       ))}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  fieldText: {
+    color: "white",
+  },
+});
+
 
 export default ChangeDetails;

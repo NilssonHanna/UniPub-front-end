@@ -4,6 +4,7 @@ import {
   View,
   Text,
   ScrollView,
+  Image,
   TextInput,
   TouchableOpacity
 } from "react-native";
@@ -63,6 +64,8 @@ export default function ProfileScreen({ navigation, route }) {
     >
       <Text style={styles.title}>{nation.name}</Text>
 
+      <Image source={{ uri: nation.image }} resizeMode="contain" style={styles.logo} />
+
       <View style={styles.container}>
         <View style={styles.leftColumn}>
           <View style={styles.separator} />
@@ -116,17 +119,19 @@ export default function ProfileScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+
   scrollContainer: {
     flex: 1,
     backgroundColor: theme.backgroundColor,
   },
-
   contentContainer: {
-    paddingBottom: 100,
+    paddingBottom: 200,
   },
-
-  bottomSpace: {
-    height: 50,
+  container: {
+    flexDirection: "row",
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
+    paddingVertical: 0,
   },
 
   title: {
@@ -139,7 +144,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "#00000070",
-    marginTop: 30,
+    marginTop: 50,
   },
 
   logOut: {
@@ -169,19 +174,6 @@ const styles = StyleSheet.create({
     top: 80,
   },
 
-  scrollContainer: {
-    flex: 1,
-    backgroundColor: theme.backgroundColor,
-  },
-  contentContainer: {
-    paddingBottom: 100,
-  },
-  container: {
-    flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "white",
-    paddingVertical: 20,
-  },
   leftColumn: {
     flex: 1,
     paddingRight: 0,
@@ -227,5 +219,14 @@ const styles = StyleSheet.create({
   plusIcon: {
     left: 175,
     top: 50,
+  },
+
+  logo: {
+    width: 100, 
+    height: 100,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    top: 60,
+    marginBottom: 100,
   }
 });

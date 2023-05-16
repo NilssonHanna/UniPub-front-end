@@ -4,6 +4,7 @@ import {
   View,
   Text,
   Button,
+  Image,
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
@@ -17,6 +18,7 @@ import axios from "axios";
 import theme from "../Styles/GlobalStyles";
 import useGetDetails from "../src/hooks/useGetDetails";
 import NationDetails from "../src/components/NationDetails";
+import NationList from "../src/components/NationList";
 
 export default function NationManagingScreen({ navigation, route }) {
   const { id, selectedValue } = route.params;
@@ -58,14 +60,14 @@ export default function NationManagingScreen({ navigation, route }) {
   const progress = maxBar === 0 ? 0 : guestBar / maxBar;
   const validProgress = isNaN(progress) ? 0 : progress;
 
-  /*const pressHandler = () => {
-    navigation.navigate("NationManaging");
-  };*/
-
+ 
   return (
     <View style={styles.container}>
   
   <NationDetails id={id} fields={["name"]} style={styles.title} />
+
+  <Image source={{ uri: nation.image }} resizeMode="contain" style={styles.logo} />
+
 
       <View style={styles.bar}>
         <Bar index={validProgress} />
@@ -73,17 +75,26 @@ export default function NationManagingScreen({ navigation, route }) {
 
       <View>
         <View style={styles.iconButtonPlus}>
-          <Button title="+" onPress={handlePlusClick} />
+        <TouchableOpacity onPress={handlePlusClick} >
+      <Text style={styles.buttonText}>+</Text>
+    </TouchableOpacity>
         </View>
 
         <View style={styles.iconButtonMinus}>
-          <Button title="-" onPress={handleMinusClick} />
+        <TouchableOpacity onPress={handleMinusClick} >
+      <Text style={styles.buttonText}>-</Text>
+    </TouchableOpacity>
         </View>
 
         <Text style={styles.white}>
           {nation.guestCount}/{nation.maxCapacity} students have entered
         </Text>
       </View>
+
+      <Text style={styles.press}>
+      Press to remove / add guest
+      </Text>
+
     </View>
   );
 }
@@ -156,14 +167,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     left: "20%",
     position: "absolute",
-    marginTop: 350,
+    marginTop: 200,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 2,
+    shadowOpacity: 10,
     shadowRadius: 10,
 
     elevation: 5,
@@ -178,22 +189,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     left: "45%",
     position: "absolute",
-    marginTop: 350,
+    marginTop: 200,
     borderRadius: 50,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 2,
+    shadowOpacity: 10,
     shadowRadius: 10,
 
     elevation: 5,
   },
-  iconButtonText: {
+
+  buttonText: {
+    textAlign: 'center', // Center the text horizontally
+    textAlignVertical: 'center', // Center the text vertically
     fontSize: 80,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
 
   index: {
@@ -208,8 +222,16 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
 
+  press: {
+    fontSize: 14,
+    top: 280,
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: "Montserrat",
+  },
+
   bar: {
-    top: 250,
+    top: 130,
     marginHorizontal: 20,
   },
 
@@ -220,8 +242,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: 'white',
-    top:  250,
+    top:  130,
     padding: 10
 
   },
+
+  logo: {
+    width: 100, 
+    height: 100,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    top: 60,
+  }
 });
