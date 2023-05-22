@@ -47,6 +47,25 @@ const Tabs=() => {
                     
                 />
 
+<Tab.Screen 
+                name="OverView" 
+                component={OverViewScreen}
+                options={{
+                    tabBarLabel: 'NATIONS',
+                    tabBarIcon: ({ color, size, focused }) => (
+                      <MaterialCommunityIcons 
+                      name="view-list" 
+                      color={focused ? 'white' : '#a9a9a9'}  
+                      size={30} />
+                    ),
+                    tabBarLabelStyle: {
+                      fontFamily: 'Times New Roman',
+                      fontSize: 12,
+                      letterSpacing: 2,
+                    },
+                  }}
+            />
+
             <Tab.Screen 
                 name="Map" 
                 component={MapScreen} 
@@ -68,24 +87,7 @@ const Tabs=() => {
                
             />
             
-            <Tab.Screen 
-                name="OverView" 
-                component={OverViewScreen}
-                options={{
-                    tabBarLabel: 'NATIONS',
-                    tabBarIcon: ({ color, size, focused }) => (
-                      <MaterialCommunityIcons 
-                      name="view-list" 
-                      color={focused ? 'white' : '#a9a9a9'}  
-                      size={30} />
-                    ),
-                    tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
-                      fontSize: 12,
-                      letterSpacing: 2,
-                    },
-                  }}
-            />
+       
 
 
         
