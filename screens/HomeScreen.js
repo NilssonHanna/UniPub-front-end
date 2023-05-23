@@ -7,7 +7,7 @@ export default function HomeScreen({ navigation }) {
 
   const pressHandlerMap=() =>{
 
-    navigation.navigate('Map')
+    navigation.navigate('OverView')
     
     }
     const pressHandlerLogin=() =>{

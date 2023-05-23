@@ -4,14 +4,18 @@ import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import Parse from "parse/react-native.js";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+//import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 
+uuidv4();
 const LoginScreen = ({ navigation }) => {
 
  const [username, setUsername] = useState('');
- 
  const [password, setPassword] = useState('');
-
+ const [email, setEmail] = useState('');
  const [isModalVisible, setIsModalVisible] = useState(false);
  
  const [fontsLoaded] = useFonts({
@@ -19,6 +23,38 @@ const LoginScreen = ({ navigation }) => {
   MontserratBold: Montserrat_700Bold,
 });
 
+//const Parse = require('parse/node');
+//Initializing the SDK. 
+Parse.setAsyncStorage(AsyncStorage);
+//You need to copy BOTH the the Application ID and the Javascript Key from: Dashboard->App Settings->Security & Keys 
+Parse.initialize('H7FbqYUcGrDEon9FzxzS3mC9JOWzjxi4ddpE0qpQ','DK4H38GQeuEGwGqbvRpy3jg7s77wAZv4JtdIcNn4');
+Parse.serverURL = 'https://parseapi.back4app.com/';
+
+const doUserPasswordReset = async function () {
+  // Note that this value come from state variables linked to your text input
+  const emailValue = email;
+
+  return await Parse.User.requestPasswordReset(emailValue)
+    .then(async() => {
+      const query = new Parse.Query('User');
+      query.equalTo('email', emailValue);
+      const user = await query.first();
+      //const user = await query.first({ useMasterKey: true });
+      console.log(emailValue)
+      console.log(Parse.User)
+      
+      Alert.alert(
+        'Success!',
+        `Please check ${email} to proceed with password reset.`,
+      );
+      return true;
+    })
+    .catch((error) => {
+      Alert.alert('Error!', error.message);
+      return false;
+    });
+    
+};
 
 const pressHandlerHome=() => {
   navigation.navigate('Home')
@@ -27,48 +63,45 @@ const pressHandlerHome=() => {
 const pressHandlerForgotpassword = () => {
   setIsModalVisible(true);
 };
-  
 
- const pressHandler = async () => {
-  if (!username || !password) {
-    Alert.alert('All fields are required');
-    return;
-  }
-  
-
-
-  try {
-    const response = await axios.get(`https://nationapp-backend.onrender.com/nations/getNations`);
-    const data = response.data;
-
-    const matchingNation = data.find(
-      (nation) => nation.username === username && nation.password === password
-    );
-
-    if (!matchingNation) {
-      Alert.alert('Log in failed. Invalid username or password');
-      return;
-    }
-
-    const matchingNationID = matchingNation.id;
-    const nationIDs = data.map((nation) => nation.id);
-    console.log('id login', matchingNationID)
-
-    if (nationIDs.includes(matchingNationID)) {
-      navigation.navigate('TabsNations', { id: matchingNationID });
-    } else {
-      Alert.alert('Log in failed. Invalid username or password');
-    }
-  } catch (error) {
-    console.error(error);
-    Alert.alert('Log in failed. Please try again.');
-  }
+const pressHandlerSignup = () => {
+  navigation.navigate('Signup');
 };
+
+
+  async function logIn() {
+
+    const mongoResponse = await axios.get(`https://nationapp-backend.onrender.com/nations/getNations`);
+    const mongoData = mongoResponse.data;
+    const matchingMongoUser = mongoData.find(
+      (nation) => nation.username === username 
+    );
+    console.log(matchingMongoUser, 'nationen som hämtas')
+  
+    if (matchingMongoUser) {
+
+      var user = Parse.User
+          .logIn(username, password).then(function(user) {
+              console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+              const matchingMongoUserID = matchingMongoUser.id;
+              const mongoUserIDs = mongoData.map((nation) => nation.id);
+              if (mongoUserIDs.includes(matchingMongoUserID)) {
+                navigation.navigate('TabsNations', { id: matchingMongoUserID });
+                return;
+              }
+      
+            }).catch(function(error){
+              Alert.alert('Invalid username or password', error.message);
+          
+      });
+  }
+
+
+  }
 
 if (!fontsLoaded) {
   return null;
   }
-
 
 return (
 
@@ -79,50 +112,58 @@ return (
   </View>
 
   <Text style={styles.title}>Welcome back.</Text>
-    
-      <View>
+
+    <View>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Username"
+        placeholderTextColor={'white'}
+        onChangeText={(text) => setUsername(text)}
+        autoCompleteType="username"
+      />
+
         <TextInput
           style={styles.textInput}
-          placeholder="Username"
+          placeholder="Password"
           placeholderTextColor={'white'}
-          onChangeText={(text) => setUsername(text)}
-          autoCompleteType="username"
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={true}
         />
-    
-          <TextInput
-            style={styles.textInput}
-            placeholder="Password"
-            placeholderTextColor={'white'}
-            onChangeText={(text) => setPassword(text)}
-            secureTextEntry={true}
-          />
-        </View>
+    </View>
 
         <View style={styles.forgotpassword}>
           <TouchableOpacity onPress={pressHandlerForgotpassword}>
             <Text style={styles.forgotpasswordText}>Forgot password?</Text>
           </TouchableOpacity>
+          
+        </View>
 
-          </View>
-
-<View style={styles.login}>
-    
-          <LoginButtons text="Log in"  onPress={pressHandler}> </LoginButtons>
-        
+        <View style={styles.signup}>
+  <Text style={styles.accountText}>Don't have an account? </Text>
+  <TouchableOpacity onPress={pressHandlerSignup}>
+    <Text style={styles.signupText}>Sign Up</Text>
+  </TouchableOpacity>
+</View>
+  
+        <View style={styles.login}>
+          <LoginButtons text="Log in"  onPress={logIn}> </LoginButtons>
         </View>
 
         <Modal transparent visible={isModalVisible}>
         <KeyboardAvoidingView behavior='padding' style={styles.keyboardAvoidingView}>
-          
-       
+               
   <View style={styles.modalContent}>
-    
   <Text 
   style={styles.forgotpasswordTitle}>Forgot password?</Text>
   <Text style={styles.forgotpasswordInfo}> Did you forget your password? Don't worry, we've got your back! Just enter your email address below and we'll guide you back to your account.</Text>
-    <TextInput placeholder="Enter your email"  
-    style={styles.resetPassword}/>
-<TouchableOpacity onPress={() => setIsModalVisible(false)}>
+    <TextInput 
+          value={email}
+          placeholder={'Your account email'}
+          onChangeText={(text) => setEmail(text)}
+          autoCapitalize={'none'}
+          keyboardType={'email-address'}
+          style={styles.resetPassword}/>
+<TouchableOpacity onPress={() =>  doUserPasswordReset()} /* onPress={() => setIsModalVisible(false)} */>
 <Text style={styles.submitButton}> Submit</Text>
 
 </TouchableOpacity >
@@ -131,7 +172,8 @@ return (
   </KeyboardAvoidingView>
 </Modal>
   </View>
-)};
+);
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -166,14 +208,23 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 login:{
-  top:130
+  top:160
 },
 
 forgotpassword:{
-  top:210,
-  left:105,
+  top:100,
+  left:180,
   },
+  signup:{
+    top:240,
+    left:60,
 
+  },
+  signupText:{
+   color:'grey',
+   left:155
+
+  },
   forgotpasswordText:{
     color: 'white',
     position:'absolute'
@@ -188,6 +239,11 @@ forgotpassword:{
     fontFamily: 'Montserrat',
      fontSize: 12,
      marginTop:20
+  },
+
+  accountText:{
+    color: 'white',
+    position:'absolute'
   },
 
   resetPassword:{
@@ -212,7 +268,6 @@ forgotpassword:{
   
   modalContent:{
   
-  
       height: '40%',
       backgroundColor: 'white',
       padding: 20,
@@ -223,7 +278,6 @@ forgotpassword:{
        borderWidth: 1,
      
   },
-  
   
 });
 

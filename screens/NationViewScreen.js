@@ -69,8 +69,8 @@ export default function NationViewScreen({ navigation, route }) {
 
           <View style={styles.separator} />
           <View style={styles.row}>
-            <Text style={styles.label}>
-              Available Seats:{" "}
+            <Text style={styles.seats}>
+              Available seats:{" "}
               {nation.maxCapacity - nation.guestCount < 0
                 ? 0
                 : nation.maxCapacity - nation.guestCount}
@@ -214,6 +214,17 @@ const styles = StyleSheet.create({
   label: {
     color: "white",
     fontSize: 14,
+    letterSpacing: 1,
+    textAlign: "center", // Updated to center alignment
+    flex: 1,
+    paddingHorizontal: 10,
+    flexWrap: "nowrap",
+    fontFamily: "Montserrat",
+  },
+
+  seats: {
+    color: "white",
+    fontSize: 18,
     letterSpacing: 2,
     textAlign: "center", // Updated to center alignment
     flex: 1,

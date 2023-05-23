@@ -9,6 +9,7 @@ import MenuScreen from '../screens/MenuScreen';
 import Tabs from './Tabs';
 import TabsNations from './TabsNations';
 import ProfileScreen from '../screens/ProfileScreen';
+import SignupScreen from '../screens/SignupScreen';
 
 
 
@@ -31,8 +32,11 @@ const MainStack = () => {
         <Stack.Screen 
           name="Login" 
           component={LoginScreen} 
+                  />
 
-          
+<Stack.Screen 
+          name="Signup" 
+          component={SignupScreen} 
                   />
 
 <Stack.Screen 
