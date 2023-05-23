@@ -16,7 +16,6 @@ export default function MapScreen({ navigation }) {
 
 
   useEffect(() => {
-    // Fetch data from your database API
     axios.get('https://nationapp-backend.onrender.com/nations/getNations')
       .then(response => {
         setNations(response.data);
@@ -44,11 +43,6 @@ export default function MapScreen({ navigation }) {
     }
   }
 
-
-  if (!fontsLoaded) {
-    return null;
-    }
-
   return (
     <View style={styles.container}>
       {!isLoading && (
@@ -67,7 +61,7 @@ export default function MapScreen({ navigation }) {
             >
               <Callout>
                 <Text style={styles.nation}>{marker.name}</Text>
-                <Button color={'#666666'} title='Info' onPress={() => pressHandler(marker.name)} />
+                <Button color={'#666666'} titleStyle={styles.infobutton} title='Info' onPress={() => pressHandler(marker.name)} />
               </Callout>
             </Marker>
           ))}
@@ -99,5 +93,14 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     letterSpacing:0.5,
   },
+
+  infobutton: {
+    color: 'black',
+    textTransform:'uppercase',
+    fontSize:10,
+    fontFamily: 'Times New Roman',
+    fontWeight:'bold',
+    letterSpacing:0.5,
+  }
 
 });

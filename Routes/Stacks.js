@@ -9,6 +9,7 @@ import MenuScreen from '../screens/MenuScreen';
 import Tabs from './Tabs';
 import TabsNations from './TabsNations';
 import ProfileScreen from '../screens/ProfileScreen';
+import SignupScreen from '../screens/SignupScreen';
 
 
 
@@ -36,6 +37,11 @@ const MainStack = () => {
                   />
 
 <Stack.Screen 
+          name="Signup" 
+          component={SignupScreen} 
+                  />
+
+<Stack.Screen 
           name="TabsNations" 
           component={TabsNations} 
         />
@@ -46,17 +52,18 @@ const MainStack = () => {
         />
 
    
-        <Stack.Screen 
+<Stack.Screen 
           name="NationManaging" 
           component={NationManagingScreen} 
         /> 
        
         
-        <Stack.Screen 
+<Stack.Screen 
           name="NationView" 
           component={NationViewScreen} 
         />
-        <Stack.Screen 
+
+<Stack.Screen 
           name="Menu" 
           component={MenuScreen} 
                   />

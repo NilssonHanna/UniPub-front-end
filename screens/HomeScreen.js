@@ -7,7 +7,7 @@ export default function HomeScreen({ navigation }) {
 
   const pressHandlerMap=() =>{
 
-    navigation.navigate('Map')
+    navigation.navigate('OverView')
     
     }
     const pressHandlerLogin=() =>{
@@ -15,16 +15,12 @@ export default function HomeScreen({ navigation }) {
       navigation.navigate('Login')
       
       }
- /*  const pressHandler = (screenName) => {
-    navigation.navigate(screenName);
-  };
- */
   const imageUrl = "https://drive.google.com/uc?id=16kfkY0zJn0dKF9d0iIk0H4Ngpw4sFWFb";
 
   
   
   return (
-    <View style={[styles.container]}/* style={{flex: 1, backgroundColor: '#1070B6'}} */>
+    <View style={[styles.container]}>
 
       <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
       <Image
@@ -40,15 +36,6 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 }
-
-/* const styles = StyleSheet.create({
-
-  image: {
-    width: 250,
-    height: 250,
-  },
-});
- */
 
 const styles = StyleSheet.create({
   container: {

@@ -49,4 +49,5 @@ const styles = StyleSheet.create({
     backgroundcolor: theme.backgroundColor,
     paddingTop: 50,
   },
+
 });

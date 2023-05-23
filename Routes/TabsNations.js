@@ -27,8 +27,7 @@ const TabsNations=({route}) => {
     }
 
     const { id } = route.params;
-  console.log('id in TabsNations', id);
-    //console.log('id i tabsnations' ,route );
+
     return(
         <Tab.Navigator 
             screenOptions={{ 
@@ -70,7 +69,7 @@ const TabsNations=({route}) => {
                 component={NationSettingScreen} 
                 initialParams={{ id }}
                 options={{
-                    tabBarLabel: 'SETTINGS',
+                    tabBarLabel: 'CAPACITY',
                     tabBarStyle: { display: 'none'},
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
@@ -94,7 +93,7 @@ const TabsNations=({route}) => {
                 initialParams={{ id }}
                 options={{ 
                 
-                    tabBarLabel: 'MANAGE',
+                    tabBarLabel: 'CLICKER',
                     tabBarIcon: ({ color, size, focused }) => (
                       <MaterialCommunityIcons 
                       name="plus-minus-box" 
