@@ -153,6 +153,7 @@ return (
         <KeyboardAvoidingView behavior='padding' style={styles.keyboardAvoidingView}>
                
   <View style={styles.modalContent}>
+
   <Text 
   style={styles.forgotpasswordTitle}>Forgot password?</Text>
   <Text style={styles.forgotpasswordInfo}> Did you forget your password? Don't worry, we've got your back! Just enter your email address below and we'll guide you back to your account.</Text>
@@ -214,6 +215,7 @@ login:{
 forgotpassword:{
   top:100,
   left:180,
+
   },
   signup:{
     top:240,

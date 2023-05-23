@@ -11,6 +11,7 @@ const Tab = createBottomTabNavigator();
 const TabsNations=({route}) => {
 
     const { id } = route.params;
+
     return(
         <Tab.Navigator 
             screenOptions={{ 
