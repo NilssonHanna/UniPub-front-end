@@ -104,13 +104,6 @@ return (
           </TouchableOpacity>
 
           </View>
-  
-   
-   {/*  <View>
-      
-
-        <LoginButtons text="Log in" onPress={pressHandler} />
-    </View> */}
 
 <View style={styles.login}>
     
@@ -124,9 +117,6 @@ return (
        
   <View style={styles.modalContent}>
     
-   {/*  <View style={styles.exit} >
-        <ExitButton text="x" onPress= {() => setIsModalVisible(false)}/>
-    </View>   */}   
   <Text 
   style={styles.forgotpasswordTitle}>Forgot password?</Text>
   <Text style={styles.forgotpasswordInfo}> Did you forget your password? Don't worry, we've got your back! Just enter your email address below and we'll guide you back to your account.</Text>
@@ -148,13 +138,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.backgroundColor,
     padding:24,
-    paddingTop: 100, // add padding to position title at the top
-    paddingHorizontal: 24, // 
+    paddingTop: 100, 
+    paddingHorizontal: 24, 
   },
 
   title: {
     color: 'white',
-    //textTransform:'uppercase',
     fontSize:30,
     fontWeight:'bold',
     fontFamily: 'MontserratBold',
@@ -196,7 +185,6 @@ forgotpassword:{
       fontSize: 25
   },
   forgotpasswordInfo:{
-    /* textAlign: 'center', */
     fontFamily: 'Montserrat',
      fontSize: 12,
      marginTop:20

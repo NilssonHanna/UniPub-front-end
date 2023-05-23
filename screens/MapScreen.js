@@ -9,7 +9,6 @@ export default function MapScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data from your database API
     axios.get('https://nationapp-backend.onrender.com/nations/getNations')
       .then(response => {
         setNations(response.data);
@@ -33,11 +32,6 @@ export default function MapScreen({ navigation }) {
     } else {
       console.warn(`Nation not found: ${nationName}`);
     }
-  }
-  
-
-  const navigateToScreen = () => {
-    navigation.navigate('OverView');
   }
 
   return (

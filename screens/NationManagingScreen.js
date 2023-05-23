@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
   StyleSheet,
   View,
@@ -6,7 +6,7 @@ import {
   Button,
   Image,
   TouchableOpacity,
-  ImageBackground,
+
 } from "react-native";
 import {
   useFonts,
@@ -18,10 +18,9 @@ import axios from "axios";
 import theme from "../Styles/GlobalStyles";
 import useGetDetails from "../src/hooks/useGetDetails";
 import NationDetails from "../src/components/NationDetails";
-import NationList from "../src/components/NationList";
 
 export default function NationManagingScreen({ navigation, route }) {
-  const { id, selectedValue } = route.params;
+  const { id} = route.params;
 
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
@@ -36,7 +35,6 @@ export default function NationManagingScreen({ navigation, route }) {
   const maxBar = nation.maxCapacity;
 
   const indexManaging = nation.guestCount / nation.maxCapacity;
-  //console.log(indexManaging, "indexManaging");
 
   const handlePlusClick = () => {
     axios
@@ -203,10 +201,9 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    textAlign: 'center', // Center the text horizontally
-    textAlignVertical: 'center', // Center the text vertically
-    fontSize: 80,
-    fontWeight: "bold",
+    textAlign: 'center', 
+    textAlignVertical: 'center', 
+    fontSize: 75,
     color: "black",
   },
 
