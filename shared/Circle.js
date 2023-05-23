@@ -1,9 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 
+
+
 const Circle = ({ index }) => {
+  console.log(index, 'mitt index')
   let color = "#00FF00";
-  if (index >= 1) {
+  if (index === 0) {
+    color = "grey";
+  }
+  else if (index >= 1) {
     color = "#FF0000";
   } else if (index >= 0.5) {
     color = "#FFA500";
