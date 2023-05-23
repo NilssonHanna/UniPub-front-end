@@ -11,8 +11,7 @@ const Tab = createBottomTabNavigator();
 const TabsNations=({route}) => {
 
     const { id } = route.params;
-  //console.log('id in TabsNations', id);
-    //console.log('id i tabsnations' ,route );
+
     return(
         <Tab.Navigator 
             screenOptions={{ 

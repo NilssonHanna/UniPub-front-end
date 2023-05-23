@@ -181,13 +181,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.backgroundColor,
     padding:24,
-    paddingTop: 100, // add padding to position title at the top
-    paddingHorizontal: 24, // 
+    paddingTop: 100, 
+    paddingHorizontal: 24, 
   },
 
   title: {
     color: 'white',
-    //textTransform:'uppercase',
     fontSize:30,
     fontWeight:'bold',
     fontFamily: 'MontserratBold',
@@ -216,6 +215,7 @@ login:{
 forgotpassword:{
   top:100,
   left:180,
+
   },
   signup:{
     top:240,
@@ -238,7 +238,6 @@ forgotpassword:{
       fontSize: 25
   },
   forgotpasswordInfo:{
-    /* textAlign: 'center', */
     fontFamily: 'Montserrat',
      fontSize: 12,
      marginTop:20

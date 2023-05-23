@@ -9,7 +9,6 @@ export default function MapScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data from your database API
     axios.get('https://nationapp-backend.onrender.com/nations/getNations')
       .then(response => {
         setNations(response.data);
@@ -34,11 +33,6 @@ export default function MapScreen({ navigation }) {
       console.warn(`Nation not found: ${nationName}`);
     }
   }
-  
-
-  const navigateToScreen = () => {
-    navigation.navigate('OverView');
-  }
 
   return (
     <View style={styles.container}>
@@ -57,7 +51,7 @@ export default function MapScreen({ navigation }) {
               <Callout>
               
                 <Text style={styles.nation}>{marker.name}</Text>
-                <Button color={'#666666'} title='Info' onPress={() => pressHandler(marker.name)} />
+                <Button color={'#666666'} titleStyle={styles.infobutton} title='Info' onPress={() => pressHandler(marker.name)} />
               </Callout>
             </Marker>
           ))}
@@ -90,5 +84,14 @@ const styles = StyleSheet.create({
     letterSpacing:0.5,
 
   },
+
+  infobutton: {
+    color: 'black',
+    textTransform:'uppercase',
+    fontSize:10,
+    fontFamily: 'Times New Roman',
+    fontWeight:'bold',
+    letterSpacing:0.5,
+  }
 
 });

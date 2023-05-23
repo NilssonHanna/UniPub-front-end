@@ -1,5 +1,4 @@
-
-  import React, { useState } from "react";
+import React, { useState } from "react";
   import { StyleSheet, View, Text, Image } from "react-native";
   import {
     useFonts,
@@ -10,7 +9,8 @@
   import { OrangeButtons } from "../shared/Buttons";
   import NumberPicker from "../shared/NumberPicker";
   import ChangeDetails from "../src/components/ChangeDetails";
-  import NationDetails from "../src/components/NationDetails";
+ // import NationDetails from "../src/components/NationDetails";
+  import useGetDetails from "../src/hooks/useGetDetails";
   
   export default function NationSettingScreen({ navigation, route }) {
     const [fontsLoaded] = useFonts({
@@ -22,6 +22,7 @@
   
     const [selectedValue, setSelectedValue] = useState(0);
     const fieldsToDisplay = ["name"];
+    const nation = useGetDetails(id);
   
     const pressHandler = () => {
       navigation.navigate("NationManaging", {
@@ -41,11 +42,13 @@
     return (
       <View style={styles.container}>
 
+      <Text style={styles.title}>{nation.name}</Text>
+
        <ChangeDetails
             id={id}
             fields={fieldsToDisplay} 
             selectedValue={selectedValue}
-            style={styles.title}
+            style={styles.blacktext}
           />
 
         <Text style={styles.maximumSeats}>
@@ -82,6 +85,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     top: 50,
     letterSpacing: 2,
+    padding: 10,
+  },
+  blacktext: {
+    color: 'black',
+    fontSize: 2,
+    fontFamily: 'MontserratBold', 
+    textAlign: 'center',
     padding: 10,
   },
 
