@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import MapView, { Callout, Marker } from 'react-native-maps';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import axios from "axios";
-import { Button, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Button, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 
 export default function MapScreen({ navigation }) {
   const [nations, setNations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });  
+
 
   useEffect(() => {
     // Fetch data from your database API
@@ -20,13 +27,15 @@ export default function MapScreen({ navigation }) {
 
   const markers = nations.map(nation => ({
     name: nation.name,
-    coordinate: {
+      coordinate: {
       latitude: nation.latitude,
       longitude: nation.longitude,
     },
+    
   }));
 
   const pressHandler = (nationName) => {
+    console.log("vi kommer till presshandler")
     const nation = nations.find(nation => nation.name === nationName);
     if (nation) {
       navigation.navigate('NationView', { id: nation.id });
@@ -34,11 +43,11 @@ export default function MapScreen({ navigation }) {
       console.warn(`Nation not found: ${nationName}`);
     }
   }
-  
 
-  const navigateToScreen = () => {
-    navigation.navigate('OverView');
-  }
+
+  if (!fontsLoaded) {
+    return null;
+    }
 
   return (
     <View style={styles.container}>
@@ -51,11 +60,12 @@ export default function MapScreen({ navigation }) {
             longitudeDelta: 0.01,
             latitudeDelta: 0.01,
           }}
+
         >
           {markers.map((marker, index) => (
-            <Marker key={index} coordinate={marker.coordinate} >
+            <Marker key={index} coordinate={marker.coordinate}  
+            >
               <Callout>
-              
                 <Text style={styles.nation}>{marker.name}</Text>
                 <Button color={'#666666'} title='Info' onPress={() => pressHandler(marker.name)} />
               </Callout>
@@ -85,10 +95,9 @@ const styles = StyleSheet.create({
     color: 'black',
     textTransform:'uppercase',
     fontSize:14,
-    fontFamily: 'Times New Roman',
+    fontFamily: 'Montserrat',
     fontWeight:'bold',
     letterSpacing:0.5,
-
   },
 
 });

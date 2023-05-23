@@ -1,14 +1,30 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import NationManagingScreen from '../screens/NationManagingScreen';
 import NationSettingScreen from '../screens/NationSettingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 const Tab = createBottomTabNavigator();
 
+
+
 const TabsNations=({route}) => {
+
+  const insets = useSafeAreaInsets();
+
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });  
+
+  if (!fontsLoaded) {
+    return null;
+    }
 
     const { id } = route.params;
   console.log('id in TabsNations', id);
@@ -18,9 +34,17 @@ const TabsNations=({route}) => {
             screenOptions={{ 
                 headerShown: false,
                 tabBarStyle: { 
+                  borderTopWidth: 5,
+                  borderTopColor: '#222222',
+                  paddingBottom: insets.bottom,
+                  backgroundColor: '#222222',
                   position: 'absolute',
-                  borderTopWidth: 5, // Add a border on top of the tab bar
-                  borderTopColor: '#222222',},
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+    
+                
+              },
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: '#a9a9a9',
                 tabBarActiveBackgroundColor: '#222222',
@@ -55,7 +79,7 @@ const TabsNations=({route}) => {
                       size={25} />
                     ),
                     tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Montserrat',
                       fontSize: 12,
                       letterSpacing: 2,
                     },
@@ -78,7 +102,7 @@ const TabsNations=({route}) => {
                       size={25} />
                     ),  
                     tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Montserrat',
                       fontSize: 12,
                       letterSpacing: 2,
                     },
@@ -99,7 +123,7 @@ const TabsNations=({route}) => {
                       size={25} />
                     ),
                     tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Montserrat',
                       fontSize: 12,
                       letterSpacing: 2,
                     },
