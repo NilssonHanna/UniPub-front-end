@@ -39,7 +39,6 @@ export default function ProfileScreen({ navigation, route }) {
 
   LogBox.ignoreLogs([
     'Key "cancelled" in the image picker result is deprecated and will be removed in SDK 48, use "canceled" instead',
-    // Add other warning messages you want to ignore here
   ]);
 
   if (!fontsLoaded) {
@@ -77,23 +76,23 @@ export default function ProfileScreen({ navigation, route }) {
           mimeType: "multipart/form-data",
         });
 
-        console.log("Form data:", formData);
+       
         axios
           .post(
             'https://nationapp-backend.onrender.com/nations/menu/${id}',
             formData
           )
           .then((response) => {
-            console.log("POST request response:", response.data);
+          
             Alert.alert("Success", "Menu has been uploaded successfully.");
           })
           .catch((error) => {
-            console.log("POST request error:", error);
+           
             Alert.alert("Error", "Menu failed to upload.");
           });
       }
     } catch (error) {
-      console.log("Error:", error);
+    
     }
   };
 
@@ -168,7 +167,7 @@ export default function ProfileScreen({ navigation, route }) {
 
           <View style={styles.row}>
             <TextInput
-              style={styles.value} // Modified style
+              style={styles.value} 
               multiline={true}
               numberOfLines={4}
               value={openingHours}
@@ -262,8 +261,8 @@ const styles = StyleSheet.create({
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-between", // Change the alignment of the elements
-    alignItems: "center", // Center the elements vertically
+    justifyContent: "space-between",
+    alignItems: "center", 
     marginBottom: 20,
   },
   label: {
@@ -279,8 +278,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     letterSpacing: 2,
     textAlign: "left",
-    flex: 1, // Change the flex value to make both fields equally big
-    height: 70, // Set a fixed height to match the desired vertical size
+    flex: 1, 
+    height: 70, 
   },
 
   separator: {
