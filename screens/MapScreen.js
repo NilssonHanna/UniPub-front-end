@@ -35,7 +35,7 @@ export default function MapScreen({ navigation }) {
   }));
 
   const pressHandler = (nationName) => {
-    console.log("vi kommer till presshandler")
+   
     const nation = nations.find(nation => nation.name === nationName);
     if (nation) {
       navigation.navigate('NationView', { id: nation.id });
