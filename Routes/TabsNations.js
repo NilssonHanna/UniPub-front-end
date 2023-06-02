@@ -51,18 +51,7 @@ const TabsNations=({route}) => {
           }}
             >
 
-{/* <Tab.Screen 
-                name="Login" 
-                component={LoginScreen} 
-                options={{ 
-                    tabBarStyle: { display: 'none'},
-                    tabBarLabel: 'Login',
-                    tabBarIcon: ({ color, size }) => (
-                      <MaterialCommunityIcons name="home" color={'black'} size={30} />
-                    ),  
-                }}
-                    
-                /> */}
+
 
      <Tab.Screen 
                 name="NationSetting" 
