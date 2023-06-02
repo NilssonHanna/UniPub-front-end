@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import axios from "axios";
+import { Ionicons } from "@expo/vector-icons";
 import { Button, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 
@@ -61,7 +62,10 @@ export default function MapScreen({ navigation }) {
             >
               <Callout>
                 <Text style={styles.nation}>{marker.name}</Text>
-                <Button color={'#666666'} titleStyle={styles.infobutton} title='Info' onPress={() => pressHandler(marker.name)} />
+                <View style={styles.infobutton}>
+                <Button color={'blue'}  title='Visit nation' onPress={() => pressHandler(marker.name)} />
+                <Ionicons name="arrow-forward-outline" size={15} color='blue' style={styles.arrowIcon} />
+                </View>
               </Callout>
             </Marker>
           ))}
@@ -97,10 +101,15 @@ const styles = StyleSheet.create({
   infobutton: {
     color: 'black',
     textTransform:'uppercase',
-    fontSize:10,
+    fontSize:8,
     fontFamily: 'Times New Roman',
     fontWeight:'bold',
     letterSpacing:0.5,
-  }
+  },
+
+  arrowIcon: {
+    bottom: 25,
+    marginLeft: '90%',
+  },
 
 });
