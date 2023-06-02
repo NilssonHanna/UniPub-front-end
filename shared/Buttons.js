@@ -9,7 +9,6 @@ export default function StartButtons ({text,onPress}){
   const [fontsLoaded] = useFonts({
     Montserrat: Montserrat_400Regular,
   });
-  console.log(Montserrat_400Regular); 
   if (!fontsLoaded) {
     return null;
   }
@@ -70,7 +69,6 @@ export default function StartButtons ({text,onPress}){
     const [fontsLoaded] = useFonts({
       Montserrat: Montserrat_400Regular,
     });
-    console.log(Montserrat_400Regular); 
     if (!fontsLoaded) {
       return null;
     }
@@ -83,7 +81,6 @@ export default function StartButtons ({text,onPress}){
         </TouchableOpacity>
       );
     }
-
 
   export function OrangeButtons ({text,onPress}){
 
@@ -99,7 +96,6 @@ export default function StartButtons ({text,onPress}){
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.buttonContainer, styles.orangeButton]}>
           <Text style={styles.orangeButtonText}> {text} </Text>
-
         </View>
       </TouchableOpacity>
     );
@@ -123,20 +119,16 @@ export default function StartButtons ({text,onPress}){
     );
   }
 
-  
-
 const styles=StyleSheet.create({
     buttonContainer: {
-
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        alignSelf: 'center',
-        width: '70%',
-        marginBottom: 40,
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      alignSelf: 'center',
+      width: '70%',
+      marginBottom: 40,
     },
 
     loginButton:{
-        
       borderRadius:50,
       paddingVertical:15,
       marginHorizontal: 20,
@@ -146,31 +138,28 @@ const styles=StyleSheet.create({
         width: 0,
         height: 2,
     },
+      
       shadowOpacity: 2,
       shadowRadius: 10,
-  
       elevation: 5,
 
     },
     button:{
+      borderRadius:50,
+      borderColor: 'white',
+      borderWidth:1,
+      paddingVertical:10,
+      paddingHorizontal: 5,
+      backgroundColor:'#222222',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+      shadowOpacity: 2,
+      shadowRadius: 10,
+      elevation: 5,
 
-
-        borderRadius:50,
-        borderColor: 'white',
-        borderWidth:1,
-        paddingVertical:10,
-        paddingHorizontal: 5,
-        backgroundColor:'#222222',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-      },
-        shadowOpacity: 2,
-        shadowRadius: 10,
-    
-        elevation: 5,
-  
     },
 
     whiteButton:{
@@ -199,11 +188,9 @@ const styles=StyleSheet.create({
   },
     shadowOpacity: 2,
     shadowRadius: 10,
-
     elevation: 5,
 
 },
-
 
   exitButton:{
     width: 30,
@@ -214,8 +201,6 @@ const styles=StyleSheet.create({
     alignItems: 'center',  
     left:300,
     bottom:70,
-    
-
   },
 
   exitButtonText:{
@@ -224,45 +209,36 @@ const styles=StyleSheet.create({
     fontSize:15,
     fontWeight:'bold',
     fontFamily: 'Montserrat',
-    /* textAlign:'center', */
     alignSelf:'center',
     letterSpacing:0.5,
-    
-
   },
 
 
   orangeButton:{
-
     borderRadius:50,
     borderWidth: 1, 
     paddingVertical:10,
     backgroundColor:'#658534',
     shadowColor: "#000",
     shadowOffset: {
-      width: 0,
-      height: 2,
+    width: 0,
+    height: 2,
   },
     shadowOpacity: 2,
     shadowRadius: 10,
-
     elevation: 5,
-
 },
 
 buttonText:{
-
   color: 'white',
   fontSize:18,
   fontWeight:'bold',
   fontFamily: 'Montserrat',
   textAlign:'center',
   letterSpacing: 1,
-
 },
 
   LoginButtonText:{
-
     color: 'white',
     fontSize:18,
     fontWeight:'bold',
@@ -272,7 +248,6 @@ buttonText:{
 },
 
 menuButtonText:{
-
   color: 'white',
   fontSize:18,
   fontWeight:'bold',
@@ -280,29 +255,24 @@ menuButtonText:{
   textAlign:'center',
   letterSpacing: 1,
 
-
 },
-    orangeButtonText:{
+  orangeButtonText:{
+    color: 'white',
+    fontSize:20,
+    fontWeight:'bold',
+    fontFamily: 'Montserrat', 
+    textAlign:'center',
+    letterSpacing: 1,
+  },
 
-        color: 'white',
-        fontSize:20,
-        fontWeight:'bold',
-        fontFamily: 'Montserrat', 
-        textAlign:'center',
-        letterSpacing: 1,
-    
-    },
-
-    whiteButtonText:{
-
-      color: 'white',
-      //textTransform:'uppercase',
-      fontSize:14,
-      textAlign:'left',
-      fontFamily: 'MontserratBold', 
-      letterSpacing: 1,
-      paddingHorizontal: 10,
-    },
+  whiteButtonText:{
+    color: 'white',
+    fontSize:14,
+    textAlign:'left',
+    fontFamily: 'MontserratBold', 
+    letterSpacing: 1,
+    paddingHorizontal: 10,
+  },
 
     arrowIcon: {
       left:220,
@@ -316,6 +286,4 @@ menuButtonText:{
       left: 80,
       bottom: 28,
     },
-
-
 })
