@@ -5,7 +5,6 @@ import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-googl
 
 export default class NumberPicker extends Component {
 
-  
   render() {
     const numberRange = Array.from({ length: 200 }, (_, i) => i); 
     
@@ -38,8 +37,6 @@ export default class NumberPicker extends Component {
         itemHeight={40}
         highlightColor='white'
         highlightBorderWidth={2}
-       
-       
         
       />
     );
