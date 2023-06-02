@@ -9,7 +9,6 @@ import React, { useState } from "react";
   import { OrangeButtons } from "../shared/Buttons";
   import NumberPicker from "../shared/NumberPicker";
   import ChangeDetails from "../src/components/ChangeDetails";
-  //import NationDetails from "../src/components/NationDetails";
   import useGetDetails from "../src/hooks/useGetDetails";
   
   export default function NationSettingScreen({ navigation, route }) {
