@@ -11,12 +11,10 @@ const NationDetails = ({ id, fields, style, onLoad }) => {
     axios
       .get(`https://nationapp-backend.onrender.com/nations/${id}`)
       .then((response) => {
-        console.log("response", response);
         setNation(response.data);
         onLoad(response.data);
       })
       .catch((error) => {
-        console.log("axios error", error);
       })
       .finally(() => setHasLoaded(true));
   }, []);
