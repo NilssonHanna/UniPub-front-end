@@ -12,12 +12,10 @@ const NationList = ({ onPress, guestCount, maxCapacity, onLoad }) => {
     axios
       .get("https://nationapp-backend.onrender.com/nations/getNations")
       .then((response) => {
-        console.log("response", response);
         setNations(response.data);
         onLoad(response.data);
       })
       .catch((error) => {
-        console.log("axios error", error);
       })
       .finally(() => {
         setHasLoaded(true);
