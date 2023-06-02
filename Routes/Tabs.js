@@ -111,7 +111,7 @@ const Tabs=() => {
                
             />
             
-      
+
         </Tab.Navigator>
         </SafeAreaProvider>
     );

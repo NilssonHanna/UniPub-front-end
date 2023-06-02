@@ -1,117 +1,102 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Alert,
-  TouchableOpacity,
-  Modal,
-  KeyboardAvoidingView,
-  TouchableHighlight,
-} from "react-native";
-import axios from "axios";
-import theme from "../Styles/GlobalStyles";
-import { ExitButton, LoginButtons } from "../shared/Buttons";
-import {
-  useFonts,
-  Montserrat_400Regular,
-  Montserrat_700Bold,
-} from "@expo-google-fonts/montserrat";
+
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Button, TextInput, Alert, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
+import axios from 'axios';
+import theme from '../Styles/GlobalStyles';
+import {ExitButton, LoginButtons} from '../shared/Buttons';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Parse from "parse/react-native.js";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import 'react-native-get-random-values';
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
+
 
 uuidv4();
 const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const [fontsLoaded] = useFonts({
-    Montserrat: Montserrat_400Regular,
-    MontserratBold: Montserrat_700Bold,
-  });
+ const [username, setUsername] = useState('');
+ const [password, setPassword] = useState('');
+ const [email, setEmail] = useState('');
+ const [isModalVisible, setIsModalVisible] = useState(false);
+ 
+ const [fontsLoaded] = useFonts({
+  Montserrat: Montserrat_400Regular,
+  MontserratBold: Montserrat_700Bold,
+});
 
-  //const Parse = require('parse/node');
-  //Initializing the SDK.
-  Parse.setAsyncStorage(AsyncStorage);
-  //You need to copy BOTH the the Application ID and the Javascript Key from: Dashboard->App Settings->Security & Keys
-  Parse.initialize(
-    "H7FbqYUcGrDEon9FzxzS3mC9JOWzjxi4ddpE0qpQ",
-    "DK4H38GQeuEGwGqbvRpy3jg7s77wAZv4JtdIcNn4"
-  );
-  Parse.serverURL = "https://parseapi.back4app.com/";
+//const Parse = require('parse/node');
+//Initializing the SDK. 
+Parse.setAsyncStorage(AsyncStorage);
+//You need to copy BOTH the the Application ID and the Javascript Key from: Dashboard->App Settings->Security & Keys 
+Parse.initialize('H7FbqYUcGrDEon9FzxzS3mC9JOWzjxi4ddpE0qpQ','DK4H38GQeuEGwGqbvRpy3jg7s77wAZv4JtdIcNn4');
+Parse.serverURL = 'https://parseapi.back4app.com/';
 
-  const doUserPasswordReset = async function () {
-    // Note that this value come from state variables linked to your text input
-    const emailValue = email;
+const doUserPasswordReset = async function () {
+  // Note that this value come from state variables linked to your text input
+  const emailValue = email;
 
-    return await Parse.User.requestPasswordReset(emailValue)
-      .then(async () => {
-        const query = new Parse.Query('User');
-        query.equalTo('email', emailValue);
-        const user = await query.first();
-        //const user = await query.first({ useMasterKey: true });
-        console.log(emailValue);
-        console.log(Parse.User);
+  return await Parse.User.requestPasswordReset(emailValue)
+    .then(async() => {
+      const query = new Parse.Query('User');
+      query.equalTo('email', emailValue);
+      const user = await query.first();
+      //const user = await query.first({ useMasterKey: true });
+      console.log(emailValue)
+      console.log(Parse.User)
+      
+      Alert.alert(
+        'Success!',
+        `Please check ${email} to proceed with password reset.`,
+      );
+      return true;
+    })
+    .catch((error) => {
+      Alert.alert('Error!', error.message);
+      return false;
+    });
+    
+};
 
-        Alert.alert(
-          'Success!',
-          "Please check ${email} to proceed with password reset."
-        );
-        return true;
-      })
-      .catch((error) => {
-        Alert.alert('Error!', error.message);
-        return false;
-      });
-  };
+const pressHandlerHome=() => {
+  navigation.navigate('Home')
+}
 
-  const pressHandlerHome = () => {
-    navigation.navigate("Home");
-  };
+const pressHandlerForgotpassword = () => {
+  setIsModalVisible(true);
+};
 
-  const pressHandlerForgotpassword = () => {
-    setIsModalVisible(true);
-  };
+const pressHandlerSignup = () => {
+  navigation.navigate('Signup');
+};
 
-  const pressHandlerSignup = () => {
-    navigation.navigate('Signup');
-  };
 
   async function logIn() {
-    const mongoResponse = await axios.get(
-      "https://nationapp-backend.onrender.com/nations/getNations"
-    );
+
+    const mongoResponse = await axios.get(`https://nationapp-backend.onrender.com/nations/getNations`);
     const mongoData = mongoResponse.data;
     const matchingMongoUser = mongoData.find(
-      (nation) => nation.username === username
+      (nation) => nation.username === username 
     );
-    console.log(matchingMongoUser, "nationen som hämtas");
-
+    console.log(matchingMongoUser, 'nationen som hämtas')
+  
     if (matchingMongoUser) {
-      var user = Parse.User.logIn(username, password)
-        .then(function (user) {
-          console.log(
-            "User created successful with name: " +
-              user.get("username") +
-              " and email: " +
-              user.get("email")
-          );
-          const matchingMongoUserID = matchingMongoUser.id;
-          const mongoUserIDs = mongoData.map((nation) => nation.id);
-          if (mongoUserIDs.includes(matchingMongoUserID)) {
-            navigation.navigate("TabsNations", { id: matchingMongoUserID });
-            return;
-          }
-        })
-        .catch(function (error) {
-          Alert.alert("Invalid username or password", error.message);
-        });
-    }
+
+      var user = Parse.User
+          .logIn(username, password).then(function(user) {
+              console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+              const matchingMongoUserID = matchingMongoUser.id;
+              const mongoUserIDs = mongoData.map((nation) => nation.id);
+              if (mongoUserIDs.includes(matchingMongoUserID)) {
+                navigation.navigate('TabsNations', { id: matchingMongoUserID });
+                return;
+              }
+      
+            }).catch(function(error){
+              Alert.alert('Invalid username or password', error.message);
+          
+      });
+  }
+
   }
 
   if (!fontsLoaded) {
@@ -201,6 +186,8 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -215,6 +202,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     fontFamily: "MontserratBold",
+    padding:24,
+    paddingTop: 100, 
+    paddingHorizontal: 24, 
     letterSpacing: 2,
     textAlign: "center",
   },
@@ -252,12 +242,17 @@ const styles = StyleSheet.create({
   forgotpasswordText: {
     color: "white",
     position: "absolute",
-  },
+
 
   forgotpasswordTitle: {
     textAlign: "center",
     fontFamily: "MontserratBold",
     fontSize: 25,
+
+  },
+  forgotpasswordText:{
+    color: 'white',
+    position:'absolute'
   },
 
   forgotpasswordInfo: {
@@ -278,7 +273,19 @@ const styles = StyleSheet.create({
     padding: 13,
   },
 
-  resetPassword: {
+
+  forgotpasswordInfo:{
+    fontFamily: 'Montserrat',
+     fontSize: 12,
+     marginTop:20
+  },
+
+  accountText:{
+    color: 'white',
+    position:'absolute'
+  },
+
+  resetPassword:{
     borderWidth: 1,
     borderColor: "lightgrey",
     padding: 10,
@@ -307,7 +314,22 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderColor: "grey",
     borderWidth: 2,
+    paddingBottom:50
   },
+  
+  modalContent:{
+  
+      height: '40%',
+      backgroundColor: 'white',
+      padding: 20,
+      marginTop: 'auto',
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      borderColor: 'grey',
+       borderWidth: 1,
+     
+  },
+  
 });
 
 export default LoginScreen;
