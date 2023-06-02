@@ -9,7 +9,7 @@ import React, { useState } from "react";
   import { OrangeButtons } from "../shared/Buttons";
   import NumberPicker from "../shared/NumberPicker";
   import ChangeDetails from "../src/components/ChangeDetails";
- // import NationDetails from "../src/components/NationDetails";
+  //import NationDetails from "../src/components/NationDetails";
   import useGetDetails from "../src/hooks/useGetDetails";
   
   export default function NationSettingScreen({ navigation, route }) {
@@ -21,6 +21,8 @@ import React, { useState } from "react";
     const { id } = route.params;
   
     const [selectedValue, setSelectedValue] = useState(0);
+    const [value, setValue] = useState(0);
+
     const fieldsToDisplay = ["name"];
     const nation = useGetDetails(id);
   
@@ -33,6 +35,7 @@ import React, { useState } from "react";
   
     const onValueChange = (value) => {
       setSelectedValue(value);
+      console.log(value, 'value')
     };
   
    if (!fontsLoaded) {
@@ -55,7 +58,8 @@ import React, { useState } from "react";
           Set amount of maximum seats for the evening:
         </Text>
         <View style={styles.numberpicker}>
-          <NumberPicker onValueChange={onValueChange} />
+          <NumberPicker value={value}
+      onValueChange={onValueChange} />
           
         </View>
         <Text style={styles.selectedValue}>

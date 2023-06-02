@@ -39,10 +39,7 @@ const MainStack = () => {
           component={SignupScreen} 
                   />
 
-<Stack.Screen 
-          name="Signup" 
-          component={SignupScreen} 
-                  />
+
 
 <Stack.Screen 
           name="TabsNations" 
