@@ -37,24 +37,20 @@ if (!fontsLoaded) {
 
 
   function signUp() {
-    console.log('kommer in i signup');
 
     if (!username || !password || !email) {
       Alert.alert('All fields are required');
       return;
     }
 
-    // Check if the email is already registered
     const query = new Parse.Query(Parse.User);
     query.equalTo('email', email);
     query
       .first()
       .then((user) => {
         if (user) {
-          // Email already exists
           Alert.alert('Email is already registered');
         } else {
-          // Create a new instance of the user class
           var newUser = new Parse.User();
           newUser.set('username', username);
           newUser.set('password', password);
@@ -63,16 +59,13 @@ if (!fontsLoaded) {
           newUser
             .signUp()
             .then(function (user) {
-              console.log('User created successful with name: ' + user.get('username') + ' and email: ' + user.get('email'));
               navigation.navigate('Login');
             })
             .catch(function (error) {
-              console.log('Error: ' + error.code + ' ' + error.message);
             });
         }
       })
       .catch((error) => {
-        console.log('Error querying user: ' + error.message);
       });
   }
  
@@ -87,7 +80,6 @@ return (
   <Text style={styles.title}>Sign Up</Text>
 
     <View>
-
     <TextInput
         style={styles.textInput}
         placeholder="email"
@@ -111,17 +103,12 @@ return (
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}
         />
-
     </View>
 
-     
-
-    <View style={styles.login}>
+     <View style={styles.login}>
           <LoginButtons text="Register"  onPress={signUp}> </LoginButtons>
-        </View>
-
-       
-  </View>
+     </View>
+</View>
 );
 }
 
@@ -130,13 +117,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.backgroundColor,
     padding:24,
-    paddingTop: 100, // add padding to position title at the top
-    paddingHorizontal: 24, // 
+    paddingTop: 100, 
+    paddingHorizontal: 24, 
   },
 
   title: {
     color: 'white',
-    //textTransform:'uppercase',
     fontSize:30,
     fontWeight:'bold',
     fontFamily: 'MontserratBold',
@@ -178,7 +164,6 @@ forgotpassword:{
       fontSize: 25
   },
   forgotpasswordInfo:{
-    /* textAlign: 'center', */
     fontFamily: 'Montserrat',
      fontSize: 12,
      marginTop:20
@@ -205,7 +190,6 @@ forgotpassword:{
   },
   
   modalContent:{
-  
       height: '40%',
       backgroundColor: 'white',
       padding: 20,
