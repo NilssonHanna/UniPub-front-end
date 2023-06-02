@@ -10,7 +10,6 @@ import axios from "axios";
      setNation(response.data);
    })
    .catch((error) => {
-     console.log("axios error", error);
     })
 
   return nation;
