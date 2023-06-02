@@ -6,18 +6,14 @@ import theme from '../Styles/GlobalStyles'
 export default function HomeScreen({ navigation }) {
 
   const pressHandlerMap=() =>{
-
     navigation.navigate('OverView')
-    
     }
-    const pressHandlerLogin=() =>{
-
-      navigation.navigate('Login')
-      
-      }
-  const imageUrl = "https://drive.google.com/uc?id=16kfkY0zJn0dKF9d0iIk0H4Ngpw4sFWFb";
-
   
+  const pressHandlerLogin=() =>{
+    navigation.navigate('Login')
+    }
+  
+  const imageUrl = "https://drive.google.com/uc?id=16kfkY0zJn0dKF9d0iIk0H4Ngpw4sFWFb";
   
   return (
     <View style={[styles.container]}>
