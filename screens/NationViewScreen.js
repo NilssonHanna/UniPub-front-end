@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 14,
     letterSpacing: 1,
-    textAlign: "center", // Updated to center alignment
+    textAlign: "center", 
     flex: 1,
     paddingHorizontal: 10,
     flexWrap: "nowrap",
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     letterSpacing: 2,
-    textAlign: "center", // Updated to center alignment
+    textAlign: "center", 
     flex: 1,
     paddingHorizontal: 10,
     flexWrap: "nowrap",
