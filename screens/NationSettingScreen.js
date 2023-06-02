@@ -34,7 +34,6 @@ import React, { useState } from "react";
   
     const onValueChange = (value) => {
       setSelectedValue(value);
-      console.log(value, 'value')
     };
   
    if (!fontsLoaded) {
@@ -99,8 +98,8 @@ const styles = StyleSheet.create({
   },
 
   numberpicker:{
-    height: '30%', // for example
-    width: '50%', // for example
+    height: '30%', 
+    width: '50%',
     alignSelf: 'center',
     top: 160,
   },
