@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, Alert, TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, Alert, TouchableOpacity, Modal, KeyboardAvoidingView, TouchableHighlight} from 'react-native';
 import axios from 'axios';
 import theme from '../Styles/GlobalStyles';
 import {ExitButton, LoginButtons} from '../shared/Buttons';
@@ -242,6 +242,7 @@ const styles = StyleSheet.create({
   forgotpasswordText: {
     color: "white",
     position: "absolute",
+  },
 
 
   forgotpasswordTitle: {
@@ -250,10 +251,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
 
   },
-  forgotpasswordText:{
-    color: 'white',
-    position:'absolute'
-  },
+ 
 
   forgotpasswordInfo: {
     fontFamily: "Montserrat",
@@ -329,7 +327,7 @@ const styles = StyleSheet.create({
        borderWidth: 1,
      
   },
-  
+
 });
 
 export default LoginScreen;
