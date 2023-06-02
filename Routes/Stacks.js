@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator();
 const MainStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false, /* gestureEnabled: false */}}>
+      <Stack.Navigator screenOptions={{ headerShown: false, }}>
 
       
       <Stack.Screen
@@ -73,10 +73,7 @@ const MainStack = () => {
           component={ProfileScreen} 
                   />
            
-           {/* <Stack.Screen 
-          name="Home" 
-          component={HomeScreen} 
-                  /> */}
+       
            
 
       </Stack.Navigator>
