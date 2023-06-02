@@ -13,7 +13,7 @@ export default function OverViewScreen({ navigation }) {
   });  
 
   const pressHandler = (id) => {
-    navigation.navigate("NationView", { id: id }); // Modified to pass the nationID parameter
+    navigation.navigate("NationView", { id: id }); 
   };
 
   if (!fontsLoaded) {
