@@ -1,10 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 
-
-
 const Circle = ({ index }) => {
-  console.log(index, 'mitt index')
   let color = "#00FF00";
   if (index === 0) {
     color = "grey";
@@ -16,7 +13,7 @@ const Circle = ({ index }) => {
   }
 
   const progress = index > 1 ? 1 : index;
-
+  
   return (
     <View
       style={{
