@@ -1,8 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
 import OverViewScreen from '../screens/OverViewScreen';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -10,18 +13,39 @@ const Tab = createBottomTabNavigator();
 
 const Tabs=() => {
 
+  const insets = useSafeAreaInsets();
+
+
+  const [fontsLoaded] = useFonts({
+    Montserrat: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
+  });  
+
+  if (!fontsLoaded) {
+    return null;
+    }
+
     return(
+      <SafeAreaProvider>
         <Tab.Navigator 
             screenOptions={{ 
                 headerShown: false,
                 tabBarStyle: { 
+                  borderTopWidth: 5,
+                  borderTopColor: '#222222',
+                  paddingBottom: insets.bottom,
+                  backgroundColor: '#222222',
                   position: 'absolute',
-                  borderTopWidth: 5, // Add a border on top of the tab bar
-                  borderTopColor: '#222222',},
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                },
                   tabBarActiveTintColor: 'white',
                   tabBarInactiveTintColor: '#a9a9a9',
                   tabBarActiveBackgroundColor: '#222222',
                   tabBarInactiveBackgroundColor: '#222222',
+                
+
           }}
             >
             
@@ -39,7 +63,7 @@ const Tabs=() => {
                       />
                     ),  
                     tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Montserrat',
                       fontSize: 12,
                       letterSpacing: 2,
                     },
@@ -59,7 +83,7 @@ const Tabs=() => {
                       size={30} />
                     ),
                     tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Montserrat',
                       fontSize: 12,
                       letterSpacing: 2,
                     },
@@ -79,7 +103,7 @@ const Tabs=() => {
                       />
                     ),
                     tabBarLabelStyle: {
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Montserrat',
                       fontSize: 12,
                       letterSpacing: 2,
                     },
@@ -87,11 +111,9 @@ const Tabs=() => {
                
             />
             
-       
 
-
-        
         </Tab.Navigator>
+        </SafeAreaProvider>
     );
 }
 

@@ -7,6 +7,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert,
+  LogBox
 } from "react-native";
 import axios from "axios";
 import {
@@ -34,6 +36,11 @@ export default function ProfileScreen({ navigation, route }) {
   const [openingHours, setOpeningHours] = useState("");
 
   const nation = useGetDetails(id);
+
+  LogBox.ignoreLogs([
+    'Key "cancelled" in the image picker result is deprecated and will be removed in SDK 48, use "canceled" instead',
+    // Add other warning messages you want to ignore here
+  ]);
 
   if (!fontsLoaded) {
     return null;
@@ -73,14 +80,16 @@ export default function ProfileScreen({ navigation, route }) {
         console.log("Form data:", formData);
         axios
           .post(
-            `https://nationapp-backend.onrender.com/nations/menu/${id}`,
+            'https://nationapp-backend.onrender.com/nations/menu/${id}',
             formData
           )
           .then((response) => {
             console.log("POST request response:", response.data);
+            Alert.alert("Success", "Menu has been uploaded successfully.");
           })
           .catch((error) => {
             console.log("POST request error:", error);
+            Alert.alert("Error", "Menu failed to upload.");
           });
       }
     } catch (error) {
@@ -90,7 +99,7 @@ export default function ProfileScreen({ navigation, route }) {
 
   const handleDescription = () => {
     axios
-      .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+      .patch('https://nationapp-backend.onrender.com/nations/${id}', {
         description,
       })
       .then((response) => {})
@@ -99,7 +108,7 @@ export default function ProfileScreen({ navigation, route }) {
 
   const handleHours = () => {
     axios
-      .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
+      .patch('https://nationapp-backend.onrender.com/nations/${id}', {
         openingHours,
       })
       .then((response) => {})
@@ -190,12 +199,13 @@ export default function ProfileScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    minHeight: "100%", // or specify a fixed height like 500
+    flexGrow: 1,
+    paddingBottom: 50,
     backgroundColor: theme.backgroundColor,
   },
   contentContainer: {
     flexGrow: 1,
-    paddingBottom: 50,
+    paddingBottom: 200,
     paddingHorizontal: 20,
   },
   container: {
@@ -219,7 +229,7 @@ const styles = StyleSheet.create({
   },
 
   logOut: {
-    top: 130,
+    top: 70,
     alignSelf: "center",
     width: 200,
     fontFamily: "Montserrat",

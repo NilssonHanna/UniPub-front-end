@@ -66,7 +66,7 @@ const NationList = ({ onPress, guestCount, maxCapacity, onLoad }) => {
           {nations.map((nation) => (
             <TouchableOpacity key={nation.id} onPress={() => handlePress(nation.id)}>
               <View style={styles.row}>
-                <Image source={{ uri: nation.image }} resizeMode="contain" style={styles.image} />
+              <Image source={{ uri: nation.image }} resizeMode="contain" style={styles.image} />
                 <WhiteButtons
                   text={nation.name}
                   number={nation.guestCount / nation.maxCapacity}
