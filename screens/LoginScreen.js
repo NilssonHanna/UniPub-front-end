@@ -7,7 +7,6 @@ import {ExitButton, LoginButtons} from '../shared/Buttons';
 import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 import Parse from "parse/react-native.js";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -24,15 +23,14 @@ const LoginScreen = ({ navigation }) => {
   MontserratBold: Montserrat_700Bold,
 });
 
-//const Parse = require('parse/node');
-//Initializing the SDK. 
+
 Parse.setAsyncStorage(AsyncStorage);
-//You need to copy BOTH the the Application ID and the Javascript Key from: Dashboard->App Settings->Security & Keys 
+
 Parse.initialize('H7FbqYUcGrDEon9FzxzS3mC9JOWzjxi4ddpE0qpQ','DK4H38GQeuEGwGqbvRpy3jg7s77wAZv4JtdIcNn4');
 Parse.serverURL = 'https://parseapi.back4app.com/';
 
 const doUserPasswordReset = async function () {
-  // Note that this value come from state variables linked to your text input
+  
   const emailValue = email;
 
   return await Parse.User.requestPasswordReset(emailValue)
@@ -40,9 +38,8 @@ const doUserPasswordReset = async function () {
       const query = new Parse.Query('User');
       query.equalTo('email', emailValue);
       const user = await query.first();
-      //const user = await query.first({ useMasterKey: true });
-      console.log(emailValue)
-      console.log(Parse.User)
+      
+      
       
       Alert.alert(
         'Success!',
@@ -77,13 +74,13 @@ const pressHandlerSignup = () => {
     const matchingMongoUser = mongoData.find(
       (nation) => nation.username === username 
     );
-    console.log(matchingMongoUser, 'nationen som hämtas')
+    
   
     if (matchingMongoUser) {
 
       var user = Parse.User
           .logIn(username, password).then(function(user) {
-              console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+              
               const matchingMongoUserID = matchingMongoUser.id;
               const mongoUserIDs = mongoData.map((nation) => nation.id);
               if (mongoUserIDs.includes(matchingMongoUserID)) {
@@ -159,7 +156,7 @@ const pressHandlerSignup = () => {
               underlayColor={"transparent"}
               onPress={() => setIsModalVisible(false)}
             >
-              {/* Add a cross icon or any other symbol/image here */}
+              
               <Text style={styles.closeButtonText}>X</Text>
             </TouchableHighlight>
             <Text style={styles.forgotpasswordTitle}>Forgot password?</Text>
