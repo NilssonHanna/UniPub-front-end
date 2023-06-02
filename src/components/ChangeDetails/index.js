@@ -8,17 +8,14 @@ const ChangeDetails = ({ id, fields, selectedValue, style}) => {
   const [nation, setNation] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect")
     axios
       .patch(`https://nationapp-backend.onrender.com/nations/${id}`, {
         maxCapacity: selectedValue,
       })
       .then((response) => {
-        console.log("response", response);
         setNation(response.data);
       })
       .catch((error) => {
-        console.log("axios error", error);
       })
       .finally(() => setHasLoaded(true));
   }, [selectedValue]);
