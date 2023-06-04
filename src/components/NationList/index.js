@@ -38,15 +38,6 @@ const NationList = ({ onPress, guestCount, maxCapacity, onLoad }) => {
 
   if (!hasLoaded) return null;
 
-  let color = "#00FF00";
-  if (index >= 1) {
-    color = "#FF0000";
-  } else if (index >= 0.5) {
-    color = "#FFA500";
-  }
-
-  const index = guestCount / maxCapacity;
-
 
   return (
     <View>
@@ -67,7 +58,8 @@ const NationList = ({ onPress, guestCount, maxCapacity, onLoad }) => {
               <Image source={{ uri: nation.image }} resizeMode="contain" style={styles.image} />
                 <WhiteButtons
                   text={nation.name}
-                  number={nation.guestCount / nation.maxCapacity}
+                  guestcount={nation.guestCount}
+                  maxCapacity={nation.maxCapacity}
                   onPress={() => handlePress(nation.id)}
                 />
               </View>

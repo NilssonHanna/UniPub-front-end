@@ -1,9 +1,11 @@
 import React from "react";
 import { View } from "react-native";
 
-const Circle = ({ index }) => {
+const Circle = ({ maxCapacity, guestcount }) => {
+
+  index=guestcount/maxCapacity
   let color = "#00FF00";
-  if (index === 0) {
+  if (maxCapacity === 0) {
     color = "grey";
   }
   else if (index >= 1) {
@@ -12,7 +14,7 @@ const Circle = ({ index }) => {
     color = "#FFA500";
   }
 
-  const progress = index > 1 ? 1 : index;
+
   
   return (
     <View
