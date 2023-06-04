@@ -56,7 +56,7 @@ import React, { useState } from "react";
           Set amount of maximum seats for the evening:
         </Text>
         <View style={styles.numberpicker}>
-          <NumberPicker value={value}
+          <NumberPicker
       onValueChange={onValueChange} />
           
         </View>
