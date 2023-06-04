@@ -40,7 +40,7 @@ export default function StartButtons ({text,onPress}){
     );
   }
 
-  export function WhiteButtons ({text,onPress, number}){
+  export function WhiteButtons ({text, guestcount, maxCapacity, onPress}){
 
     const [fontsLoaded] = useFonts({
       Montserrat: Montserrat_400Regular,
@@ -56,7 +56,7 @@ export default function StartButtons ({text,onPress}){
         <View style={[styles.buttonContainer, styles.whiteButton]}>
           <Text style={styles.whiteButtonText}> {text} </Text>
           <View style={styles.circleContainer}>
-          <Circle index={number} />
+          <Circle guestcount={guestcount} maxCapacity={maxCapacity}/>
           </View>
           <Ionicons name="arrow-forward-outline" size={25} color="white" style={styles.arrowIcon} />
         </View>
